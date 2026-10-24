@@ -1,10 +1,11 @@
 # Winterdorf-Quiz mit Elchi
-Version 1.6.4 (24.10.2026). Inoffizielles Fan-Quiz, statisch (index.html, sw.js, manifest, Icons). Host: https://nosz.github.io/winterdorf/
+Version 1.6.5 (24.10.2026). Inoffizielles Fan-Quiz, statisch (index.html, sw.js, manifest, Icons). Host: https://nosz.github.io/winterdorf/
 
 Quellen: Texte aus `info/` (winterdorf-hn.de, Saison 2026/27), Farben aus `info/farben.png`. `info/` nicht hochladen.
 Hochladen: index.html, sw.js, manifest.webmanifest, 5 PNG-Icons.
 
 ## Änderungsprotokoll
+- 1.6.5 (24.10.2026): Fehler behoben (Farbliste COL fehlte, Startseite blieb leer).
 - 1.6.4 (24.10.2026): Nur noch EIN Elchi auf der Buehne (stehende Figur im Startbereich entfernt, Begruessung/Namensfrage/Tipps spricht die Buehnenfigur, Buehne raeumt vor jedem Auftritt komplett auf).
 - 1.6.3 (24.10.2026): Teilen-Knopf auf Urkunden- und Ergebnisseite wie auf der Hauptseite (gefuellt, Teilen-Symbol).
 - 1.6.2 (24.10.2026): Rechtlicher Hinweis (inoffizielles Fan-Projekt, Marken/Namen bei Inhabern, keine Logos/Bilder, Quellenstand, Spass-Urkunden) in DE/EN/Schwaebisch, Dialekt-Hinweis.
