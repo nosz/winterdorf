@@ -1,5 +1,5 @@
 /* Winterdorf-Quiz - Service Worker. VERSION muss mit VERSION in index.html uebereinstimmen. */
-const VERSION = "1.6.5";
+const VERSION = "1.6.6";
 const CACHE = "winterdorf-" + VERSION;
 const CORE = ["./", "index.html", "manifest.webmanifest"];
 const OPTIONAL = ["favicon.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "flags/de.svg", "flags/en.svg", "flags/swg.svg"];
