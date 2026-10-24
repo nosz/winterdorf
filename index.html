@@ -652,7 +652,7 @@ witz:["Was trinkt a Elch am liabschta? Elch-Glühwei!","Warum isch dr Elch so gm
 lob:["Richtig! Des hosch fei gmacht!","Stark! Dr Elchi isch stolz uff di!","Treffer! Weiter so!","Mei, du kennsch di aus!"],trost:["Ned schlimm, des merksch dir jetzt!","Knapp dernäba. Dr Elchi drückt d' Hufa!","Au Elch stolpered mol. Weiter geht's!"],tanz:["♪ Hüttagaudi! ♫","♫ Dr Elchi tanzt für di! ♪"],boost:["Du schaffsch des!","Oin Schritt noch em andra. I bin bei dir!"]};
 </script>
 <script>
-const VERSION="1.6.3",STAND="24.10.2026",URL_LIVE="https://nosz.github.io/winterdorf/";
+const VERSION="1.6.4",STAND="24.10.2026",URL_LIVE="https://nosz.github.io/winterdorf/";
 const ELK=`<svg viewBox="0 0 200 220"> <g fill="#8a5a2b" stroke="#4a2a12" stroke-width="4" stroke-linejoin="round"> <path d="M62 62 L40 22 L52 24 L48 6 L62 18 L66 36 L74 20 L80 30 L78 56Z" fill="#d9a441"/> <path d="M138 62 L160 22 L148 24 L152 6 L138 18 L134 36 L126 20 L120 30 L122 56Z" fill="#d9a441"/> <ellipse cx="55" cy="84" rx="20" ry="12" transform="rotate(-25 55 84)"/> <ellipse cx="145" cy="84" rx="20" ry="12" transform="rotate(25 145 84)"/> <ellipse cx="100" cy="190" rx="40" ry="26"/> <ellipse cx="100" cy="100" rx="52" ry="50"/> <ellipse cx="100" cy="130" rx="34" ry="28" fill="#c89358"/> </g> <path d="M52 72 Q100 14 148 72Z" fill="#e0453a" stroke="#7a1a12" stroke-width="4" stroke-linejoin="round"/> <path d="M126 36 Q150 20 160 44" fill="none" stroke="#e0453a" stroke-width="12" stroke-linecap="round"/> <circle cx="162" cy="46" r="9" fill="#fff6e4" stroke="#bbb" stroke-width="2"/> <rect x="48" y="66" width="104" height="14" rx="7" fill="#fff6e4" stroke="#bbb" stroke-width="2"/> <g><circle cx="80" cy="100" r="13" fill="#fff"/><circle cx="120" cy="100" r="13" fill="#fff"/> <circle cx="83" cy="102" r="6.5" fill="#2b1608"/><circle cx="117" cy="102" r="6.5" fill="#2b1608"/> <circle cx="85" cy="99" r="2.2" fill="#fff"/><circle cx="119" cy="99" r="2.2" fill="#fff"/></g> <ellipse cx="100" cy="132" rx="14" ry="10" fill="#4a2a12"/> <circle cx="94" cy="130" r="2.4" fill="#c89358"/><circle cx="106" cy="130" r="2.4" fill="#c89358"/> <path d="M84 148 Q100 162 116 148" fill="none" stroke="#4a2a12" stroke-width="4" stroke-linecap="round"/> <ellipse cx="66" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/><ellipse cx="134" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/> <path d="M70 160 Q100 176 130 160 L132 174 Q100 190 68 174Z" fill="#e0453a" stroke="#7a1a12" stroke-width="3" stroke-linejoin="round"/> </svg>`;
 const SCENE=(()=>{const fir=(x,b,s,c)=>{const w=26*s,t=18*s;let o='<rect x="'+(x-2*s)+'" y="'+b+'" width="'+4*s+'" height="'+5*s+'" fill="#4a2a12"/>';for(let i=0;i<3;i++){const y=b-i*t*.7,ww=w*(1-i*.22);o+='<polygon points="'+x+','+(y-t*1.15)+' '+(x-ww/2)+','+y+' '+(x+ww/2)+','+y+'" fill="'+c+'"/><polygon points="'+x+','+(y-t*1.15)+' '+(x-ww*.2)+','+(y-t*.8)+' '+(x+ww*.2)+','+(y-t*.8)+'" fill="#fff"/>'}return o};
  const leaf=(x,y,r,c,s)=>'<g transform="translate('+x+' '+y+') rotate('+r+') scale('+s+')"><path d="M0 0C6-9 15-9 20 0C15 9 6 9 0 0Z" fill="'+c+'"/><path d="M0 0L18 0" stroke="rgba(0,0,0,.25)" stroke-width="1"/></g>';
@@ -689,7 +689,7 @@ const passedN=()=>{let n=0;for(let i=0;i<NL;i++)if(passed(i))n++;return n};
 const rankNow=()=>{const n=passedN(),r=U().ranks;return n>=7?r[3]:n>=5?r[2]:n>=2?r[1]:r[0]};
 function save(){ls.set("wd_prog",JSON.stringify(prog));ls.set("wd_flakes",flakes)}
 function speak(t){tipTxt=t;const m=$("mb");if(m)m.textContent=t;$("live").textContent=t}
-function randTip(){const q=allQ()[Math.random()*allQ().length|0];speak(U().elchi+" "+q[5])}
+function randTip(){}
 function nav(v,i){Stage.abort();view=v;if(i!=null)cur=i;render();window.scrollTo(0,0);$("main").focus({preventScroll:true})}
 function chrome(){const u=U();document.documentElement.lang=lang==="swg"?"de":lang;$("bt").textContent="Winterdorf-Quiz";$("bs").textContent="by Corinna & Nobbi";$("coins").textContent="❄ "+flakes;$("skip").textContent=u.skip;
   $("dot").innerHTML=ELK;$("boost").innerHTML=ELK.replace("<svg ",'<svg class="elkb" ');$("boost").setAttribute("aria-label",u.motiv);$("share").setAttribute("aria-label",u.share);
@@ -714,7 +714,7 @@ function rHome(m){const u=U(),les=LS(),n=passedN(),p=Math.round(n/NL*100);
   '<div class="stats"><span class="chip big"><span>🏅 '+rankNow()+'</span><small>'+u.rank+'</small></span><span class="chip big"><span>❄ '+flakes+'</span><small>'+u.flakes+'</small></span><span class="chip big"><span>★ '+totalStars()+'/'+NL*3+'</span><small>'+u.stars+'</small></span></div>'+
   '<div class="herobtns"><button type="button" class="btn" id="chgName">✏️ '+(name?esc(name)+" · "+u.change:u.setName)+'</button><button type="button" class="btn" id="myCerts">🏅 '+u.myCerts+'</button></div>'+
   '<div class="namecard'+(nameOpen?"":" hide")+'" id="nc"><input id="nin" maxlength="24" autocomplete="off" aria-label="'+u.nameLbl+'" placeholder="'+u.nameLbl+'" value="'+esc(name)+'"><button type="button" class="save" id="nsave" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h11l4 4v14H5z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/></svg><span id="nst">'+u.save+'</span></button><p class="nmsg" id="nmsg" aria-live="polite"></p></div>'+
-  '<div class="mascot">'+ELK.replace("<svg ",'<svg id="mel" role="img" aria-label="Elchi" ')+'<div class="mbub" id="mb" aria-live="polite">'+tipTxt+'</div></div></div>'+
+  '</div>'+
   '<div class="ring" style="--p:'+p+'"><span>'+n+'/'+NL+'</span></div></section>'+
   '<button type="button" class="install hide" id="inst"><span class="ii">📲</span><span><b>'+u.instT+'</b><small>'+u.instS+'</small></span><span class="ar">→</span></button><p class="nmsg" id="imsg"></p>'+
   '<div class="bigbtns"><button type="button" class="bbtn pri" id="goNext"><span class="bi">🏔️</span><span><b>'+u.next+'</b><small>'+(nx!=null?les[nx].t:u.allDone)+'</small></span></button><button type="button" class="bbtn" id="goBoss"><span class="bi">🏆</span><span><b>'+u.boss+'</b><small>'+u.bossS+'</small></span></button></div>'+
@@ -727,8 +727,8 @@ function rHome(m){const u=U(),les=LS(),n=passedN(),p=Math.round(n/NL*100);
   $("chgName").onclick=()=>{nameOpen=!nameOpen;$("nc").classList.toggle("hide",!nameOpen);if(nameOpen)$("nin").focus({preventScroll:true})};
   const ni=$("nin"),nb=$("nsave");const st=()=>{const v=ni.value.trim();if(!v){nb.disabled=true;nb.className="save";$("nst").textContent=u.save}else if(v===name){nb.disabled=true;nb.className="save done";$("nst").textContent=u.saved}else{nb.disabled=false;nb.className="save on";$("nst").textContent=u.save}};
   ni.oninput=()=>{$("nmsg").textContent="";st()};st();
-  nb.onclick=()=>{name=ni.value.trim();ls.set("wd_name",name);nameOpen=false;tipTxt=f(u.nice,{n:name});render()};
-  $("mel").onclick=()=>{if(!Stage.busy())randTip()};
+  nb.onclick=()=>{name=ni.value.trim();ls.set("wd_name",name);nameOpen=false;render();Stage.say(f(u.nice,{n:name}))};
+  
   const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
   if(!standalone){$("inst").classList.remove("hide");$("inst").onclick=async()=>{if(deferred){deferred.prompt();deferred=null}else $("imsg").textContent=u.instHow}}}
 $("brand").onclick=()=>nav("home");
@@ -836,7 +836,7 @@ const reduce=()=>matchMedia("(prefers-reduced-motion:reduce)").matches;
 const pick=a=>a[Math.random()*a.length|0],F=()=>T[lang].fig,wait=ms=>new Promise(r=>setTimeout(r,ms));
 const dur=t=>Math.max(4200,t.length*65);
 const bo=on=>{const b=$("boost");if(b){b.classList.toggle("busy",on);b.setAttribute("aria-disabled",on?"true":"false")}};function abort(){tok++;bo(false);if(cur){try{cur.getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(e){}cur.remove();cur=null}}
-function mk(txt){abort();const d=document.createElement("div");d.className="fig";d.innerHTML='<div class="fb2"></div><span class="fs">'+ELK+'</span>';d.querySelector(".fb2").textContent=txt;st.appendChild(d);cur=d;bo(true);return d}
+function mk(txt){abort();st.innerHTML="";const d=document.createElement("div");d.className="fig";d.innerHTML='<div class="fb2"></div><span class="fs">'+ELK+'</span>';d.querySelector(".fb2").textContent=txt;st.appendChild(d);cur=d;bo(true);return d}
 async function an(el,kf,o){if(reduce())kf=[{opacity:0},{opacity:1}],o={duration:300,fill:"forwards"};try{const a=el.animate(kf,Object.assign({fill:"forwards"},o));await a.finished}catch(e){}}
 const bub=(d,on)=>d.querySelector(".fb2").classList.toggle("on",on);
 function textFor(k){const f=F();if(k==="name")return name?pick(f.name).replace(/\{n\}/g,name):U().ask;if(k==="witz")return pick(f.witz);if(k==="fakt"){const q=allQ();return U().elchi+" "+pick(q)[5]}if(k==="tanz")return pick(f.tanz);return pick(f.hallo)}
@@ -857,8 +857,8 @@ const ACTS=["name","quer","gucken","witz","fakt","tanz","salto","puff","sagen"];
 function run(a,txt){txt=txt||textFor(a);if(a==="quer")return quer(txt);if(a==="gucken")return gucken(txt);if(a==="salto")return salto(txt);return corner(a,txt,dur(txt))}
 function next(){if(!bag.length){bag=shuffle(ACTS);if(bag[0]===lastA)bag.push(bag.shift())}lastA=bag.shift();return lastA}
 function sched(ms){clearTimeout(timer);timer=setTimeout(()=>{if(document.hidden||view==="quiz"||cur){sched(4000);return}run(next()).then(()=>sched(9000+Math.random()*7000))},ms)}
-return{abort,start(){sched(2200)},
- busy(){return !!cur},react(ok){if(!cur&&Math.random()<.55){const f=F();run("sagen",pick(ok?f.lob:f.trost).replace(/\{n\}/g,name))}},
+return{abort,start(){setTimeout(()=>{if(!cur&&view!=="quiz")run("sagen",name?f(U().welcomeBack,{n:name}):U().ask).then(()=>sched(9000+Math.random()*7000));else sched(4000)},1500)},
+ busy(){return !!cur},say(t){if(!cur)run("sagen",t)},react(ok){if(!cur&&Math.random()<.55){const f=F();run("sagen",pick(ok?f.lob:f.trost).replace(/\{n\}/g,name))}},
  boost(){const a=pick(["sagen","tanz","salto","puff","name"]);run(a,a==="tanz"?textFor("tanz"):(name?name+", ":"")+pick(F().boost)).then(()=>sched(9000))}};
 })();
 render();Stage.start();
