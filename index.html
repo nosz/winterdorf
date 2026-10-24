@@ -654,7 +654,7 @@ witz:["Was trinkt a Elch am liabschta? Elch-Glühwei!","Warum isch dr Elch so gm
 lob:["Richtig! Des hosch fei gmacht!","Stark! Dr Elchi isch stolz uff di!","Treffer! Weiter so!","Mei, du kennsch di aus!"],trost:["Ned schlimm, des merksch dir jetzt!","Knapp dernäba. Dr Elchi drückt d' Hufa!","Au Elch stolpered mol. Weiter geht's!"],tanz:["♪ Hüttagaudi! ♫","♫ Dr Elchi tanzt für di! ♪"],boost:["Du schaffsch des!","Oin Schritt noch em andra. I bin bei dir!"]};
 </script>
 <script>
-const VERSION = "1.6.7";const STAND="24.10.2026",URL_LIVE="https://nosz.github.io/winterdorf/";
+const VERSION = "1.6.8";const STAND="24.10.2026",URL_LIVE="https://nosz.github.io/winterdorf/";
 const ELK=`<svg viewBox="0 0 200 220"> <g fill="#8a5a2b" stroke="#4a2a12" stroke-width="4" stroke-linejoin="round"> <path d="M62 62 L40 22 L52 24 L48 6 L62 18 L66 36 L74 20 L80 30 L78 56Z" fill="#d9a441"/> <path d="M138 62 L160 22 L148 24 L152 6 L138 18 L134 36 L126 20 L120 30 L122 56Z" fill="#d9a441"/> <ellipse cx="55" cy="84" rx="20" ry="12" transform="rotate(-25 55 84)"/> <ellipse cx="145" cy="84" rx="20" ry="12" transform="rotate(25 145 84)"/> <ellipse cx="100" cy="190" rx="40" ry="26"/> <ellipse cx="100" cy="100" rx="52" ry="50"/> <ellipse cx="100" cy="130" rx="34" ry="28" fill="#c89358"/> </g> <path d="M52 72 Q100 14 148 72Z" fill="#e0453a" stroke="#7a1a12" stroke-width="4" stroke-linejoin="round"/> <path d="M126 36 Q150 20 160 44" fill="none" stroke="#e0453a" stroke-width="12" stroke-linecap="round"/> <circle cx="162" cy="46" r="9" fill="#fff6e4" stroke="#bbb" stroke-width="2"/> <rect x="48" y="66" width="104" height="14" rx="7" fill="#fff6e4" stroke="#bbb" stroke-width="2"/> <g><circle cx="80" cy="100" r="13" fill="#fff"/><circle cx="120" cy="100" r="13" fill="#fff"/> <circle cx="83" cy="102" r="6.5" fill="#2b1608"/><circle cx="117" cy="102" r="6.5" fill="#2b1608"/> <circle cx="85" cy="99" r="2.2" fill="#fff"/><circle cx="119" cy="99" r="2.2" fill="#fff"/></g> <ellipse cx="100" cy="132" rx="14" ry="10" fill="#4a2a12"/> <circle cx="94" cy="130" r="2.4" fill="#c89358"/><circle cx="106" cy="130" r="2.4" fill="#c89358"/> <path d="M84 148 Q100 162 116 148" fill="none" stroke="#4a2a12" stroke-width="4" stroke-linecap="round"/> <ellipse cx="66" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/><ellipse cx="134" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/> <path d="M70 160 Q100 176 130 160 L132 174 Q100 190 68 174Z" fill="#e0453a" stroke="#7a1a12" stroke-width="3" stroke-linejoin="round"/> </svg>`;
 const SCENE=(()=>{const fir=(x,b,s,c)=>{const w=26*s,t=18*s;let o='<rect x="'+(x-2*s)+'" y="'+b+'" width="'+4*s+'" height="'+5*s+'" fill="#4a2a12"/>';for(let i=0;i<3;i++){const y=b-i*t*.7,ww=w*(1-i*.22);o+='<polygon points="'+x+','+(y-t*1.15)+' '+(x-ww/2)+','+y+' '+(x+ww/2)+','+y+'" fill="'+c+'"/><polygon points="'+x+','+(y-t*1.15)+' '+(x-ww*.2)+','+(y-t*.8)+' '+(x+ww*.2)+','+(y-t*.8)+'" fill="#fff"/>'}return o};
  const leaf=(x,y,r,c,s)=>'<g transform="translate('+x+' '+y+') rotate('+r+') scale('+s+')"><path d="M0 0C6-9 15-9 20 0C15 9 6 9 0 0Z" fill="'+c+'"/><path d="M0 0L18 0" stroke="rgba(0,0,0,.25)" stroke-width="1"/></g>';
@@ -753,7 +753,56 @@ function rQuiz(m){const u=U(),q=round[idx],t=round.length,opts=shuffle([[q[1],1]
     Stage.react(ok);if(ok){pts++;flakes++;$("coins").textContent="❄ "+flakes}else b.classList.add("wrong");answers[idx]=ok;
     $("fbx").innerHTML='<div class="fb '+(ok?"ok":"bad")+'"><b>'+(ok?u.right:u.wrong)+'</b>'+q[5]+'</div><div class="next"><button type="button" class="btn" id="nx">'+(idx<t-1?u.nextQ:u.result)+'</button></div>';
     $("live").textContent=(ok?u.right:u.wrong)+" "+q[5];$("nx").onclick=()=>{idx++;idx<t?render():finish()}})}
-function finish(){const t=round.length,src=cur===6?allQ():LS()[cur].q;if(pts>=(prog[cur]||0)||!DET[cur]){DET[cur]=round.map((q,k)=>[src.indexOf(q),answers[k]?1:0]);ls.set("wd_det",JSON.stringify(DET))}if(pts>(prog[cur]||0))prog[cur]=pts;save();nav("res")}
+function finish(){const t=round.length,src=cur===6?allQ():LS()[cur].q;if(pts>=(prog[cur]||0)||!DET[cur]){DET[cur]=round.map((q,k)=>[src.indexOf(q),answers[k]?1:0]);ls.set("wd_det",JSON.stringify(DET))}if(pts>(prog[cur]||0))prog[cur]=pts;save();nav("res");if(pts>=need(t))celebrate()}
+/* KONFETTI: Schneeflocken, bunte Blätter, Papierschnipsel */
+function celebrate(){
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+  const old=document.getElementById("celeb");if(old)old.remove();
+  const cv=document.createElement("canvas");cv.id="celeb";cv.setAttribute("aria-hidden","true");
+  cv.style.cssText="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60";
+  document.body.appendChild(cv);
+  const dpr=Math.min(devicePixelRatio||1,2),W=innerWidth,H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;
+  const g=cv.getContext("2d");g.scale(dpr,dpr);
+  const R=(a,b)=>a+Math.random()*(b-a);
+  const LEAF=["#d6402b","#e8731c","#f2b53c","#c9a227","#8f2415","#7aa33a","#b8321f","#e0993a"],PAPER=["#ffc83d","#d6402b","#1b7a3d","#2f7fd1","#e8731c","#c2417a","#ffffff"];
+  const ps=[],n=Math.round(Math.min(230,Math.max(120,W/5)));
+  for(let i=0;i<n;i++){
+    const k=i%10<4?"snow":i%10<7?"leaf":"paper",fromSide=i%3!==0,left=i%2===0;
+    ps.push({k,
+      x:fromSide?(left?-10:W+10):R(0,W),y:fromSide?R(H*.45,H*.85):R(-H*.5,-10),
+      vx:fromSide?(left?1:-1)*R(4,11):R(-1,1),vy:fromSide?-R(9,19):R(1,3),
+      s:k==="snow"?R(9,20):k==="leaf"?R(13,24):R(7,12),
+      c:k==="leaf"?LEAF[i%LEAF.length]:PAPER[i%PAPER.length],
+      r:R(0,6.28),vr:R(-.1,.1),ph:R(0,6.28),sw:R(.02,.06),fl:R(.05,.14),
+      delay:fromSide?R(0,400):R(0,3200),life:0});
+  }
+  const flake=(s)=>{g.beginPath();for(let a=0;a<6;a++){const t=a*Math.PI/3,c=Math.cos(t),d=Math.sin(t);g.moveTo(0,0);g.lineTo(c*s,d*s);
+    for(const m of [.55,.8]){const bx=c*s*m,by=d*s*m,b=s*.22;g.moveTo(bx,by);g.lineTo(bx+Math.cos(t+.8)*b,by+Math.sin(t+.8)*b);g.moveTo(bx,by);g.lineTo(bx+Math.cos(t-.8)*b,by+Math.sin(t-.8)*b)}}
+    g.stroke()};
+  const leaf=(s,c)=>{g.beginPath();g.moveTo(0,-s);g.bezierCurveTo(s*.9,-s*.5,s*.8,s*.5,0,s);g.bezierCurveTo(-s*.8,s*.5,-s*.9,-s*.5,0,-s);g.fillStyle=c;g.fill();
+    g.strokeStyle="rgba(60,25,5,.45)";g.lineWidth=1;g.beginPath();g.moveTo(0,-s);g.lineTo(0,s*1.15);g.stroke()};
+  let t0=performance.now(),last=t0;const DUR=9000;
+  const tick=now=>{
+    const dt=Math.min(2.2,(now-last)/16.67);last=now;const el=now-t0;
+    g.clearRect(0,0,W,H);let alive=0;
+    for(const p of ps){
+      if(el<p.delay){alive++;continue}
+      const fade=Math.max(0,Math.min(1,(DUR-el)/1500));
+      p.vx*=Math.pow(p.k==="paper"?.988:.982,dt);
+      const grav=p.k==="snow"?.035:p.k==="leaf"?.06:.14,term=p.k==="snow"?1.3:p.k==="leaf"?2:4.5;
+      p.vy=Math.min(term,p.vy+grav*dt);if(p.vy>term)p.vy-=.3*dt;
+      p.ph+=p.sw*dt;p.x+=(p.vx+Math.sin(p.ph)*(p.k==="paper"?.6:1.6))*dt;p.y+=p.vy*dt;p.r+=p.vr*dt;
+      if(p.y>H+30||fade<=0)continue;alive++;
+      g.save();g.globalAlpha=fade;g.translate(p.x,p.y);g.rotate(p.r);
+      if(p.k==="snow"){g.strokeStyle="#7fb7e6";g.lineWidth=p.s>12?2:1.5;g.shadowColor="rgba(255,255,255,.95)";g.shadowBlur=6;flake(p.s)}
+      else if(p.k==="leaf"){g.scale(1,Math.cos(p.ph*2.2)*.8+.2*Math.sign(Math.cos(p.ph*2.2)||1));leaf(p.s,p.c)}
+      else{g.scale(1,Math.cos(p.ph*3));g.fillStyle=p.c;g.fillRect(-p.s/2,-p.s/3,p.s,p.s*.66)}
+      g.restore();
+    }
+    if(alive&&el<DUR+500)requestAnimationFrame(tick);else cv.remove();
+  };
+  requestAnimationFrame(tick);
+}
 function rRes(m){const u=U(),t=round.length,ok=pts>=need(t),s=pts>=t?3:pts>=Math.ceil(t*.85)?2:ok?1:0;
   m.innerHTML='<section class="card res"><div class="bigstars">'+[0,1,2].map(i=>'<span class="'+(i<s?"":"off")+'">★</span>').join("")+'</div><h1>'+pts+' / '+t+' · '+rankOf(pts,t)+'</h1><p>'+(ok?f(pts>=t?u.perfect:u.pass,{n:esc(name||"")}):f(u.fail,{k:need(t)}))+'</p><div class="row">'+(ok?'<button type="button" class="btn" id="cb">🏅 '+u.certView+'</button>':'')+'<button type="button" class="btn sharecert sm" id="sh">'+SHI+'<span>'+u.share+'</span></button><button type="button" class="btn ghost" id="ag">'+u.again+'</button>'+(cur<6?'<button type="button" class="btn ghost" id="rd">'+u.reread+'</button>':'')+'<button type="button" class="btn ghost" id="hm">'+u.back+'</button></div></section>';
   if(ok)$("cb").onclick=()=>nav("cert",cur);$("sh").onclick=()=>shareSheet({text:f(u.scoreShare,{p:pts,t:t,l:LS()[cur].t})});$("ag").onclick=()=>startQuiz(cur);if(cur<6)$("rd").onclick=()=>nav("lesson",cur);$("hm").onclick=()=>nav("home")}
