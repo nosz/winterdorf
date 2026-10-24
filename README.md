@@ -1,10 +1,11 @@
 # Winterdorf-Quiz mit Elchi
-Version 1.5.0 (24.10.2026). Inoffizielles Fan-Quiz, statisch (index.html, sw.js, manifest, Icons). Host: https://nosz.github.io/winterdorf/
+Version 1.5.1 (24.10.2026). Inoffizielles Fan-Quiz, statisch (index.html, sw.js, manifest, Icons). Host: https://nosz.github.io/winterdorf/
 
 Quellen: Texte aus `info/` (winterdorf-hn.de, Saison 2026/27), Farben aus `info/farben.png`. `info/` nicht hochladen.
 Hochladen: index.html, sw.js, manifest.webmanifest, 5 PNG-Icons.
 
 ## Änderungsprotokoll
+- 1.5.1 (24.10.2026): Elchi fragt beim ersten Besuch nach dem Namen (Sprechblase und Buehnenauftritt).
 - 1.5.0 (24.10.2026): Hero rechts oben mit Winterlandschaft (Tannen, Herbstblaetter, Holzhuette, kleiner Elch).
 - 1.4.3 (24.10.2026): Lektionskarten wie HERZINTELLIGENZ (1 / 6 ✓, Zeit, Sterne) mit Urkunde ansehen + Teilen unter der Karte.
 - 1.4.2 (24.10.2026): Teilen wie bei HERZINTELLIGENZ (System-Teilen, sonst Dialog mit WhatsApp, E-Mail, Link kopieren; Urkunde als Bild).
