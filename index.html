@@ -8,223 +8,823 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Winterdorf-Quiz">
-<title>Winterdorf-Quiz mit Elchi</title>
-<meta name="description" content="Das inoffizielle Fan-Quiz zum traditionellen Winterdorf Heilbronn: Elchi, der kleine Elch, erzählt Wissenswertes und fragt dich ab.">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Winterdorf-Quiz</title>
+<meta name="description" content="Winterdorf-Quiz by Corinna &amp; Nobbi: Elchi erklärt das traditionelle Winterdorf Heilbronn in kleinen Lektionen, mit Quiz und Urkunden. Deutsch, English, Schwäbisch.">
+<meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#2b1608">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="canonical" href="https://nosz.github.io/winterdorf/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Winterdorf-Quiz mit Elchi">
+<meta property="og:title" content="Winterdorf-Quiz by Corinna &amp; Nobbi">
 <meta property="og:description" content="Wie gut kennst du das Winterdorf Heilbronn? Elchi fragt dich ab.">
 <meta property="og:url" content="https://nosz.github.io/winterdorf/">
 <style>
-:root{--wood:#2b1608;--wood2:#4a2a12;--gold:#f2b53c;--gold2:#ffd77a;--red:#e0453a;--cream:#fff6e4;--ink:#2b1608;--ok:#2e8b57}
+
+:root{
+  --pri:#b8321f;--pri-d:#8f2415;--pri-l:#fbe9d6;--herobg:linear-gradient(135deg,#ffe2a8,#f4b860);
+  --bg:#fbf3e4;--card:#ffffff;--ink:#2b1608;--mute:#6b4f36;--line:#ead7b8;
+  --blue:#8a4a12;--green:#1b7a3d;--gold:#ffc83d;--gold-ink:#7a4a00;--purple:#a9741a;--orange:#c25e00;--rose:#d6402b;
+  --ok:#157a3a;--okbg:#e6f6ec;--bad:#b3261e;--badbg:#fdecea;
+  --shadow:0 4px 0 rgba(0,0,0,.08),0 8px 22px rgba(0,0,0,.08);
+  --r:20px;
+  --font:"Trebuchet MS","Segoe UI","Hiragino Maru Gothic ProN","Yu Gothic UI","Meiryo",system-ui,-apple-system,sans-serif;
+}
+:root[data-theme="dark"]{
+  --pri:#ff7a63;--pri-d:#b8321f;--pri-l:#3d2312;--herobg:linear-gradient(135deg,#3d2312,#2c1809);
+  --bg:#1c0f06;--card:#2c1809;--ink:#fbeeda;--mute:#d9bf9c;--line:#4d3118;
+  --blue:#f2b53c;--green:#5ccf86;--gold:#ffc83d;--gold-ink:#ffe28a;--purple:#d9a441;--orange:#ffa94d;--rose:#ff9a85;
+  --ok:#5ccf86;--okbg:#17301f;--bad:#ff8a80;--badbg:#3a1d1b;
+  --shadow:0 4px 0 rgba(0,0,0,.35),0 8px 22px rgba(0,0,0,.35);
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --pri:#ff7a63;--pri-d:#b8321f;--pri-l:#3d2312;--herobg:linear-gradient(135deg,#3d2312,#2c1809);
+    --bg:#1c0f06;--card:#2c1809;--ink:#fbeeda;--mute:#d9bf9c;--line:#4d3118;
+    --blue:#f2b53c;--green:#5ccf86;--gold:#ffc83d;--gold-ink:#ffe28a;--purple:#d9a441;--orange:#ffa94d;--rose:#ff9a85;
+    --ok:#5ccf86;--okbg:#17301f;--bad:#ff8a80;--badbg:#3a1d1b;
+    --shadow:0 4px 0 rgba(0,0,0,.35),0 8px 22px rgba(0,0,0,.35);
+  }
+}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;font-family:system-ui,"Segoe UI",Roboto,sans-serif;color:var(--cream);background:radial-gradient(ellipse at 20% 0,#7a4412 0,transparent 55%),radial-gradient(ellipse at 90% 30%,#8a5a10 0,transparent 45%),var(--wood);min-height:100vh;padding:0 16px calc(24px + env(safe-area-inset-bottom))}
-main{max-width:640px;margin:0 auto}
-header.top{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-header.top b{font-family:Georgia,"Times New Roman",serif;font-size:1.5rem;letter-spacing:.5px}
-header.top b i{font-style:normal;color:var(--gold)}
-.home-btn{background:none;border:2px solid var(--gold);color:var(--gold2);border-radius:12px;padding:8px 14px;font-weight:700;min-height:44px;cursor:pointer}
-.bar{height:8px;background:#0006;border-radius:6px;overflow:hidden;margin:4px 0 14px}
-.bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .3s}
-.card{background:#fff6e41a;border:1px solid #f2b53c55;border-radius:18px;padding:18px;margin:0 0 14px;backdrop-filter:blur(2px)}
-h1{font-family:Georgia,serif;font-size:2rem;line-height:1.15;margin:8px 0 6px;text-align:center}
-h2{font-family:Georgia,serif;font-size:1.3rem;margin:0 0 8px}
-.sub{text-align:center;color:var(--gold2);margin:0 0 10px}
-.elk-wrap{display:flex;gap:10px;align-items:flex-end;margin:6px 0 12px}
-.elk{width:130px;flex:none;animation:wipp 3.2s ease-in-out infinite;transform-origin:50% 90%}
-@keyframes wipp{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) translateY(-3px)}}
-@media (prefers-reduced-motion:reduce){.elk{animation:none}}
-.bubble{position:relative;background:var(--cream);color:var(--ink);border-radius:16px;padding:12px 14px;font-size:1.02rem;line-height:1.4;flex:1}
-.bubble:before{content:"";position:absolute;left:-10px;bottom:22px;border:8px solid transparent;border-right-color:var(--cream);border-left:0}
-.btn{display:block;width:100%;border:0;border-radius:14px;padding:14px;min-height:52px;font-size:1.1rem;font-weight:800;cursor:pointer;background:linear-gradient(180deg,var(--gold2),var(--gold));color:var(--ink);box-shadow:0 4px 0 #a9741a;margin:8px 0}
-.btn.sec{background:#fff6e422;color:var(--cream);box-shadow:none;border:2px solid var(--gold)}
-.btn:focus-visible,.home-btn:focus-visible,.opt:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.name-row{display:flex;gap:8px}
-.name-row input{flex:1;min-width:0;border-radius:12px;border:2px solid var(--gold);padding:12px;font-size:1.05rem;background:var(--cream);color:var(--ink)}
-.save{border:0;border-radius:12px;padding:0 14px;font-weight:800;min-height:48px;cursor:pointer;display:flex;align-items:center;gap:6px;background:#8884;color:#fff9}
-.save.on{background:var(--gold);color:var(--ink);animation:ring 1.4s infinite}
-.save.done{background:var(--ok);color:#fff;animation:none}
-@keyframes ring{0%,100%{box-shadow:0 0 0 0 #ffd77acc}50%{box-shadow:0 0 0 6px #ffd77a00}}
-.msg{min-height:1.3em;color:var(--gold2);font-size:.95rem;margin:6px 0 0}
-.q{font-size:1.25rem;font-weight:700;margin:6px 0 12px;line-height:1.3}
-.opt{display:block;width:100%;text-align:left;background:#fff6e41f;color:var(--cream);border:2px solid #f2b53c88;border-radius:14px;padding:13px 14px;min-height:52px;margin:8px 0;font-size:1.05rem;cursor:pointer}
-.opt.right{background:var(--ok);border-color:#9fe3b9;color:#fff}
-.opt.wrong{background:#8a2a22;border-color:var(--red);color:#fff}
-.opt[disabled]{cursor:default}
-.count{color:var(--gold2);font-weight:700;font-size:.95rem}
-.score{font-size:3rem;font-weight:900;text-align:center;color:var(--gold2);margin:0}
-.rank{text-align:center;font-family:Georgia,serif;font-size:1.4rem;margin:0 0 8px}
-.hide{display:none}
-.fcredit{text-align:center;margin:22px 0 6px}
-.fver{margin:0 0 10px;font-size:.9rem;color:#fff9}
-a.credit{display:inline-flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:#fff;font-weight:800;font-size:1.05rem;min-height:54px;padding:8px 20px;border-radius:30px;border:2px solid #fff;background:linear-gradient(135deg,#4a2a12,#a9741a);box-shadow:0 0 0 3px var(--gold);white-space:nowrap}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.6 var(--font);-webkit-text-size-adjust:100%}
+a{color:var(--blue)}
+button{font:inherit;cursor:pointer}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;z-index:100}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+/* Kopf */
+.top{background:linear-gradient(90deg,#2b1608,#8a4a12 55%,#7a4412);color:#fff;position:sticky;top:0;z-index:20}.top::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:4px;background:linear-gradient(90deg,#ff7a63,#b8321f,#8a4a12)}
+.topin{max-width:1060px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:1.15rem;letter-spacing:.2px;min-height:44px;background:none;border:0;padding:0}
+.brand .dot svg{width:24px;height:auto;display:block}.brand .dot{width:34px;height:34px;border-radius:50%;background:#fff;color:var(--pri-d);display:grid;place-items:center;font-size:1.2rem;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.brand{text-align:left;line-height:1.2}.brand small{display:block;font-weight:800;font-size:.98rem;opacity:1;letter-spacing:.1px;margin-top:2px;line-height:1.25}
+.spacer{flex:1}
+.pill{background:rgba(0,0,0,.2);border-radius:999px;padding:6px 12px;font-weight:700;font-size:.9rem;white-space:nowrap}
+.lang{display:flex;gap:6px}
+.lang button,.theme{min-height:44px;min-width:44px;padding:6px 12px;border-radius:999px;border:2px solid rgba(255,255,255,.7);background:transparent;color:#fff;font-weight:700}
+.lang button[aria-pressed="true"]{background:#fff;color:#2b1608}
+.certitem{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}.certrow{display:flex;gap:8px;align-items:stretch}.certrow .certbar{flex:1}.sharecert.sm{min-height:44px;padding:6px 14px;white-space:nowrap}
+.nextcol{display:flex;flex-direction:column;gap:10px;align-items:stretch;flex:1 1 100%;max-width:560px}.nextcol .btn{justify-content:center}
+.sharecert{gap:10px;display:inline-flex;align-items:center}.sharecert .shico{display:inline-flex;flex:none}.sharecert .shico svg{display:block}
+.sharecert.big{min-height:64px;padding:12px 28px;font-size:1.15rem;font-weight:800;line-height:1.25;text-align:center;box-shadow:0 5px 0 rgba(0,0,0,.22),0 12px 28px rgba(184,50,31,.38)}
+.sharecert.big:hover{transform:translateY(-1px)}
+.btn.mini{min-height:40px;padding:6px 16px;font-size:.92rem;font-weight:700;box-shadow:none;opacity:.92}
+.theme.off{position:relative;opacity:.75}.theme.off::after{content:"";position:absolute;left:9px;right:9px;top:50%;height:3px;border-radius:2px;background:#fff;box-shadow:0 0 0 1.5px var(--pri);transform:rotate(-45deg)}
+.theme{font-size:1.1rem;padding:0;display:inline-flex;align-items:center;justify-content:center;line-height:1}.theme svg{display:block;flex:none}
+.boost{background:#fff;border-color:#fff;animation:boostpulse 2.8s ease-in-out infinite}.boost svg{width:20px;height:auto;display:block}.boost.busy{opacity:.6;cursor:default;animation:none}.boost.nein{animation:boostnein .38s}@keyframes boostnein{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}@keyframes boostpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}@media(prefers-reduced-motion:reduce){.boost{display:none}}@media print{.boost{display:none}}
+/* Layout */
+main{max-width:1060px;margin:0 auto;padding:20px 16px 24px;outline:none}
+.hero{background:var(--card);border-radius:28px;box-shadow:var(--shadow);padding:22px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;position:relative;overflow:hidden;border:2px solid var(--line)}
+.hero::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:var(--herobg)}
+.hero>*{position:relative}
+.hero h1{margin:0 0 6px;font-size:clamp(1.5rem,4.5vw,2.2rem);line-height:1.2}
+.hero p{margin:0 0 12px;color:var(--mute)}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:2px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700}
+.chip.coin b{color:#3b2d00;background:var(--gold);border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:.8rem}
+.ring{--p:0;width:112px;height:112px;border-radius:50%;background:conic-gradient(var(--pri) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;transition:background .6s}
+.ring span{width:84px;height:84px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-weight:800;font-size:1.3rem}
+h2.sec{margin:28px 0 12px;font-size:1.3rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.lcard{--c:var(--pri);text-align:left;background:var(--card);border:2px solid var(--line);border-top:8px solid var(--c);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);color:var(--ink);display:flex;flex-direction:column;gap:6px;min-height:170px;transition:transform .18s,box-shadow .18s;animation:pop .5s both}
+.lcard:hover{transform:translateY(-4px) rotate(-.4deg)}
+.lcard:active{transform:translateY(1px)}
+.lcard .ico{font-size:2rem;line-height:1}
+.lcard h3{margin:0;font-size:1.08rem;line-height:1.3}
+.lcard p{margin:0;color:var(--mute);font-size:.92rem}
+.lcard .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:var(--mute);font-weight:700}
+.stars{letter-spacing:2px;font-size:1.15rem}
+.stars .off{opacity:.3;filter:grayscale(1)}
+.nr{font-weight:800;color:var(--c)}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:10px 22px;border-radius:999px;border:0;background:var(--pri-d);color:#fff;font-weight:800;box-shadow:0 4px 0 rgba(0,0,0,.25);transition:transform .12s,box-shadow .12s;text-decoration:none}
+:root[data-theme="dark"] .btn{background:#8f2415}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{background:#8f2415}}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.btn.ghost{background:var(--card)!important;color:var(--ink);border:2px solid var(--line);box-shadow:0 3px 0 rgba(0,0,0,.08)}
+.crumb{display:flex;gap:12px;flex-wrap:nowrap;align-items:center;margin:0 0 16px;min-width:0}
+.ctx{flex:1;min-width:0;color:var(--mute);font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back{display:inline-flex;align-items:center;gap:4px;flex:none;min-height:44px;padding:8px 16px 8px 8px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-weight:800;box-shadow:0 3px 0 rgba(0,0,0,.08);transition:transform .12s}
+.back svg{color:var(--pri);flex:none}
+.back:hover{transform:translateX(-2px)}.back:active{transform:translateY(2px);box-shadow:none}
+/* Lektion */
+.lhead{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.lhead .big{font-size:3rem;animation:wob 2.4s ease-in-out infinite}
+@keyframes wob{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg) translateY(-4px)}}
+.lhead h1{margin:0;font-size:clamp(1.4rem,4.5vw,2rem);line-height:1.25}
+.lhead p{margin:0;color:var(--mute)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:16px 18px;margin:0 0 14px;box-shadow:var(--shadow);animation:pop .5s both}
+.card h2{margin:0 0 6px;font-size:1.1rem}
+.card p{margin:0}
+.card .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--pri-d);color:#fff;font-weight:800;margin-right:8px;font-size:.9rem}
+.bubble{background:var(--gold);color:#3b2d00;border-radius:22px;padding:14px 18px;margin:18px 0 22px;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.14);animation:pop .5s .25s both}
+:root[data-theme="dark"] .bubble{color:#2a2000}
+.bubble small{display:block;font-weight:800;letter-spacing:.5px;text-transform:uppercase;font-size:.75rem;margin-bottom:2px}
+details.pro{background:var(--card);border:2px dashed var(--c,var(--pri));border-radius:var(--r);padding:0;margin:0 0 14px}
+details.pro summary{min-height:48px;padding:12px 18px;font-weight:800;cursor:pointer;list-style:none;display:flex;gap:8px;align-items:center}
+details.pro summary::-webkit-details-marker{display:none}
+details.pro summary::before{content:"\1F3C6";font-size:1.2rem}
+details.pro[open] summary::before{content:"\2B50"}
+details.pro p{margin:0;padding:0 18px 16px}
+.src{font-size:.9rem;color:var(--mute);margin:16px 0}
+.src ul{margin:6px 0 0;padding-left:20px}
+.src li{margin:4px 0}
+.sticky{position:sticky;bottom:0;display:flex;justify-content:center;margin:28px -16px 0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line);box-shadow:0 -8px 18px rgba(0,0,0,.07);z-index:10}.next{margin:16px 0 0}.next .btn{width:100%;min-height:52px;font-size:1.05rem}.sticky .btn{width:100%;max-width:420px;min-height:52px;font-size:1.05rem}
+/* Quiz */
+.dots{display:flex;gap:6px;margin:0 0 16px}
+.dots i{flex:1;height:10px;border-radius:99px;background:var(--line);transition:background .3s}
+.dots i.on{background:var(--ok)}
+.dots i.no{background:var(--bad)}
+.dots i.cur{background:var(--blue)}
+.qq{font-size:clamp(1.15rem,3.8vw,1.5rem);line-height:1.35;margin:0 0 16px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;width:100%;min-height:56px;padding:12px 16px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);box-shadow:0 3px 0 rgba(0,0,0,.08);transition:transform .12s,border-color .12s}
+.opt:hover:not(:disabled){border-color:var(--blue);transform:translateX(3px)}
+.opt .k{flex:none;width:32px;height:32px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:grid;place-items:center;font-weight:800;font-size:.9rem}
+.opt.right{background:var(--okbg);border-color:var(--ok);animation:hop .45s}
+.opt.wrong{background:var(--badbg);border-color:var(--bad);animation:shake .4s}
+.opt:disabled{cursor:default;color:var(--ink)}
+.opt.dim{opacity:.7}
+@keyframes hop{30%{transform:scale(1.03) translateY(-4px)}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fb{margin:16px 0 0;padding:14px 16px;border-radius:16px;font-weight:600}
+.fb.ok{background:var(--okbg);border:2px solid var(--ok)}
+.fb.bad{background:var(--badbg);border:2px solid var(--bad)}
+.fb b{display:block;margin-bottom:2px}
+.res{text-align:center;padding:10px 0}
+.res .bigstars{display:inline-block;font-size:2.6rem;line-height:1.3;letter-spacing:6px;color:#ffc800;background:#26272e;border-radius:999px;padding:2px 22px 0 28px;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.res .bigstars span{display:inline-block;animation:star .6s both}
+.res .bigstars span:nth-child(2){animation-delay:.2s}.res .bigstars span:nth-child(3){animation-delay:.4s}
+.res .bigstars .off{animation:none;color:#8a8c92}
+@keyframes star{from{transform:scale(0) rotate(-180deg)}to{transform:none}}
+.res h1{margin:6px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+footer{max-width:1060px;margin:34px auto 0;padding:0 16px 40px;color:var(--mute);font-size:.88rem}
+footer p{margin:6px 0}
+.srccard{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:14px 18px;margin:0 0 14px;box-shadow:var(--shadow)}
+.srch{display:flex;align-items:center;gap:10px;margin-bottom:10px}.srch .si{font-size:1.4rem;line-height:1}.srch b{font-size:1rem;color:var(--ink)}
+.srclist{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.srclist a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:6px 14px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--blue);font-weight:700;font-size:.9rem;text-decoration:none}
+.srclist a::after{content:"↗";font-weight:800}
+.srclist a:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.srclist a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.fcard{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:16px 20px;box-shadow:var(--shadow)}
+.fcard .fic{font-size:1.5rem;line-height:1.3;flex:none}
+.fcard p{margin:0 0 8px;line-height:1.55}.fcard p:last-child{margin-bottom:0}
+.fcard .ftrans{padding-top:8px;border-top:1px dashed var(--line)}
+footer .fver{text-align:center;margin:14px 0 0;font-size:.82rem}
+footer .fver span{display:inline-block;background:var(--card);border:2px solid var(--line);border-radius:999px;padding:4px 16px;font-weight:700}
+footer .fver a{color:inherit;text-decoration:underline}footer .fver a:hover{text-decoration:none}
+.conf{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+.conf i{position:absolute;top:-20px;width:10px;height:16px;border-radius:2px;animation:fall 2.2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:560px){
+  .brand{flex:1 1 0;min-width:0}.brand small{white-space:normal}.pill{display:none}.topin .lang{order:3;flex:1 1 100%}.lang button{flex:1;min-width:0}.spacer{display:none}.pill{margin-left:auto}.chip{padding:3px 11px;font-size:.84rem;min-height:40px}button.chip{min-height:40px}.stats{gap:8px}.hero::before{width:130px;height:130px;right:-46px;top:-46px;opacity:.75}.hero{padding:16px;gap:12px}.ring{width:72px;height:72px}.ring span{width:54px;height:54px;font-size:1rem}.hero p{font-size:.95rem}
+  .topin{padding:8px 12px}
+  main{padding:14px 12px 24px}
+}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0 4px}
+.choices:has(.choice:only-child){grid-template-columns:1fr}
+.choice{display:flex;gap:14px;align-items:center;text-align:left;min-height:84px;padding:14px 20px;border-radius:22px;border:2px solid var(--line);background:var(--card);color:var(--ink);box-shadow:var(--shadow);transition:transform .15s;animation:pop .5s .1s both}
+.choice:hover{transform:translateY(-3px)}
+.choice .ci{font-size:2.2rem;line-height:1}
+.choice b{display:block;font-size:1.15rem}
+.choice small{display:block;font-size:.92rem;opacity:.92}
+.choice.pri{background:var(--pri-d);color:#fff;border-color:transparent}
+.ach{margin-top:10px;padding:10px 14px;border-radius:14px;background:var(--gold);color:#3b2d00;font-weight:800;animation:pop .5s both}
+.nameq{scroll-margin:90px 0 24px;background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:16px 18px;margin:14px 0 0;box-shadow:var(--shadow);display:grid;gap:6px;animation:pop .5s both}
+.nameq label{font-weight:800;font-size:1.1rem}
+.nameq small{color:var(--mute)}
+.nameq input{min-height:48px;font:inherit;font-size:1rem;padding:10px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);margin-top:4px}
+.linkbtn{background:none;border:0;color:var(--blue);font-weight:800;text-decoration:underline;min-height:44px;padding:6px 8px}
+.qp{margin:0 0 6px;font-weight:800;color:var(--blue)}
+button.chip{font:inherit;font-weight:700;color:var(--ink);cursor:pointer;min-height:40px}
+.nlink{display:inline-flex;align-items:center;min-height:44px;font-weight:800;color:var(--blue)}
+.pitch{text-align:center;color:var(--mute);margin:10px 0 0;font-weight:700}
+@media(max-width:560px){.choices{grid-template-columns:1fr}.res .row,.main>.row{flex-direction:column;align-items:stretch}.res~.row{flex-direction:column;align-items:stretch}.res~.row .btn,.certbox~.row .btn{width:100%}}.top{padding-top:env(safe-area-inset-top)}
+.snack{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;max-width:520px;margin:0 auto;background:#26272e;color:#fff;border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35);animation:pop .4s both}
+.snack span{flex:1;font-weight:700}
+.snack button{min-height:44px;padding:8px 16px;border-radius:999px;border:0;background:#ffc800;color:#3b2d00;font-weight:800}
+.instcard{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:14px 18px;margin:26px 0 0;box-shadow:var(--shadow);display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.instcard .ii{font-size:1.8rem}.instcard div{flex:1;min-width:200px}.instcard b{display:block}.instcard small{color:var(--mute)}
+@media(max-width:560px){.brand small{font-size:.9rem}}
+.spruch{background:var(--card);border:2px solid var(--line);border-left:8px solid var(--pri);border-radius:var(--r);padding:12px 18px 16px;margin:18px 0 0;box-shadow:var(--shadow)}
+.sprow{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}.sprow .btn{flex:1 1 200px;justify-content:center;text-align:center}.spruchshare{display:inline-flex;align-items:center;gap:10px;white-space:normal;line-height:1.25;font-weight:800}.spruchshare .shico{display:inline-flex;flex:none}.spruchshare .shico svg{display:block}
+.spruch h2.sec{margin:4px 0 8px;font-size:1.15rem}.spruch h2.spsagt{color:var(--pri);font-weight:800;display:flex;align-items:center;gap:8px}.spruch h2.spsagt svg{height:1.5em;width:auto;flex:none}.spruch .stag{margin:0;font-weight:800;color:var(--pri)}.spruch .stxt{margin:4px 0 12px;font-size:1.05rem;font-weight:600}
+.byline{background:var(--pri-l);color:var(--ink);text-align:center;font-weight:700;font-size:.85rem;padding:7px 12px;border-bottom:2px solid var(--line)}
+.stats{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px;margin-top:2px;grid-column:1/-1}
+.stat{background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:8px 10px;min-width:0}
+.stat .sv{display:block;font-weight:800;font-size:.98rem;line-height:1.25;overflow-wrap:anywhere}
+.stat .sl{display:block;font-size:.78rem;color:var(--mute);font-weight:700;margin-top:2px}
+.namebtn{grid-column:1/-1;justify-self:start;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:6px 16px;border-radius:999px;border:2px solid var(--blue);background:var(--card);color:var(--blue);font-weight:800;font-size:.92rem;text-decoration:none;max-width:100%}.namebtn span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.namebtn:hover{background:var(--blue);color:#fff}
+.herobar{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px}
+html{scroll-padding-top:calc(var(--hh,70px) + var(--nh,0px) + 10px)}
+.stickynav{position:sticky;top:var(--hh,70px);z-index:15;background:var(--bg);padding:8px 0 4px;margin:0 0 12px;border-bottom:1px solid transparent;transition:box-shadow .2s,border-color .2s}
+.stickynav.stuck{border-bottom-color:var(--line);box-shadow:0 10px 16px -12px rgba(0,0,0,.35)}
+.stickynav .crumb{margin:0 0 8px}.stickynav .steps{margin:0 0 6px}
+.ctxs{display:none}
+.fhome{display:flex;justify-content:center;margin:0 0 14px}.fhome .btn{gap:10px;min-width:min(100%,320px)}
+.qrow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.qcount{margin:0;color:var(--mute);font-weight:700;font-size:.92rem}
+.stickynav .dots{margin:0;flex:1 1 90px;min-width:90px}.stickynav .qrow{flex-wrap:nowrap}.stickynav .qcount{flex:none}
+.mobonly{display:none}
+@media (max-width:560px){
+  .mobonly{display:inline}
+  .stickynav:has(.steps){display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 8px}
+  .stickynav:has(.steps) .crumb{margin:0;flex:0 1 auto;min-width:0}
+  .stickynav:has(.steps) .crumb .ctxs{display:inline;flex:none;font-weight:700;font-size:.86rem;color:var(--mute)}
+  .stickynav:has(.steps) .crumb{gap:8px}
+  .stickynav:has(.steps) .crumb .ctx,.stickynav .steps li:not(.cur) .sl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .stickynav .steps{margin:0;gap:6px;flex-wrap:nowrap;flex:0 0 auto}
+  .stickynav .steps li{font-size:.84rem}
+  .stickynav .steps .si{padding:3px 10px 3px 4px}
+  .stickynav .steps li:not(.cur) .si{padding:3px 8px 3px 6px;width:auto;min-width:40px;justify-content:center}
+  .stickynav .steps li:not(.cur){min-width:44px;justify-content:center}
+  .stickynav .qrow{flex:1 1 100%}
+}
+@media print{.stickynav{position:static;box-shadow:none}}
+@media (max-width:480px){.herobar{gap:6px}.herobar .namebtn{padding:6px 10px;gap:6px;font-size:.84rem}.herobar .bpre{display:none}}
+.imgov{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.85);display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px;overflow:auto}.imgov img{max-width:100%;height:auto;background:#fff;border-radius:12px;-webkit-touch-callout:default;user-select:auto}.imgov p{color:#fff;margin:0;text-align:center;max-width:520px}
+.shdlg{border:2px solid var(--line);border-radius:var(--r);padding:18px;background:var(--card);color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.35);width:min(92vw,460px);max-width:none}.shdlg::backdrop{background:rgba(0,0,0,.5)}.shdlg .shx{float:right;min-height:44px;min-width:44px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-size:1.1rem}.sharecard{margin:0}
+.sharecard .sh{display:flex;gap:14px;align-items:center}.sharecard .si{font-size:1.8rem}.sharecard b{display:block}.sharecard small{color:var(--mute)}
+.sharerow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.sharerow .btn{min-height:44px;padding:8px 16px;font-size:.92rem}.sharerow .btn.ghost{box-shadow:none}
+h2.secrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+h2.secrow .cnt{font-size:.9rem;color:var(--mute);font-weight:700}
+.lcard.nextup{box-shadow:0 0 0 3px var(--pri),var(--shadow)}
+.lcard.done .nr::after{content:" ✓";color:var(--ok)}
+@media(max-width:560px){
+ .grid{grid-template-columns:1fr;gap:10px}
+ .lcard{display:grid;grid-template-columns:44px 1fr auto;grid-template-areas:"ico title foot" "ico sub foot";column-gap:12px;row-gap:2px;align-items:center;min-height:78px;padding:12px 14px;border-top:2px solid var(--line);border-left:8px solid var(--c)}
+ .lcard:hover{transform:none}
+ .lcard .ico{grid-area:ico;font-size:1.9rem;text-align:center}
+ .lcard .nr{display:none}
+ .lcard h3{grid-area:title;font-size:1rem}
+ .lcard p{grid-area:sub;font-size:.84rem}
+ .lcard .foot{grid-area:foot;flex-direction:column;align-items:flex-end;gap:2px;margin:0;font-size:.8rem}
+ .stats{grid-template-columns:1.6fr 1fr 1fr;gap:6px}.stat{padding:7px 8px}
+}
+@media print{.byline{display:none}}
+.certbox{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:10px;box-shadow:var(--shadow);margin:14px 0;animation:pop .5s both}
+.certbox svg{display:block;width:100%;height:auto;border-radius:12px}
+.field{display:grid;gap:6px;margin:14px 0}
+.field label{font-weight:800}
+.field input{min-height:48px;font:inherit;font-size:1rem;padding:10px 14px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+.certlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.certlist .btn{justify-content:flex-start;text-align:left;border-radius:16px;min-height:52px;width:100%}
+.steps{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 16px}
+.steps li{display:flex;border-radius:999px;background:var(--card);border:2px solid var(--line);font-weight:800;font-size:.9rem;color:var(--mute);overflow:hidden}
+.steps .si{display:flex;align-items:center;gap:8px;padding:5px 14px 5px 6px;min-height:40px;width:100%;background:none;border:0;font:inherit;color:inherit;text-align:left}
+.steps button.si{cursor:pointer;transition:background .15s}.steps button.si:hover:not(:disabled){background:rgba(0,0,0,.06)}
+.steps button.si:focus-visible{outline-offset:-4px;border-radius:999px}
+.steps .sn{display:grid;place-items:center;width:28px;height:28px}.steps .sn svg{width:16px;height:16px;display:block}
+.steps li.lock{border-style:dashed}.steps li.lock button.si{cursor:not-allowed}
+.steps .sn{width:24px;height:24px;border-radius:50%;background:var(--line);color:var(--ink);display:grid;place-items:center;font-size:.8rem}
+.steps li.cur{border-color:var(--pri);color:var(--ink)}
+.steps li.cur .sn{background:var(--pri-d);color:#fff}
+.steps li.done .sn{background:var(--ok);color:#fff}
+.donecard{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;background:var(--card);border:2px solid var(--ok);border-radius:var(--r);padding:14px 18px;margin:0 0 16px;box-shadow:var(--shadow)}
+.donecard .dc-i{font-size:2rem;line-height:1}
+.donecard .dc-t{flex:1 1 220px;min-width:0}.donecard b{display:block;font-size:1.08rem}.donecard small{display:block;color:var(--mute);margin:2px 0 4px}
+.donecard .row{margin:0;justify-content:flex-start}
+.lcell{display:flex;flex-direction:column;gap:8px}.lcell .lcard{flex:1}
+.certbar{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border-radius:14px;border:2px solid var(--ok);background:var(--card);color:var(--ink);font-weight:800;box-shadow:0 3px 0 rgba(0,0,0,.08);transition:background .15s,color .15s}
+.certbar:hover{background:var(--ok);color:#fff}
+.ncard{display:flex;align-items:center;gap:14px;margin:24px 0 0;padding:14px 18px;border-radius:var(--r);border:2px solid var(--line);border-left:8px solid var(--blue);background:var(--card);color:var(--ink);box-shadow:var(--shadow);text-decoration:none;transition:transform .15s,border-color .15s}
+.ncard:hover{transform:translateY(-2px);border-color:var(--blue)}
+.ncard:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.ncard .ci{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--bg);font-size:1.6rem;line-height:1}
+.ncard .nt{flex:1;min-width:0}
+.ncard b{display:block;font-size:1.05rem;line-height:1.3}
+.ncard small{display:block;color:var(--mute);font-weight:600;margin-top:2px}
+.ncard .ar{flex:none;color:var(--blue);font-size:1.5rem;font-weight:800;transition:transform .15s}
+.ncard:hover .ar{transform:translateX(4px)}
+.sticky.two{gap:10px}.sticky.two .btn{width:auto;max-width:none;flex:1;min-width:0}.sticky.two .btn:first-child{flex:2}
+.nlinks{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}.nlinks .btn{gap:12px;padding:12px 16px;font-size:.95rem;align-items:center}.nlinks .btn>span:first-child{flex:none;font-size:1.4rem}.nlinks .btn>span:last-child{min-width:0;overflow-wrap:anywhere;hyphens:auto}.nlinks .btn small{font-size:.82rem;margin-top:2px}
+.btn.mastercard{background:#ffc800!important;color:#3b2d00;border:0;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+@page{size:A4 landscape;margin:8mm}
+@media print{body{background:#fff}main>*:not(.certbox){display:none!important}.certbox{box-shadow:none;border:0;padding:0;margin:0}footer{display:none}}
+.install-cta{display:flex;align-items:center;gap:12px;width:100%;margin:14px 0 0;padding:12px 14px;text-align:left;border-radius:var(--r);border:2px solid var(--pri);background:var(--pri-l);color:var(--ink);box-shadow:var(--shadow);cursor:pointer;font:inherit;min-height:48px}
+.install-cta:hover{border-color:var(--pri-d)}.install-cta:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+.install-cta .ic-ico{flex:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:var(--card)}
+.install-cta .ic-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.install-cta .ic-text b{font-size:1rem;line-height:1.3}.install-cta .ic-text small{font-size:.85rem;color:var(--mute);line-height:1.35}.install-cta .ic-go{flex:none;font-weight:800;color:var(--pri-d)}
+.instol{margin:10px 0 0;padding-left:22px}.instol li{margin:8px 0}
+.runner{position:fixed;left:0;top:0;width:33px;height:48px;z-index:40;pointer-events:none;will-change:transform}
+.runner svg{display:block;width:100%;height:100%;transform-origin:50% 55%;animation:beat .9s ease-in-out infinite}
+@keyframes beat{0%,40%,100%{transform:scale(1)}10%{transform:scale(1.12)}22%{transform:scale(1)}30%{transform:scale(1.08)}}
+.runbub{--zp:50%;--bc:var(--pri);position:fixed;z-index:41;pointer-events:none;background:#fff;color:#2b1608;border:2.5px solid var(--bc);border-radius:18px;padding:8px 14px;font-family:inherit;font-weight:800;font-size:.88rem;line-height:1.3;width:max-content;max-width:min(80vw,300px);box-shadow:0 4px 14px rgba(0,0,0,.2),0 1px 0 rgba(0,0,0,.08);animation:pop .3s both}
+.runbub::before{content:"";position:absolute;width:13px;height:13px;background:#fff;border:2.5px solid var(--bc);transform:translate(-50%,-50%) rotate(45deg);border-radius:0 0 4px 0}
+.runbub.zu::before{left:var(--zp);top:100%;border-top:0;border-left:0}
+.runbub.zo::before{left:var(--zp);top:0;border-bottom:0;border-right:0;border-radius:4px 0 0 0}
+.runbub.zl::before{left:0;top:var(--zp);border-top:0;border-right:0;border-radius:0 0 0 4px}
+.runbub.zr::before{left:100%;top:var(--zp);border-bottom:0;border-left:0;border-radius:0 4px 0 0}
+.runherz{position:fixed;z-index:42;pointer-events:none;font-size:20px;line-height:1;opacity:0;animation:herzup 2s ease-out forwards}
+@keyframes herzup{0%{opacity:0;transform:translate(0,0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx,0px),-170px) scale(1.2)}}
+.runnote{position:fixed;z-index:39;pointer-events:none;font-size:22px;line-height:1;font-weight:800;color:#b8321f;text-shadow:0 1px 0 #fff;animation:noteup 1.7s ease-out forwards}
+@keyframes noteup{from{transform:translateY(0) rotate(-8deg);opacity:1}to{transform:translateY(-70px) rotate(10deg);opacity:0}}
+.runballon{position:absolute;left:-4px;top:-34px;font-size:24px;line-height:1;pointer-events:none}
+@keyframes nudge{0%,100%{box-shadow:0 0 0 0 rgba(184,50,31,0)}50%{box-shadow:0 0 0 9px rgba(184,50,31,.4)}}
+.nameq.nudge,.namebtn.nudge{animation:nudge .9s ease-in-out 4}
+@media print{.runner,.runbub,.runnote,.runherz,.install-cta{display:none}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{.top,.sticky,.lang{display:none}}
+.brand .dot{background:#fff;width:34px;height:34px}.brand .dot svg{width:20px;height:auto}
+.lico{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#f6e9f6;color:#912a8f;flex:none;font-size:1.3rem;line-height:1}.lico svg{width:28px;height:28px;display:block}.lico.logo{background:transparent}.lico.logo svg{width:44px;height:44px}
+:root[data-theme="dark"] .lico{background:#3b2552}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .lico{background:#3b2552}}
+.top.menuopen{z-index:80}
+.flag{display:inline-block;flex:none;width:28px;height:21px;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.28),0 1px 2px rgba(0,0,0,.18);vertical-align:middle;line-height:0}.flag img{display:block;width:100%;height:100%;object-fit:cover}
+.lang.langdd{position:relative;display:block}
+.lang .langbtn{display:inline-flex;align-items:center;gap:6px;flex:none;min-width:44px}
+.lang .langbtn .lc{font-weight:800}.lang .langbtn .ln{display:none;font-weight:700;opacity:.95}.lang .langbtn .car{font-size:.8rem}
+@media(min-width:760px){.lang .langbtn .lc{display:none}.lang .langbtn .ln{display:inline;max-width:11em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+.lang .langpanel{position:absolute;right:0;top:calc(100% + 8px);z-index:60;width:min(760px,calc(100vw - 24px));max-height:min(78vh,640px);overflow:auto;background:var(--card);color:var(--ink);border:2px solid var(--line);border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);overscroll-behavior:contain;overflow-x:hidden;box-sizing:border-box}
+.lang .langhead{position:sticky;top:0;z-index:1;padding:10px 12px 8px;background:var(--card);border-bottom:1px solid var(--line)}
+.lang .langq{width:100%;min-height:46px;padding:8px 14px 8px 40px;border-radius:14px;border:2px solid var(--line);background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E") no-repeat 12px 50%/20px;color:var(--ink);font:inherit;font-weight:600;box-sizing:border-box}
+.lang .langq:focus-visible{outline:3px solid var(--gold);outline-offset:1px;border-color:var(--pri)}
+.lang .langbody{padding:4px 12px 12px}
+.lang .langsec h3{margin:12px 2px 6px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.lang .langgrid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(210px,100%),1fr));gap:4px}
+.lang .langgrid li{margin:0;min-width:0}
+.lang .langgrid button{display:flex;align-items:center;gap:10px;width:100%;flex:none;min-width:0;min-height:46px;padding:6px 12px;border:0;border-radius:12px;background:none;color:inherit;font-weight:700;text-align:left}
+.lang .langgrid button:hover{background:var(--pri-l)}
+.lang .langgrid button[aria-current="true"]{background:var(--pri-l);color:var(--pri-d)}
+.lang .langgrid .lk{display:inline-block;flex:none;min-width:38px;padding:1px 6px;border-radius:8px;background:var(--bg);border:1px solid var(--line);font-size:.68rem;letter-spacing:.05em;text-align:center;color:var(--mute)}
+.lang .langgrid .lname{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2}
+.lang .langgrid .lmain,.lang .langgrid .lsub{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lang .langgrid .lsub{font-size:.76rem;font-weight:600;color:var(--mute);margin-top:1px}
+.lang mark{background:rgba(255,196,0,.5);color:inherit;border-radius:3px;padding:0 1px;font-weight:800}
+.lang .langhead{display:flex;align-items:center;gap:10px}.lang .langhead .langq{flex:1;min-width:0;width:auto}
+.lang .langcnt{flex:none;font-size:.78rem;font-weight:800;color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lang .langgrid .ok{font-weight:800}
+.lang .langgrid button:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.lang .langnone{margin:18px 4px;text-align:center;color:var(--mute);font-weight:700}
+@media(max-width:560px){.topin .lang.langdd{order:0;flex:0 0 auto}.lang .langpanel{position:fixed;left:8px;right:8px;top:8px;bottom:auto;width:auto;height:min(80vh,640px);height:min(80dvh,640px);max-height:none}.lang .langgrid{grid-template-columns:1fr}.lang .langgrid .lk{min-width:40px}.lang .langpanel{max-width:calc(100vw - 16px)}}
+.rechner{margin:20px 0 0;padding:18px 20px;border-radius:var(--r);border:2px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
+.rechner h2{margin:0 0 8px;font-size:1.15rem}
+.rechner label{display:block;font-weight:700;margin:0 0 8px}
+.rechrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.rechrow input{width:7.5em;min-height:48px;padding:8px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-weight:700}
+.rechout{margin:12px 0 4px;font-weight:800;font-size:1.05rem;color:var(--pri-d);min-height:1.4em}.rechout.bad{color:var(--bad)}
+:root[data-theme="dark"] .rechout{color:var(--pri)}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .rechout{color:var(--pri)}}
+.rechnote{color:var(--mute)}
+.legal{display:flex;justify-content:center;flex-wrap:wrap;align-items:center;gap:2px 10px;margin:18px 0 0;padding:14px 0 6px;border-top:1px solid var(--line);font-size:.85rem;color:var(--mute)}
+.legal a{color:var(--mute);display:inline-flex;align-items:center;min-height:44px;padding:0 10px;font-weight:700;text-decoration:underline}
+.legal a:hover{color:var(--pri-d)}.legal a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.top .brand{min-width:0;flex:1 1 0}.top .brand>span:last-child{min-width:0;display:block}.top #bt{display:block;white-space:normal;overflow-wrap:anywhere;line-height:1.15}
+@media(max-width:560px){.top #bt{font-size:1rem}.top .brand small{font-size:.85rem}.topin{gap:4px;flex-wrap:nowrap}.topin .lang .langbtn{padding:6px 6px}.topin .theme{min-width:40px;width:40px}}
+/* sehr schmale Handys: Titel behält Platz für "intelligenz" in einer Zeile; unter 340 Pixel bekommt der Titel eine eigene Zeile über den Knöpfen */
+@media(max-width:360px){.top #bt{font-size:.92rem}}
+@media(max-width:560px){html[lang="kk"] .top #bt{font-size:.78rem;overflow-wrap:normal;letter-spacing:-.01em}}   /* langes Wort "интеллектісі" soll in der Kopfzeile nicht mitten im Wort umbrechen */
+@media(max-width:340px){.topin{flex-wrap:wrap}.top .brand{flex:1 1 100%}}
+
+/* Autoren-Hinweis: auffaelliger Knopf, ganzer Text ist der Link (PFLICHT) */
+.fcredit{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:6px}
+.fcredit .fver{margin:14px 0 0}
+a.credit{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:12px 28px;border-radius:999px;border:2px solid #fff;background:linear-gradient(135deg,var(--pri-d) 0%,var(--pri) 100%);color:#fff;font-weight:800;font-size:1.08rem;letter-spacing:.2px;text-decoration:none;white-space:nowrap;max-width:100%;box-shadow:0 0 0 3px var(--gold),0 8px 22px rgba(0,0,0,.3);transition:transform .15s,filter .15s}
+@media(max-width:420px){a.credit{font-size:1rem;padding:12px 18px;gap:8px}}
+a.credit{gap:14px;min-height:64px;padding:10px 24px}
+a.credit .cr-tx{display:flex;flex-direction:column;align-items:flex-start;line-height:1.25;text-align:left}
+a.credit .cr-t{font-weight:800;font-size:1.08rem}
+a.credit .cr-u{font-weight:600;font-size:.8rem;text-decoration:underline;text-underline-offset:3px;opacity:.95}
+a.credit .cr-ic,a.credit .cr-ex{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);flex:none}
+a.credit:hover .cr-ex{background:rgba(255,255,255,.35)}
+@media(max-width:420px){a.credit{gap:10px;padding:10px 14px}a.credit .cr-t{font-size:1rem}a.credit .cr-u{font-size:.76rem}a.credit .cr-ic,a.credit .cr-ex{width:32px;height:32px}}
+a.credit .cr-st{color:var(--gold);font-size:1.2rem;line-height:1}
+a.credit .cr-ar{font-size:1.15rem;line-height:1}
+a.credit:hover{filter:brightness(1.12);transform:translateY(-2px)}
+a.credit:focus-visible{outline:3px solid #fff;outline-offset:4px;box-shadow:0 0 0 6px var(--pri-d)}
+.btnsave{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:10px 26px;font-weight:800;font-size:1.05rem;letter-spacing:.2px;border-radius:999px;box-shadow:0 4px 0 rgba(0,0,0,.18),0 0 0 3px var(--gold)}
+.btnsave .saveic{display:inline-flex}
+.btnsave:hover{filter:brightness(1.08)}
+.btnsave{transition:background .2s,box-shadow .2s,opacity .2s}
+.btnsave:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;filter:grayscale(.35)}
+.btnsave.ready{animation:savepulse 1.6s ease-in-out infinite}
+.btnsave.saved{background:var(--ok);border-color:var(--ok);color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+@keyframes savepulse{0%,100%{box-shadow:0 4px 0 rgba(0,0,0,.18),0 0 0 3px var(--gold)}50%{box-shadow:0 4px 0 rgba(0,0,0,.18),0 0 0 8px rgba(255,200,61,.55)}}
+@media print{.fcredit{display:none}}
+
+.hide{display:none!important}
+
+/* Winterdorf-Ergaenzungen */
+.top .brand{flex:1 1 auto}
+.brand .dot svg{width:28px}
+.langdd{position:relative}
+.langbtn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:6px 16px;border-radius:999px;border:2px solid rgba(255,255,255,.7);background:transparent;color:#fff;font-weight:800}
+.langbtn img,.langmenu img{width:30px;height:20px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.langbtn::after{content:"▾";font-size:.8rem}
+.langmenu{position:absolute;right:0;top:calc(100% + 8px);background:var(--card);border:2px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:6px;z-index:40;min-width:200px}
+.langmenu button{display:flex;align-items:center;gap:10px;width:100%;min-height:46px;padding:6px 12px;border:0;background:transparent;color:var(--ink);font-weight:700;border-radius:12px;text-align:left}
+.langmenu button[aria-pressed="true"]{background:var(--pri-l)}
+.langmenu button:hover{background:var(--pri-l)}
+.theme svg.elkb{width:26px;height:auto}
+.hero .stats{margin:10px 0 10px}
+.chip small{display:block;color:var(--mute);font-weight:600}
+.chip.big{border-radius:18px;padding:10px 16px;flex:1 1 160px;flex-direction:column;align-items:flex-start;gap:0}
+.chip.big span{font-weight:800}
+.herobtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.herobtns .btn{background:var(--card);color:var(--pri-d);border:2px solid var(--pri-d);box-shadow:none}
+:root[data-theme="dark"] .herobtns .btn{color:#ffb4a3}
+.mascot{position:relative;display:flex;align-items:flex-end;gap:10px;margin:8px 0 0;min-height:110px}
+.mascot svg{width:90px;height:auto;flex:none;animation:wob 3s ease-in-out infinite;cursor:pointer}
+.mbub{position:relative;background:var(--card);border:3px solid var(--pri);border-radius:18px;padding:10px 14px;font-weight:700;max-width:440px;margin-bottom:34px}
+.mbub::after{content:"";position:absolute;left:-14px;bottom:14px;border:8px solid transparent;border-right:12px solid var(--pri);border-left:0}
+@media(prefers-reduced-motion:reduce){.mascot svg{animation:none}}
+.namecard{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 0}
+.namecard input{flex:1 1 180px;min-height:48px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--ink);padding:8px 16px;font:inherit}
+.save{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:8px 20px;border-radius:999px;border:0;font-weight:800;background:#8884;color:#777;cursor:default}
+.save.on{background:var(--pri-d);color:#fff;cursor:pointer;animation:ring 1.4s infinite}
+.save.done{background:var(--ok);color:#fff}
+@keyframes ring{0%,100%{box-shadow:0 0 0 0 rgba(255,200,61,.9)}50%{box-shadow:0 0 0 7px rgba(255,200,61,0)}}
+.nmsg{width:100%;min-height:1.3em;color:var(--mute);margin:0;font-weight:600}
+.install{display:flex;align-items:center;gap:14px;width:100%;text-align:left;margin:18px 0 0;padding:14px 18px;border-radius:var(--r);border:3px solid var(--pri);background:var(--pri-l);color:var(--ink)}
+.install .ii{font-size:1.8rem}.install b{display:block}.install small{color:var(--mute);font-size:.92rem}.install .ar{margin-left:auto;font-weight:800;color:var(--pri)}
+.bigbtns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0 0}
+@media(max-width:700px){.bigbtns{grid-template-columns:1fr}}
+.bbtn{display:flex;align-items:center;gap:16px;text-align:left;padding:18px 22px;min-height:96px;border-radius:var(--r);border:2px solid var(--line);background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+.bbtn.pri{background:var(--pri-d);border-color:var(--pri-d);color:#fff}
+.bbtn .bi{font-size:2.4rem}.bbtn b{display:block;font-size:1.3rem}.bbtn small{font-size:1rem;opacity:.9}
+.certbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 10px;padding:12px 16px;background:var(--card);border:2px solid var(--line);border-radius:16px}
+.certbar span{flex:1 1 200px;font-weight:700}
+.mid{display:flex;justify-content:center}
+.fcredit{text-align:center;margin:18px 0 6px}
+.fcredit .fver{margin:0 0 10px}
+a.credit{display:inline-flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:#fff;font-weight:800;font-size:1.05rem;min-height:54px;padding:8px 22px;border-radius:30px;border:2px solid #fff;background:linear-gradient(135deg,#2b1608,#7a4412);box-shadow:0 0 0 3px var(--gold);white-space:nowrap}
 a.credit .cr-l{display:flex;align-items:center;gap:8px}
 .cr-ic svg,.cr-ex svg{width:18px;height:18px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.cr-u{font-size:.78rem;font-weight:600;text-decoration:underline;color:var(--gold2)}
-@media (max-width:380px){a.credit{font-size:.95rem;padding:8px 14px}}
-.links{display:grid;gap:10px;margin-top:10px}
-.links a{display:block;background:#fff6e41a;border:1px solid #f2b53c88;border-radius:14px;padding:12px;color:var(--cream);text-decoration:none;font-weight:700}
-.links a small{display:block;font-weight:400;color:var(--gold2);margin-top:2px}
-footer{font-size:.82rem;color:#fffa;text-align:center;line-height:1.45;margin-top:14px}
-footer a{color:var(--gold2)}
-@media print{.fcredit,header.top{display:none}}
+.cr-u{font-size:.78rem;font-weight:600;text-decoration:underline;color:#ffe28a}
+@media(max-width:380px){a.credit{font-size:.92rem;padding:8px 14px}}
+@media print{.fcredit,.top{display:none}}
+#stage{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:40}.fig{position:absolute;display:flex;align-items:flex-end;gap:6px}.fig .fs{position:relative;display:block}.fig .fs svg{width:84px;height:auto;display:block;filter:drop-shadow(0 4px 4px rgba(0,0,0,.35))}.fb2{background:#fff;color:#2b1608;border:3px solid var(--pri);border-radius:16px;padding:8px 12px;font-weight:700;max-width:min(300px,calc(100vw - 120px));font-size:.95rem;line-height:1.35;margin-bottom:46px;opacity:0;transition:opacity .25s}.fb2.on{opacity:1}@media print{#stage{display:none}}
+.fsec{background:var(--card);border:2px solid var(--line);border-radius:var(--r);padding:16px 18px;margin:0 0 14px;box-shadow:var(--shadow)}.flinks{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:620px){.flinks{grid-template-columns:1fr}}.flink{display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 14px;border-radius:16px;border:2px solid var(--line);background:linear-gradient(135deg,var(--pri-l),var(--card));color:var(--ink);text-decoration:none;transition:transform .15s,border-color .15s}.flink:hover{transform:translateY(-3px);border-color:var(--pri)}.flink .fli{font-size:1.8rem}.flink b{display:block;color:var(--pri-d)}.flink small{color:var(--mute);font-size:.88rem}.flink .fex{margin-left:auto;color:var(--pri)}.flink .fex svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.fpill{display:inline-flex;align-items:center;gap:0;border-radius:999px;overflow:hidden;border:2px solid #fff;box-shadow:0 0 0 3px var(--gold),var(--shadow);background:#2b1608;max-width:100%}.fpill .fv{color:#ffe28a;font-weight:800;padding:12px 16px;font-size:.92rem;white-space:nowrap}.fpill a.credit{display:inline-flex;flex-direction:row;align-items:center;gap:8px;border:0;border-radius:0;box-shadow:none;min-height:50px;padding:10px 20px;font-size:1rem;background:linear-gradient(135deg,#8f2415,#c9821c)}.fpill a.credit:hover{filter:brightness(1.1)}.cr-u2{margin:10px 0 0;font-size:.82rem;color:var(--mute);text-decoration:underline}@media(max-width:560px){.fpill{flex-direction:column;border-radius:22px;width:100%}.fpill .fv{padding:8px 16px 2px}.fpill a.credit{white-space:normal;text-align:center}.fpill a.credit{width:100%;justify-content:center}}
+footer{font-size:.78rem;margin-top:22px}footer .srch{margin-bottom:6px}footer .srch b{font-size:.85rem}footer .srch .si{font-size:1rem}.fsec{padding:10px 12px;margin-bottom:10px}.flinks{gap:8px}.flink{min-height:44px;padding:6px 10px;gap:8px;border-radius:12px}.flink .fli{font-size:1.2rem}.flink b{font-size:.82rem}.flink small{font-size:.72rem}.flink .fex svg{width:15px;height:15px}footer .fcard{padding:8px 12px;gap:8px;box-shadow:none}footer .fcard .fic{font-size:1rem}footer .fcard p{font-size:.74rem;line-height:1.4}.fcredit{margin:12px 0 6px}.fpill{box-shadow:0 0 0 2px var(--gold)}.fpill .fv{padding:6px 12px;font-size:.74rem}.fpill a.credit{min-height:34px;padding:6px 14px;font-size:.8rem;gap:6px}.cr-ic svg,.cr-ex svg{width:14px;height:14px}@media(max-width:560px){.fpill .fv{padding:6px 12px 0}}
+.shm{position:fixed;inset:0;background:rgba(20,8,2,.65);z-index:60;display:flex;align-items:center;justify-content:center;padding:16px}.shc{position:relative;background:var(--card);color:var(--ink);border:3px solid var(--gold);border-radius:24px;box-shadow:var(--shadow);width:100%;max-width:460px;max-height:92vh;overflow:auto;padding:18px;animation:pop .35s both}.shx{position:absolute;right:10px;top:10px;width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:var(--bg);color:var(--ink);font-weight:800}.shh{display:flex;gap:12px;align-items:center;padding-right:44px}.shel svg{width:64px;height:auto;display:block}.shh h2{margin:0;font-size:1.15rem;line-height:1.25}.shh p{margin:4px 0 0;color:var(--mute);font-size:.88rem}.shmsg{margin:14px 0;padding:12px 14px;border-radius:16px;background:var(--pri-l);border:2px dashed var(--pri);font-weight:600;font-size:.92rem}.shmsg small{color:var(--mute);word-break:break-all}.shg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.shb{display:flex;align-items:center;gap:10px;min-height:52px;padding:8px 14px;border-radius:14px;border:0;color:#fff;font-weight:800;font-size:.95rem;text-decoration:none;box-shadow:0 3px 0 rgba(0,0,0,.22);cursor:pointer}.shb span{font-size:1.4rem}.shb.wa{background:#1fa855}.shb.tg{background:#229ed9}.shb.ml{background:#b8321f}.shb.sm{background:#1b7a3d}.shb.cp{background:#2b1608}.shb.im{background:#a9741a}.shb.mo{background:#6b4f36;grid-column:1/-1;justify-content:center}.shb:focus-visible,.shx:focus-visible{outline:3px solid var(--blue);outline-offset:2px}.shmsg2{min-height:1.2em;margin:10px 0 0;text-align:center;color:var(--mute);font-weight:600;font-size:.88rem;word-break:break-all}
+.fplain{text-align:center;margin:14px 0 4px;font-size:.78rem;color:var(--mute)}.fplain a.credit{display:inline;flex:none;min-height:0;padding:0;border:0;border-radius:0;box-shadow:none;background:none;font-size:inherit;font-weight:600;color:var(--mute);text-decoration:underline;white-space:normal}.fplain a.credit:hover{color:var(--pri-d)}
+
+.lwrap{display:flex;flex-direction:column;gap:8px}.lwrap .lcard{flex:1;width:100%}.lcard .nr{display:flex;gap:8px;align-items:center}.lcard .nr .okc{display:inline}.lcard .okc{color:#1b7a3d;font-weight:800}.crow{display:flex;gap:8px;align-items:stretch}.crow .btn{min-height:48px}.crow .cv{flex:1;border-color:#1b7a3d!important;color:var(--ink)}.crow .sharecert{white-space:nowrap}
+canvas#cv{width:100%;height:auto;border-radius:16px;box-shadow:var(--shadow)}
 </style>
 </head>
 <body>
-<main>
-<header class="top"><b>Winter<i>dorf</i>-Quiz</b><button class="home-btn hide" id="homeBtn" type="button">Start</button></header>
-<div class="bar" id="bar" role="progressbar" aria-label="Fortschritt" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div id="barFill"></div></div>
+<a class="skip" href="#main" id="skip">Zum Inhalt</a>
+<header class="top"><div class="topin">
+  <button type="button" class="brand" id="brand"><span class="dot" aria-hidden="true" id="dot"></span><span><span id="bt">Winterdorf-Quiz</span><small id="bs">by Corinna &amp; Nobbi</small></span></button>
+  <span class="spacer"></span>
+  <span class="pill" id="coins" aria-live="polite"></span>
+  <div class="langdd" id="langdd"></div>
+  <button type="button" class="theme boost" id="boost" aria-label="Elchi" title="Elchi"></button>
+  <button type="button" class="theme" id="share" aria-label="Teilen"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg></button>
+  <button type="button" class="theme" id="theme" aria-label="Hell/Dunkel">◐</button>
+</div></header>
+<main id="main" tabindex="-1"></main>
+<footer id="foot"></footer>
+<div id="live" class="sr" aria-live="polite"></div>
+<script>const T={
+de:{label:"Deutsch",flag:"de",ui:{skip:"Zum Inhalt",motiv:"Elchi fragen",share:"Teilen",src:"Quellen",disc:"Inoffizielles Fan-Quiz, nicht vom Winterdorf Heilbronn betrieben. Infos nach Stand Saison 2026/27, verbindlich ist die offizielle Website.",stand:"Stand",
+hi:"Servus! Ich bin Elchi und erzähle dir alles über unser Winterdorf.",welcomeBack:"Hallo {n}! Schön, dass es dich gibt. Stapf weiter!",hello:"Hallo {n}! Wie gut kennst du das Winterdorf?",helloNo:"Wie gut kennst du das Winterdorf?",sub:"Elchi, dein bester Freund, erklärt dir in kleinen Lektionen, wie das traditionelle Winterdorf Heilbronn funktioniert. Mit Quiz, Humor und viel Gemütlichkeit.",
+rank:"Dein Rang",flakes:"Schneeflocken",stars:"Sterne",change:"Name ändern",setName:"Name eingeben",myCerts:"Meine Urkunden",nameLbl:"Dein Name",save:"Speichern",saved:"Gespeichert ✓",nice:"Schön, dich kennenzulernen, {n}!",
+instT:"Mir gefällt die App, ich möchte sie installieren",instS:"Ein Tipp, und sie liegt auf deinem Startbildschirm. Gratis, auch ohne Internet.",instHow:"Im Browser-Menü „App installieren“ oder auf dem iPhone „Teilen → Zum Home-Bildschirm“ wählen.",
+next:"Weiter geht's",allDone:"Alle Lektionen geschafft!",boss:"Ich kenne mich schon aus",bossS:"Teste dich gleich in der Bossrunde",lessons:"Lektionen",elchiSays:"Elchi sagt",startQuiz:"Quiz starten",back:"Zurück",qOf:"Frage {a} von {b}",right:"Richtig!",wrong:"Knapp daneben!",nextQ:"Weiter",result:"Ergebnis",
+perfect:"Perfekt, {n}! Du bist ein echter Winterdorf-Profi.",pass:"Bestanden, {n}! Deine Urkunde wartet.",fail:"Für die Urkunde brauchst du {k} Punkte. Lies nochmal nach, dann klappt's!",certView:"Urkunde ansehen",again:"Nochmal",reread:"Lerntext lesen",certsN:"{a} von {b} Urkunden",noCerts:"Noch keine Urkunde. Schaffe ein Quiz mit mindestens 70 %!",certAria:"Deine Urkunde",certSave:"Urkunde speichern (PNG)",certShare:"Ich habe im Winterdorf-Quiz die Urkunde „{t}“ geholt! Schaffst du das auch?",shareTxt:"Wie gut kennst du das Winterdorf Heilbronn? Elchi fragt dich ab!",copied:"Text kopiert.",elchi:"Elch-Wissen:",
+ranks:["Elchküken","Hüttenfreund","Dorfprofi","Winterdorf-Elch"],cUrk:"URKUNDE",cT1:"Diese Urkunde erhält",fan:"Winterdorf-Fan",cT2:"für die erfolgreich bestandene Lektion",cRes:"{a} / {b} richtig · Rang: {r}",cLine:["{n}, du hast dich warm gestapft!","{n}, das war richtig stark!","{n}, ein perfekter Elch-Abend!"],cDate:"Datum",cFoot:"Winterdorf-Quiz · inoffizielles Fan-Quiz"},
+les:[
+{t:"Das Dorf",d:"Geschichte, Hütten und Gemütlichkeit",tip:"Hüttengaudi auf dem Dorfplatz: Wer friert, stellt sich ans Feuer!",learn:["Seit 2012 gibt es das Winterdorf Heilbronn: das erste vollgastronomische Winterdorf Deutschlands.","Die legendären Feierhütten Neckaralm und Kiliansalm sind das Herzstück.","Auf dem Dorfplatz wärmen viele Feuerstellen und ein beheizter Kuhstall mit Sitzplätzen.","2026/27 läuft die 14. Saison: 6. November 2026 bis 23. Januar 2027."],q:[
+["Seit wann gibt es das Winterdorf Heilbronn?","Seit 2012","Seit 2002","Seit 2018","Seit 1999","Seit 2012: das erste vollgastronomische Winterdorf Deutschlands."],
+["Wie heißen die beiden legendären Feierhütten?","Neckaralm und Kiliansalm","Talstation und Jausenalm","Kuhstall und Dorfplatz","Neckarhütte und Kilianshaus","Neckaralm und Kiliansalm sind das Herzstück des Winterdorfs."],
+["Wo findet man auf dem Dorfplatz bei rauem Wetter Wärme?","An Feuerstellen und im beheizten Kuhstall","Nur in der Garderobe","Im Zelt am Eingang","Gar nicht","Viele Feuerstellen und ein warmer Kuhstall mit Sitzplätzen."],
+["Die wievielte Saison läuft 2026/27?","Die 14.","Die 10.","Die 5.","Die 20.","Die 14. Saison, vom 6. November 2026 bis 23. Januar 2027."]]},
+{t:"Öffnung & Anreise",d:"Wann, wohin und sicher wieder heim",tip:"Nach dem Glühwein lieber mit buddy oder Taxi heim, ich stapfe auch nicht selber!",learn:["Geöffnet ist Mittwoch bis Samstag, 17:00 bis 24:00 Uhr. Letzter Einlass: 23:30 Uhr.","Adresse: Badstraße 100, 74072 Heilbronn, direkt am Neckarufer.","Zu Fuß: ab Hauptbahnhof etwa 20 Minuten, ab Haltestelle Theresienwiese etwa 780 Meter (13 Minuten).","Heimweg: buddy der SWHN (max. 5 €, mit HNV-Abo 2,50 €) oder das FiftyFifty-Taxi für 16- bis 25-Jährige im Landkreis (50 % des Fahrpreises)."],q:[
+["An welchen Tagen hat das Winterdorf normalerweise geöffnet?","Mittwoch bis Samstag","Montag bis Freitag","Nur am Wochenende","Jeden Tag","Mi bis Sa, jeweils von 17:00 bis 24:00 Uhr."],
+["Wann ist der letzte Einlass?","23:30 Uhr","22:00 Uhr","23:00 Uhr","Um Mitternacht","Gefeiert wird bis 24 Uhr, letzter Einlass ist um 23:30 Uhr."],
+["Wie lautet die Adresse des Winterdorfs?","Badstraße 100, Heilbronn","Marktplatz 1, Heilbronn","Theresienstraße 5, Heilbronn","Neckarmeile 12, Heilbronn","Die Badstraße liegt direkt am Neckarufer, mitten in der Innenstadt."],
+["Wie weit ist es von der Haltestelle Theresienwiese zum Winterdorf?","Etwa 780 Meter","Etwa 3 Kilometer","Etwa 50 Meter","Etwa 2 Kilometer","Rund 13 Minuten zu Fuß. Vom Hauptbahnhof sind es etwa 20 Minuten."],
+["Was kostet der buddy-Service der SWHN für den Heimweg maximal?","5,00 €","10,00 €","2,00 €","Er ist kostenlos","Maximal 5 €, mit HNV-Abo nur 2,50 €, egal wie lang die Strecke."],
+["Für wen gilt das FiftyFifty-Taxi im Landkreis Heilbronn?","Jugendliche von 16 bis 25 Jahren","Alle ab 18 Jahren","Nur Senioren","Kinder unter 12","Du zahlst nur 50 % des Fahrpreises, den Rest übernimmt der Landkreis."]]},
+{t:"Reservierung",d:"Tische, Hütten und Mindestumsatz",tip:"Reservieren muss man nicht, aber wer früh kommt, kriegt den besten Platz am Feuer.",learn:["Eine Reservierung braucht man nicht. Wer früher da ist, feiert länger.","8er- oder 10er-Tisch: 15 € Getränkemindestumsatz pro Person. Anzahlung 40 € (8er) bzw. 50 € (10er). Maximal zwei Tische pro Abend.","Talstation: Gruppen bis 25 Personen, 250 € Hüttenmiete plus 250 € Mindestumsatz, Mi bis Sa.","Kiliansalm, Neckaralm oder das ganze Winterdorf kann man anfragen. Im kompletten Dorf feiern maximal 450 Personen."],q:[
+["Muss man reservieren, um im Winterdorf mitzufeiern?","Nein, wer früher da ist, feiert länger","Ja, immer","Nur donnerstags","Nur ab 18 Uhr","Eine Reservierung braucht man nicht. Je früher du da bist, desto kürzer die Wartezeit."],
+["Wie hoch ist der Getränkemindestumsatz bei einem 8er- oder 10er-Tisch?","15 € pro Person","5 € pro Person","30 € pro Person","Es gibt keinen","15 € pro Person. Anzahlung: 40 € für den 8er-, 50 € für den 10er-Tisch."],
+["Wie viele Tische können pro Abend maximal reserviert werden?","Zwei","Fünf","Zehn","Einer","Pro Abend sind maximal zwei Tische reservierbar."],
+["Für wie viele Personen ist die Talstation gedacht?","Bis 25 Personen","Bis 8 Personen","Bis 100 Personen","Nur für 2","Talstation: bis 25 Personen, 250 € Hüttenmiete plus 250 € Mindestumsatz."],
+["Wie viele Personen feiern maximal im komplett exklusiv gebuchten Winterdorf?","450","150","1.000","250","Im kompletten Winterdorf feiern maximal 450 Personen."]]},
+{t:"Hausregeln & Sicherheit",d:"Pistenwache, Dresscode und Luisa",tip:"Gute Laune gewinnt, aber immer mit Respekt. Das gilt auch für Elche.",learn:["Über den Einlass entscheidet allein die Pistenwache. Eine Reservierung ist keine Eintrittskarte.","Hüttengaudi-Abende sind 18+.","Dresscode: gemütlich und gepflegt. Fanbekleidung und Sportkleidung bleiben zu Hause, Caps pausieren in den Hütten. Hunde müssen draußen bleiben.","Rauchen und Vapen nur in den Außenbereichen. „Luisa ist hier“: Bei Unwohlsein sofort das Team fragen.","Wind, Regen, Schnee: grundsätzlich geöffnet. Fluchtwege und Notausgänge bleiben immer frei."],q:[
+["Wer entscheidet über den Einlass?","Die Pistenwache","Die Reservierung","Der Zufall","Der Elch","Ausschließlich die Pistenwache. Eine Reservierung ist keine Eintrittskarte."],
+["Ab welchem Alter ist an Hüttengaudi-Abenden der Eintritt möglich?","18 Jahre","16 Jahre","21 Jahre","14 Jahre","Hüttengaudi-Abende sind 18+."],
+["Welche Kleidung bleibt bitte zu Hause?","Fantrikots und Sportkleidung","Wollmützen","Winterjacken","Schals ohne Vereinsfarben","Fanbekleidung und Trainingskleidung sind nicht gestattet, Caps machen in den Hütten Pause."],
+["Dürfen Hunde ins Winterdorf?","Nein, sie müssen draußen bleiben","Ja, an der Leine","Nur kleine Hunde","Nur in der Kiliansalm","Es ist einfach zu viel los, zu eng und zu laut für entspannte Hundestimmung."],
+["Wo darf man rauchen oder vapen?","Nur in den Außenbereichen","In der Kiliansalm","Im Kuhstall","Überall","Rauch und Dampf bleiben draußen, ausschließlich in den vorgesehenen Außenbereichen."],
+["Nach wem fragt man, wenn man sich unwohl fühlt?","Luisa","Elisa","Martha","Hanna","„Luisa ist hier“: Das Team weiß sofort, was zu tun ist."],
+["Was gilt bei Wind, Regen oder Schnee?","Grundsätzlich ist geöffnet","Das Winterdorf bleibt zu","Eintritt wird billiger","Nur der Kuhstall ist offen","Wir sind schließlich ein Winterdorf! Bei Glätte bitte mit Köpfchen unterwegs sein."]]},
+{t:"Garderobe & Zahlung",d:"Jacke, Bargeld und Fundsachen",tip:"Garderobenmarke gut festhalten, sonst wird's ein langer Abend ohne Jacke!",learn:["Garderobe: 2 €, solange noch Platz ist. Jacken gibt es nur gegen die richtige Marke zurück. Wertsachen mitnehmen!","Marke weg? Sofort dem Garderobenpersonal melden.","Bezahlt wird bar. Ab 150 € gibt es an der Kasse Bargeld per EC-Karte.","Fundsachen: am nächsten Öffnungstag ab 17 Uhr abholen, danach geht es ans Fundbüro der Stadt Heilbronn."],q:[
+["Wie zahlt man im Winterdorf?","Bar","Nur mit Karte","Per Handy-App","Auf Rechnung","Bei uns wird bar bezahlt. Ab 150 € gibt es an der Kasse Bargeld per EC-Karte."],
+["Was kostet die Garderobe?","2 €","1 €","5 €","Sie ist gratis","2 €, solange noch Platz ist. Die Marke ist dein Rückfahrtticket für die Jacke!"],
+["Was tun, wenn die Garderobenmarke weg ist?","Sofort dem Garderobenpersonal melden","Nichts, die Jacke kommt von allein","Morgen wiederkommen","Eine andere Marke nehmen","Ohne Marke gibt es die Jacke erst, wenn eindeutig geklärt ist, wem sie gehört."],
+["Wohin kommen Fundsachen nach dem nächsten Öffnungstag?","Zum Fundbüro der Stadt Heilbronn","In den Müll","Zum Elch nach Hause","Zur Polizei Stuttgart","Abholung direkt im Winterdorf nur am nächsten Öffnungstag ab 17 Uhr."]]},
+{t:"Genuss, Musik & Team",d:"Glühwein, Beats und das #Elchteam",tip:"Das #Elchteam ist das beste Team der Welt. Sagt der Elch. Ganz unparteiisch.",learn:["Glühwein und Flaschenwein kommen vom Weingut G.A. Heinrich, Bier frisch gebraut von Dinkelacker. Dazu gibt es deftige Winterdorfburger, auch vegan.","Regionalität ist der Schlüssel: kurze Lieferwege, Partner aus der Region.","Kiliansalm Spezial: immer donnerstags, elektronische Beats und Glühwein-Daydrinking. Den Auftakt macht KIWI am 12. November 2026, danach SONORA und aurum.","Das Team heißt #Elchteam. Hier bin ich natürlich Ehrenmitglied!"],q:[
+["Woher kommt der Glühwein im Winterdorf?","Weingut G.A. Heinrich","Aus dem Supermarkt","Aus Österreich","Vom Weingut Fischer aus Italien","Vom prämierten Weingut G.A. Heinrich. Die Biere kommen frisch gebraut von Dinkelacker."],
+["Welche Burger gibt es?","Deftige Winterdorfburger, auch vegan","Nur Fischburger","Nur Pizza","Keine","Deftige Winterdorfburger, auch vegan."],
+["An welchem Wochentag laufen die Kiliansalm-Spezial-Abende?","Donnerstag","Montag","Sonntag","Dienstag","Immer donnerstags, mit elektronischen Beats und Glühwein-Daydrinking."],
+["Wer macht am 12. November 2026 den Auftakt der Reihe?","KIWI","SONORA","aurum","TONight","KIWI übernimmt das Winterdorf, danach folgen SONORA und aurum."],
+["Wie heißt das Winterdorf-Team?","#Elchteam","#Hüttenteam","#Glühweinteam","#Dorfpolizei","Das #Elchteam sorgt für volle Gläser und blitzblanke Tische. Passt zu mir!"]]},
+{t:"Bossrunde",d:"10 Fragen aus allen Lektionen",tip:"",learn:[],q:[]}]},
 
-<!-- START -->
-<section id="vStart">
-  <h1>Servus im Winterdorf!</h1>
-  <p class="sub">Das Fan-Quiz zum traditionellen Winterdorf Heilbronn</p>
-  <div class="elk-wrap">
-    <svg class="elk" id="elkSvg" viewBox="0 0 200 220" role="img" aria-label="Elchi, der kleine Elch mit roter Zipfelmütze">
-      <g fill="#8a5a2b" stroke="#4a2a12" stroke-width="4" stroke-linejoin="round">
-        <path d="M62 62 L40 22 L52 24 L48 6 L62 18 L66 36 L74 20 L80 30 L78 56Z" fill="#d9a441"/>
-        <path d="M138 62 L160 22 L148 24 L152 6 L138 18 L134 36 L126 20 L120 30 L122 56Z" fill="#d9a441"/>
-        <ellipse cx="55" cy="84" rx="20" ry="12" transform="rotate(-25 55 84)"/>
-        <ellipse cx="145" cy="84" rx="20" ry="12" transform="rotate(25 145 84)"/>
-        <ellipse cx="100" cy="190" rx="40" ry="26"/>
-        <ellipse cx="100" cy="100" rx="52" ry="50"/>
-        <ellipse cx="100" cy="130" rx="34" ry="28" fill="#c89358"/>
-      </g>
-      <path d="M52 72 Q100 14 148 72Z" fill="#e0453a" stroke="#7a1a12" stroke-width="4" stroke-linejoin="round"/>
-      <path d="M126 36 Q150 20 160 44" fill="none" stroke="#e0453a" stroke-width="12" stroke-linecap="round"/>
-      <circle cx="162" cy="46" r="9" fill="#fff6e4" stroke="#bbb" stroke-width="2"/>
-      <rect x="48" y="66" width="104" height="14" rx="7" fill="#fff6e4" stroke="#bbb" stroke-width="2"/>
-      <g><circle cx="80" cy="100" r="13" fill="#fff"/><circle cx="120" cy="100" r="13" fill="#fff"/>
-      <circle cx="83" cy="102" r="6.5" fill="#2b1608"/><circle cx="117" cy="102" r="6.5" fill="#2b1608"/>
-      <circle cx="85" cy="99" r="2.2" fill="#fff"/><circle cx="119" cy="99" r="2.2" fill="#fff"/></g>
-      <ellipse cx="100" cy="132" rx="14" ry="10" fill="#4a2a12"/>
-      <circle cx="94" cy="130" r="2.4" fill="#c89358"/><circle cx="106" cy="130" r="2.4" fill="#c89358"/>
-      <path d="M84 148 Q100 162 116 148" fill="none" stroke="#4a2a12" stroke-width="4" stroke-linecap="round"/>
-      <ellipse cx="66" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/><ellipse cx="134" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/>
-      <path d="M70 160 Q100 176 130 160 L132 174 Q100 190 68 174Z" fill="#e0453a" stroke="#7a1a12" stroke-width="3" stroke-linejoin="round"/>
-    </svg>
-    <div class="bubble" id="tip" aria-live="polite">Hallo, ich bin Elchi! Ich weiß alles über unser Winterdorf.</div>
-  </div>
-  <div class="card">
-    <h2>Wie heißt du?</h2>
-    <div class="name-row">
-      <input id="nameIn" type="text" maxlength="24" autocomplete="off" aria-label="Dein Name" placeholder="Dein Name">
-      <button class="save" id="saveBtn" type="button" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h11l4 4v14H5z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/></svg><span id="saveTxt">Speichern</span></button>
-    </div>
-    <p class="msg" id="nameMsg" aria-live="polite"></p>
-  </div>
-  <button class="btn" id="startBtn" type="button">Quiz starten (10 Fragen)</button>
-  <button class="btn sec" id="tipBtn" type="button">Noch ein Elch-Tipp</button>
+en:{label:"English",flag:"en",ui:{skip:"Skip to content",motiv:"Ask Elchi",share:"Share",src:"Sources",disc:"Unofficial fan quiz, not run by Winterdorf Heilbronn. Information as of season 2026/27; the official website is binding.",stand:"As of",
+hi:"Hi! I'm Elchi, and I'll tell you everything about our Winterdorf.",welcomeBack:"Hello {n}! Great to see you. Keep trotting!",hello:"Hello {n}! How well do you know the Winterdorf?",helloNo:"How well do you know the Winterdorf?",sub:"Elchi, your best friend, explains in short lessons how the traditional Winterdorf Heilbronn works. With quizzes, humour and lots of cosiness.",
+rank:"Your rank",flakes:"Snowflakes",stars:"Stars",change:"Change name",setName:"Enter name",myCerts:"My certificates",nameLbl:"Your name",save:"Save",saved:"Saved ✓",nice:"Nice to meet you, {n}!",
+instT:"I like the app, I want to install it",instS:"One tap and it sits on your home screen. Free, works offline.",instHow:"Choose “Install app” in the browser menu, or on iPhone “Share → Add to Home Screen”.",
+next:"Carry on",allDone:"All lessons done!",boss:"I already know my stuff",bossS:"Test yourself in the boss round",lessons:"Lessons",elchiSays:"Elchi says",startQuiz:"Start quiz",back:"Back",qOf:"Question {a} of {b}",right:"Correct!",wrong:"Close!",nextQ:"Next",result:"Result",
+perfect:"Perfect, {n}! You're a true Winterdorf pro.",pass:"Passed, {n}! Your certificate is waiting.",fail:"You need {k} points for the certificate. Read up again, then you'll get it!",certView:"View certificate",again:"Again",reread:"Read lesson",certsN:"{a} of {b} certificates",noCerts:"No certificate yet. Score at least 70 % in a quiz!",certAria:"Your certificate",certSave:"Save certificate (PNG)",certShare:"I earned the “{t}” certificate in the Winterdorf quiz! Can you do it too?",shareTxt:"How well do you know Winterdorf Heilbronn? Elchi will quiz you!",copied:"Text copied.",elchi:"Moose fact:",
+ranks:["Moose chick","Hut friend","Village pro","Winterdorf Moose"],cUrk:"CERTIFICATE",cT1:"This certificate is awarded to",fan:"Winterdorf fan",cT2:"for successfully completing the lesson",cRes:"{a} / {b} correct · Rank: {r}",cLine:["{n}, you've warmed up nicely!","{n}, that was really strong!","{n}, a perfect moose evening!"],cDate:"Date",cFoot:"Winterdorf Quiz · unofficial fan quiz"},
+les:[
+{t:"The Village",d:"History, huts and cosiness",tip:"Hut fun on the village square: if you're cold, stand by the fire!",learn:["Winterdorf Heilbronn has existed since 2012: the first full-service winter village in Germany.","The legendary party huts Neckaralm and Kiliansalm are its heart.","On the village square, many fire pits and a heated cowshed with seating keep you warm.","Season 14 runs in 2026/27: 6 November 2026 to 23 January 2027."],q:[
+["Since when has Winterdorf Heilbronn existed?","Since 2012","Since 2002","Since 2018","Since 1999","Since 2012: the first full-service winter village in Germany."],
+["What are the two legendary party huts called?","Neckaralm and Kiliansalm","Talstation and Jausenalm","Cowshed and village square","Neckarhütte and Kilianshaus","Neckaralm and Kiliansalm are the heart of the Winterdorf."],
+["Where do you find warmth on the village square in rough weather?","At fire pits and in the heated cowshed","Only at the cloakroom","In the tent at the entrance","Nowhere","Many fire pits and a warm cowshed with seating."],
+["Which season is running in 2026/27?","The 14th","The 10th","The 5th","The 20th","The 14th season, from 6 November 2026 to 23 January 2027."]]},
+{t:"Opening & Getting There",d:"When, where and safely home",tip:"After mulled wine, take the buddy or a taxi. Even I don't trot home alone!",learn:["Open Wednesday to Saturday, 5 pm to midnight. Last admission: 11:30 pm.","Address: Badstraße 100, 74072 Heilbronn, right on the Neckar bank.","On foot: about 20 minutes from the main station, about 780 metres (13 minutes) from the Theresienwiese stop.","Getting home: buddy by SWHN (max. €5, €2.50 with an HNV pass) or the FiftyFifty taxi for 16 to 25-year-olds in the district (50 % of the fare)."],q:[
+["On which days is the Winterdorf normally open?","Wednesday to Saturday","Monday to Friday","Weekends only","Every day","Wed to Sat, from 5 pm to midnight."],
+["When is last admission?","11:30 pm","10:00 pm","11:00 pm","At midnight","Party until midnight, last admission is at 11:30 pm."],
+["What is the Winterdorf's address?","Badstraße 100, Heilbronn","Marktplatz 1, Heilbronn","Theresienstraße 5, Heilbronn","Neckarmeile 12, Heilbronn","Badstraße is right on the Neckar bank in the city centre."],
+["How far is it from the Theresienwiese stop to the Winterdorf?","About 780 metres","About 3 kilometres","About 50 metres","About 2 kilometres","Around 13 minutes on foot. From the main station it is about 20 minutes."],
+["What is the maximum price of the SWHN buddy service for getting home?","€5.00","€10.00","€2.00","It is free","Maximum €5, only €2.50 with an HNV pass, however long the trip."],
+["Who can use the FiftyFifty taxi in the Heilbronn district?","Young people aged 16 to 25","Everyone over 18","Seniors only","Children under 12","You pay only 50 % of the fare, the district pays the rest."]]},
+{t:"Reservations",d:"Tables, huts and minimum spend",tip:"You don't have to reserve, but come early and you get the best spot by the fire.",learn:["You don't need a reservation. Come early and party longer.","Table for 8 or 10: €15 minimum drinks spend per person. Deposit €40 (8) or €50 (10). Maximum two tables per evening.","Talstation: groups up to 25, €250 hut hire plus €250 minimum spend, Wed to Sat.","Kiliansalm, Neckaralm or the whole Winterdorf can be requested. In the whole village, a maximum of 450 people party."],q:[
+["Do you have to reserve to join the party?","No, come early and party longer","Yes, always","Thursdays only","Only after 6 pm","You don't need a reservation. The earlier you arrive, the shorter the wait."],
+["What is the minimum drinks spend for a table of 8 or 10?","€15 per person","€5 per person","€30 per person","There is none","€15 per person. Deposit: €40 for 8, €50 for 10."],
+["How many tables can be reserved per evening at most?","Two","Five","Ten","One","A maximum of two tables can be reserved per evening."],
+["How many people is the Talstation meant for?","Up to 25","Up to 8","Up to 100","Just 2","Talstation: up to 25 people, €250 hut hire plus €250 minimum spend."],
+["How many people party at most when the whole Winterdorf is booked exclusively?","450","150","1,000","250","A maximum of 450 people party in the whole Winterdorf."]]},
+{t:"House Rules & Safety",d:"Door team, dress code and Luisa",tip:"Good vibes win, always with respect. That goes for moose too.",learn:["Only the door team (Pistenwache) decides on admission. A reservation is not a ticket.","Hüttengaudi evenings are 18+.","Dress code: cosy and neat. Fan gear and sportswear stay at home, caps take a break in the huts. Dogs must stay outside.","Smoking and vaping only in the outdoor areas. “Luisa ist hier”: if you feel uneasy, ask the team right away.","Wind, rain, snow: generally open. Escape routes and emergency exits always stay clear."],q:[
+["Who decides on admission?","The Pistenwache (door team)","The reservation","Chance","The moose","Only the Pistenwache. A reservation is not a ticket."],
+["From what age is entry possible on Hüttengaudi evenings?","18 years","16 years","21 years","14 years","Hüttengaudi evenings are 18+."],
+["Which clothing should stay at home?","Fan jerseys and sportswear","Woolly hats","Winter jackets","Scarves without club colours","Fan gear and training clothes are not allowed; caps take a break in the huts."],
+["Are dogs allowed in the Winterdorf?","No, they must stay outside","Yes, on a lead","Only small dogs","Only in the Kiliansalm","It's simply too busy, tight and loud for a relaxed dog mood."],
+["Where may you smoke or vape?","Only in the outdoor areas","In the Kiliansalm","In the cowshed","Everywhere","Smoke and vapour stay outside, only in the designated outdoor areas."],
+["Who do you ask for if you feel uneasy?","Luisa","Elisa","Martha","Hanna","“Luisa ist hier”: the team knows right away what to do."],
+["What applies in wind, rain or snow?","Generally open","The Winterdorf closes","Entry gets cheaper","Only the cowshed is open","We are a winter village after all! Mind the ice and wear proper shoes."]]},
+{t:"Cloakroom & Payment",d:"Jacket, cash and lost property",tip:"Hold on tight to your cloakroom token, or it's a long evening without a jacket!",learn:["Cloakroom: €2, while there is space. Jackets are only returned against the right token. Take valuables with you!","Token lost? Tell the cloakroom staff right away.","Payment is cash only. From €150 you can get cash with an EC card at the till.","Lost property: collect on the next opening day from 5 pm, after that it goes to the Heilbronn lost property office."],q:[
+["How do you pay in the Winterdorf?","Cash","Card only","By phone app","On invoice","We take cash. From €150 you can withdraw cash with an EC card at the till."],
+["How much is the cloakroom?","€2","€1","€5","It is free","€2, while there is space. The token is your ticket home for your jacket!"],
+["What if your cloakroom token is gone?","Tell the cloakroom staff right away","Nothing, the jacket comes back by itself","Come back tomorrow","Take another token","Without a token, the jacket is only handed over once it is clear who it belongs to."],
+["Where does lost property go after the next opening day?","To the Heilbronn city lost property office","Into the bin","Home with the moose","To Stuttgart police","Collection at the Winterdorf is only possible on the next opening day from 5 pm."]]},
+{t:"Treats, Music & Team",d:"Mulled wine, beats and the #Elchteam",tip:"The #Elchteam is the best team in the world. Says the moose. Totally unbiased.",learn:["Mulled wine and bottled wine come from Weingut G.A. Heinrich, beer freshly brewed by Dinkelacker. Plus hearty Winterdorf burgers, also vegan.","Regional is the key: short supply routes, partners from the region.","Kiliansalm Spezial: always on Thursdays, electronic beats and mulled-wine day drinking. KIWI kicks off on 12 November 2026, then SONORA and aurum.","The team is called #Elchteam. I'm an honorary member, of course!"],q:[
+["Where does the mulled wine in the Winterdorf come from?","Weingut G.A. Heinrich","From the supermarket","From Austria","From Weingut Fischer in Italy","From the award-winning Weingut G.A. Heinrich. The beers are freshly brewed by Dinkelacker."],
+["Which burgers are there?","Hearty Winterdorf burgers, also vegan","Fish burgers only","Pizza only","None","Hearty Winterdorf burgers, also vegan."],
+["On which weekday do the Kiliansalm Spezial evenings run?","Thursday","Monday","Sunday","Tuesday","Always Thursdays, with electronic beats and mulled-wine day drinking."],
+["Who kicks off the series on 12 November 2026?","KIWI","SONORA","aurum","TONight","KIWI takes over the Winterdorf, followed by SONORA and aurum."],
+["What is the Winterdorf team called?","#Elchteam","#Hüttenteam","#Glühweinteam","#Dorfpolizei","The #Elchteam keeps glasses full and tables spotless. Suits me!"]]},
+{t:"Boss Round",d:"10 questions from all lessons",tip:"",learn:[],q:[]}]},
 
-  <div class="card"><h2>Rund ums Winterdorf</h2>
-    <div class="links">
-      <a href="https://www.winterdorf-hn.de/" target="_blank" rel="noopener noreferrer">Winterdorf Heilbronn, offizielle Website<small>Alle verbindlichen Infos, Reservierung und Termine</small></a>
-      <a href="https://nosz.github.io/herzintelligenz/" target="_blank" rel="noopener noreferrer">HERZINTELLIGENZ<small>Auch so ein Lern-Quiz mit Maskottchen</small></a>
-    </div>
-  </div>
-  <div class="fcredit">
-    <p class="fver" id="verTxt">Version 1.0.0 · Stand 24.10.2026</p>
-    <a class="credit" href="https://nosz.github.io/norbert-szpak/" target="_blank" rel="noopener noreferrer">
-      <span class="cr-l"><span class="cr-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></span>✦ Website Design by Norbert <span class="cr-ex"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span> ↗</span>
-      <span class="cr-u">nosz.github.io/norbert-szpak</span>
-    </a>
-  </div>
-  <footer>Inoffizielles Fan-Quiz, nicht vom Winterdorf Heilbronn betrieben. Infos nach Stand Saison 2026/27, verbindlich ist die <a href="https://www.winterdorf-hn.de/" target="_blank" rel="noopener noreferrer">offizielle Website</a>.</footer>
-</section>
-
-<!-- QUIZ -->
-<section id="vQuiz" class="hide">
-  <div class="elk-wrap"><div class="bubble" id="qBubble" aria-live="polite">Los geht's!</div></div>
-  <div class="card">
-    <div class="count" id="qCount"></div>
-    <div class="q" id="qText"></div>
-    <div id="qOpts"></div>
-    <button class="btn hide" id="nextBtn" type="button">Weiter</button>
-  </div>
-</section>
-
-<!-- ERGEBNIS -->
-<section id="vEnd" class="hide">
-  <div class="card">
-    <p class="rank" id="rank"></p>
-    <p class="score" id="score"></p>
-    <p class="sub" id="endMsg"></p>
-  </div>
-  <button class="btn" id="againBtn" type="button">Nochmal spielen</button>
-  <button class="btn sec" id="shareBtn" type="button">Teilen</button>
-  <p class="msg" id="shareMsg" aria-live="polite"></p>
-</section>
-</main>
-
+swg:{label:"Schwäbisch",flag:"swg",ui:{skip:"Zum Inhalt",motiv:"Elchi froga",share:"Teila",src:"Quella",disc:"Inoffizielles Fan-Quiz, ned vom Winterdorf Heilbronn betriebe. Infos nach Stand Saison 2026/27, verbindlich isch d' offizielle Website.",stand:"Stand",
+hi:"Grüß Gott! I bin dr Elchi und verzähl dir älles übers Winterdorf.",welcomeBack:"Hallo {n}! Schee, dass du do bisch. Weiter geht's!",hello:"Hallo {n}! Wie guat kennsch du s' Winterdorf?",helloNo:"Wie guat kennsch du s' Winterdorf?",sub:"Dr Elchi, dei bescht's Kumpel, erklärt dir in kloine Lektione, wie des traditionelle Winterdorf Heilbronn funktioniert. Mit Quiz, Humor und viel Gmüatlichkeit.",
+rank:"Dei Rang",flakes:"Schneeflocka",stars:"Stern",change:"Name ändera",setName:"Name eigeba",myCerts:"Moine Urkunda",nameLbl:"Dei Name",save:"Spoichra",saved:"Gspoichert ✓",nice:"Schee, dass mr uns kennalernt, {n}!",
+instT:"Mir gfällt d' App, i will sie installiera",instS:"Oi Tipp, und sie liegt uff deim Startbildschirm. Gratis, au ohne Internet.",instHow:"Em Browser-Menü „App installiera“ nemma, oder uffm iPhone „Teila → Zum Home-Bildschirm“.",
+next:"Weiter geht's",allDone:"Älle Lektione gschafft!",boss:"I kenn mi scho aus",bossS:"Probier's glei in dr Bossrunde",lessons:"Lektione",elchiSays:"Dr Elchi sagt",startQuiz:"Quiz starta",back:"Zrück",qOf:"Froga {a} vo {b}",right:"Richtig!",wrong:"Knapp dernäba!",nextQ:"Weiter",result:"Ergebnis",
+perfect:"Perfekt, {n}! Du bisch a echter Winterdorf-Profi.",pass:"Bstanda, {n}! Dei Urkunde wartet.",fail:"Für d' Urkunde brauchsch du {k} Punkt. Lies no mol nach, no klappt's!",certView:"Urkunde agucka",again:"No mol",reread:"Lerntext lesa",certsN:"{a} vo {b} Urkunda",noCerts:"No koine Urkunde. Schaff a Quiz mit mindeschtens 70 %!",certAria:"Dei Urkunde",certSave:"Urkunde spoichra (PNG)",certShare:"I hab em Winterdorf-Quiz d' Urkunde „{t}“ gholt! Schaffsch du des au?",shareTxt:"Wie guat kennsch du s' Winterdorf Heilbronn? Dr Elchi froget di aus!",copied:"Text kopiert.",elchi:"Elch-Wissa:",
+ranks:["Elchküale","Hüttafreund","Dorfprofi","Winterdorf-Elch"],cUrk:"URKUNDE",cT1:"Diese Urkunde griegt",fan:"Winterdorf-Fan",cT2:"für d' erfolgreich bstanden Lektion",cRes:"{a} / {b} richtig · Rang: {r}",cLine:["{n}, du hosch di warm gstapft!","{n}, des war richtig stark!","{n}, a perfekter Elch-Abend!"],cDate:"Datum",cFoot:"Winterdorf-Quiz · inoffizielles Fan-Quiz"},
+les:[
+{t:"s' Dorf",d:"Gschicht, Hütta und Gmüatlichkeit",tip:"Hüttagaudi uffm Dorfplatz: Wer friert, stoht ans Feuer!",learn:["Seit 2012 gibt's s' Winterdorf Heilbronn: s' erschte vollgastronomische Winterdorf in ganz Deutschland.","D' legendäre Feierhütta Neckaralm und Kiliansalm send s' Herzstück.","Uffm Dorfplatz wärmed viele Feuerstella und a gheizter Kuhstall mit Sitzplätz.","2026/27 läuft d' 14. Saison: 6. November 2026 bis 23. Januar 2027."],q:[
+["Seit wann gibt's s' Winterdorf Heilbronn?","Seit 2012","Seit 2002","Seit 2018","Seit 1999","Seit 2012: s' erschte vollgastronomische Winterdorf in Deutschland."],
+["Wie hoißet d' zwoi legendäre Feierhütta?","Neckaralm und Kiliansalm","Talstation und Jausenalm","Kuhstall und Dorfplatz","Neckarhütt und Kilianshaus","Neckaralm und Kiliansalm send s' Herzstück vom Winterdorf."],
+["Wo kriegt mr uffm Dorfplatz bei rauhem Wetter Wärme?","An dr Feuerstell und em gheizta Kuhstall","Bloß an dr Garderobe","Em Zelt am Eigang","Gar ned","Viele Feuerstella und a warmer Kuhstall mit Sitzplätz."],
+["Dia wievielte Saison läuft 2026/27?","D' 14.","D' 10.","D' 5.","D' 20.","D' 14. Saison, vom 6. November 2026 bis 23. Januar 2027."]]},
+{t:"Öffnung & Azug",d:"Wann, wohin und sicher wieder hoim",tip:"Noch am Glühwei liaber mit em buddy oder Taxi hoim. I stapf au ned alloi!",learn:["Uff hot Mittwoch bis Samschdich, 17:00 bis 24:00 Uhr. Letschter Eilass: 23:30 Uhr.","Adress: Badstraße 100, 74072 Heilbronn, direkt am Neckarufer.","Zu Fuß: vom Hauptbahnhof etwa 20 Minuta, vo dr Haltestell Theresienwiese etwa 780 Meter (13 Minuta).","Hoimweg: buddy vo dr SWHN (maximal 5 €, mit HNV-Abo 2,50 €) oder s' FiftyFifty-Taxi für 16- bis 25-Jährige em Landkreis (50 % vom Fahrpreis)."],q:[
+["An wella Täg hot s' Winterdorf normalerweis uff?","Mittwoch bis Samschdich","Mondich bis Freitich","Bloß am Wochaend","Jeda Dag","Mi bis Sa, jeweils vo 17:00 bis 24:00 Uhr."],
+["Wann isch dr letschte Eilass?","23:30 Uhr","22:00 Uhr","23:00 Uhr","Um Mitternacht","Gfeiert wird bis 24 Uhr, letschter Eilass isch um 23:30 Uhr."],
+["Wie hoißt d' Adress vom Winterdorf?","Badstraße 100, Heilbronn","Marktplatz 1, Heilbronn","Theresienstraße 5, Heilbronn","Neckarmeile 12, Heilbronn","D' Badstraße liegt direkt am Neckarufer, mitta en dr Innestadt."],
+["Wie weit isch es vo dr Haltestell Theresienwiese ins Winterdorf?","Etwa 780 Meter","Etwa 3 Kilometer","Etwa 50 Meter","Etwa 2 Kilometer","Rund 13 Minuta z' Fuß. Vom Hauptbahnhof send's etwa 20 Minuta."],
+["Was koschtet dr buddy-Service vo dr SWHN fürn Hoimweg maximal?","5,00 €","10,00 €","2,00 €","Er isch kostelos","Maximal 5 €, mit HNV-Abo bloß 2,50 €, egal wie weit."],
+["Für wen gilt s' FiftyFifty-Taxi em Landkreis Heilbronn?","Jugendliche vo 16 bis 25 Johr","Älle ab 18 Johr","Bloß Senioren","Kinder unter 12","Du zahlsch bloß 50 % vom Fahrpreis, de Rescht zahlt dr Landkreis."]]},
+{t:"Reservierung",d:"Tisch, Hütta und Mindeschtumsatz",tip:"Reservieren muss mr ned, aber wer fruah kommt, kriagt dr beschte Platz am Feuer.",learn:["A Reservierung braucht mr ned. Wer fruacher do isch, feiert länger.","8er- oder 10er-Tisch: 15 € Getränkemindeschtumsatz pro Person. Azahlung 40 € (8er) bzw. 50 € (10er). Maximal zwoi Tisch pro Abend.","Talstation: Gruppa bis 25 Persona, 250 € Hüttamiete plus 250 € Mindeschtumsatz, Mi bis Sa.","Kiliansalm, Neckaralm oder s' ganze Winterdorf ka mr azfraga. Em ganza Dorf feiered maximal 450 Persona."],q:[
+["Muss mr reserviera, zum em Winterdorf mitfeira?","Noi, wer fruacher do isch, feiert länger","Ja, emmer","Bloß donnerschdichs","Bloß ab 18 Uhr","A Reservierung braucht mr ned. Je fruacher du do bisch, desto kürzer d' Wartezeit."],
+["Wie hoch isch dr Getränkemindeschtumsatz bei am 8er- oder 10er-Tisch?","15 € pro Person","5 € pro Person","30 € pro Person","Dean gibt's ned","15 € pro Person. Azahlung: 40 € für dr 8er-, 50 € für dr 10er-Tisch."],
+["Wie viele Tisch ka mr pro Abend maximal reserviera?","Zwoi","Fünf","Zehna","Oin","Pro Abend send maximal zwoi Tisch reservierbar."],
+["Für wie viele Persona isch d' Talstation gmoint?","Bis 25 Persona","Bis 8 Persona","Bis 100 Persona","Bloß für 2","Talstation: bis 25 Persona, 250 € Hüttamiete plus 250 € Mindeschtumsatz."],
+["Wie viele Persona feierad maximal em komplett exklusiv buchta Winterdorf?","450","150","1.000","250","Em ganza Winterdorf feiered maximal 450 Persona."]]},
+{t:"Hausregla & Sicherheit",d:"Pistawache, Dresscode und Luisa",tip:"Guate Laune gwinnt, aber emmer mit Respekt. Des gilt au für Elch.",learn:["Über da Eilass entscheidet alloi d' Pistawache. A Reservierung isch koi Eintrittskart.","Hüttagaudi-Äbend send 18+.","Dresscode: gmüatlich und gepflegt. Fanklamotta und Sportklamotta bleibet dahoim, Kappa pausierad en dr Hütta. Hund müssad drauß bleiba.","Raucha und Vapa bloß en de Außabereich. „Luisa ist hier“: Wenn's oim ned guat goht, glei s' Team froga.","Wind, Räga, Schnee: grundsätzlich uff. Fluchtwäg und Notausgäng bleibet emmer frei."],q:[
+["Wer entscheidet über da Eilass?","D' Pistawache","D' Reservierung","Dr Zufall","Dr Elch","Alloi d' Pistawache. A Reservierung isch koi Eintrittskart."],
+["Ab wellem Alter goht dr Eintritt an Hüttagaudi-Äbend?","18 Johr","16 Johr","21 Johr","14 Johr","Hüttagaudi-Äbend send 18+."],
+["Wellene Klamotta bleibet bitte dahoim?","Fantrikots und Sportklamotta","Wollmütza","Winterjacka","Schals ohne Vereinsfarba","Fanklamotta und Trainingsklamotta send ned erlaubt, Kappa pausierad en dr Hütta."],
+["Derfet Hund ins Winterdorf?","Noi, se müssad drauß bleiba","Ja, an dr Leine","Bloß kloine Hund","Bloß en dr Kiliansalm","Es isch oifach z' viel los, z' eng und z' laut für entspannte Hundestimmung."],
+["Wo derf mr raucha oder vapa?","Bloß en de Außabereich","En dr Kiliansalm","Em Kuhstall","Überall","Rauch und Dampf bleibet drauß, bloß en de vorgsehene Außabereich."],
+["Noch wem fragt mr, wenn oim ned wohl isch?","Luisa","Elisa","Martha","Hanna","„Luisa ist hier“: S' Team woiß glei, was zum doa isch."],
+["Was gilt bei Wind, Räga oder Schnee?","Grundsätzlich isch uff","S' Winterdorf bleibt zu","Eintritt wird billiger","Bloß dr Kuhstall isch uff","Mir send halt a Winterdorf! Bei Glätte bitte mit Köpfle unterwegs sei."]]},
+{t:"Garderobe & Zahla",d:"Jacka, Bargeld und Fundsacha",tip:"Garderobamark guat festhalta, sonscht wird's a langer Abend ohne Jacka!",learn:["Garderobe: 2 €, solang no Platz isch. Jacka gibt's bloß gegen d' richtige Mark zrück. Wertsacha mitnemma!","Mark weg? Glei em Garderobapersonal saga.","Zahlt wird bar. Ab 150 € gibt's an dr Kass Bargeld mit dr EC-Kart.","Fundsacha: am nächschta Öffnungstag ab 17 Uhr abhola, danach gohts ans Fundbüro vo dr Stadt Heilbronn."],q:[
+["Wie zahlt mr em Winterdorf?","Bar","Bloß mit Kart","Mit dr Handy-App","Uff Rechnung","Bei uns wird bar zahlt. Ab 150 € gibt's an dr Kass Bargeld mit dr EC-Kart."],
+["Was koschtet d' Garderobe?","2 €","1 €","5 €","Sie isch gratis","2 €, solang no Platz isch. D' Mark isch dei Rückfahrtticket für d' Jacka!"],
+["Was doa, wenn d' Garderobamark weg isch?","Glei em Garderobapersonal saga","Nix, d' Jacka kommt vo alloi","Morga wiederkomma","A andere Mark nemma","Ohne Mark gibt's d' Jacka erscht, wenn klar isch, wem sie ghört."],
+["Wohin kommet Fundsacha noch am nächschta Öffnungstag?","Ans Fundbüro vo dr Stadt Heilbronn","En da Müll","Zum Elch hoim","Zur Polizei Stuttgart","Abholung direkt em Winterdorf bloß am nächschta Öffnungstag ab 17 Uhr."]]},
+{t:"Genuss, Musik & Team",d:"Glühwei, Beats und s' #Elchteam",tip:"S' #Elchteam isch s' beschte Team vo dr Welt. Sagt dr Elch. Ganz neutral.",learn:["Glühwei und Flaschawei kommet vom Weingut G.A. Heinrich, Bier frisch braut vo Dinkelacker. Dazu gibt's deftige Winterdorfburger, au vegan.","Regionalität isch dr Schlüssel: kurze Lieferwäg, Partner us dr Region.","Kiliansalm Spezial: emmer donnerschdichs, elektronische Beats und Glühwei-Daydrinking. Dr Auftakt macht KIWI am 12. November 2026, danach SONORA und aurum.","S' Team hoißt #Elchteam. Do bin i natürlich Ehrameitglied!"],q:[
+["Woher kommt dr Glühwei em Winterdorf?","Weingut G.A. Heinrich","Vom Supermarkt","Us Österreich","Vom Weingut Fischer us Italia","Vom prämierta Weingut G.A. Heinrich. D' Bier kommet frisch braut vo Dinkelacker."],
+["Wellene Burger gibt's?","Deftige Winterdorfburger, au vegan","Bloß Fischburger","Bloß Pizza","Koine","Deftige Winterdorfburger, au vegan."],
+["An wellem Wochadag laufet d' Kiliansalm-Spezial-Äbend?","Donnerschdich","Mondich","Sonntich","Zeischdich","Emmer donnerschdichs, mit elektronische Beats und Glühwei-Daydrinking."],
+["Wer macht am 12. November 2026 dr Auftakt vo dr Reihe?","KIWI","SONORA","aurum","TONight","KIWI übernimmt s' Winterdorf, danach kommet SONORA und aurum."],
+["Wie hoißt s' Winterdorf-Team?","#Elchteam","#Hüttateam","#Glühweiteam","#Dorfpolizei","S' #Elchteam sorgt für volle Gläser und blitzblanke Tisch. Passt zu mir!"]]},
+{t:"Bossrunde",d:"10 Froga us älle Lektione",tip:"",learn:[],q:[]}]}
+};
+</script>
 <script>
-const VERSION="1.0.0",STAND="24.10.2026",URL_LIVE="https://nosz.github.io/winterdorf/";
-const Q=[
-["Seit wann gibt es das Winterdorf Heilbronn?",["2012","2002","2018","1999"],0,"Seit 2012: das erste vollgastronomische Winterdorf Deutschlands. Hier entstand Heilbronner Geschichte!"],
-["Wie heißen die beiden legendären Feierhütten?",["Neckaralm und Kiliansalm","Talstation und Jausenalm","Kuhstall und Dorfplatz","Neckarhütte und Kilianshaus"],0,"Neckaralm und Kiliansalm sind das Herzstück des Winterdorfs."],
-["An welchen Tagen hat das Winterdorf normalerweise geöffnet?",["Mittwoch bis Samstag","Montag bis Freitag","Nur am Wochenende","Jeden Tag"],0,"Mi bis Sa, jeweils von 17:00 bis 24:00 Uhr."],
-["Wann ist der letzte Einlass?",["23:30 Uhr","22:00 Uhr","23:00 Uhr","Um Mitternacht"],0,"Gefeiert wird bis 24 Uhr, letzter Einlass ist um 23:30 Uhr."],
-["Wie lautet die Adresse des Winterdorfs?",["Badstraße 100, Heilbronn","Marktplatz 1, Heilbronn","Theresienstraße 5, Heilbronn","Neckarmeile 12, Heilbronn"],0,"Die Badstraße liegt direkt am Neckarufer, mitten in der Innenstadt."],
-["Wie zahlt man im Winterdorf?",["Bar","Nur mit Karte","Per Handy-App","Auf Rechnung"],0,"Bei uns wird bar bezahlt. Ab 150 € gibt es an der Kasse Bargeld per EC-Karte."],
-["Was kostet die Garderobe?",["2 €","1 €","5 €","Sie ist gratis"],0,"2 €, solange noch Platz ist. Die Marke ist dein Rückfahrtticket für die Jacke!"],
-["Dürfen Hunde ins Winterdorf?",["Nein, sie müssen draußen bleiben","Ja, an der Leine","Nur kleine Hunde","Nur in der Kiliansalm"],0,"Es ist einfach zu viel los, zu eng und zu laut für entspannte Hundestimmung."],
-["Wie hoch ist der Getränkemindestumsatz bei einer 8er- oder 10er-Tischreservierung?",["15 € pro Person","5 € pro Person","30 € pro Person","Es gibt keinen"],0,"15 € pro Person. Anzahlung: 40 € für den 8er-Tisch, 50 € für den 10er-Tisch."],
-["Wie viele Personen feiern maximal im kompletten Winterdorf, wenn es exklusiv gebucht wird?",["450","150","1.000","250"],0,"Im kompletten Winterdorf feiern maximal 450 Personen."],
-["Wer entscheidet über den Einlass?",["Die Pistenwache","Die Reservierung","Der Zufall","Der Elch"],0,"Ausschließlich die Pistenwache. Eine Reservierung ist keine Eintrittskarte."],
-["Ab welchem Alter ist an Hüttengaudi-Abenden der Eintritt möglich?",["18 Jahre","16 Jahre","21 Jahre","14 Jahre"],0,"Hüttengaudi-Abende sind 18+."],
-["Was kostet der buddy-Service der SWHN für den Heimweg maximal?",["5,00 €","10,00 €","2,00 €","Er ist kostenlos"],0,"Maximal 5 €, mit HNV-Abo nur 2,50 €, egal wie lang die Strecke."],
-["Für wen gilt das FiftyFifty-Taxi im Landkreis Heilbronn?",["Jugendliche von 16 bis 25 Jahren","Alle ab 18 Jahren","Nur Senioren","Kinder unter 12"],0,"Du zahlst nur 50 % des Fahrpreises, den Rest übernimmt der Landkreis."],
-["Nach wem kann man im Winterdorf jederzeit fragen, wenn man sich unwohl fühlt?",["Luisa","Elisa","Martha","Hanna"],0,"„Luisa ist hier“: Das Team weiß sofort, was zu tun ist."],
-["Wie heißt das Winterdorf-Team?",["#Elchteam","#Hüttenteam","#Glühweinteam","#Dorfpolizei"],0,"Das #Elchteam sorgt für volle Gläser und blitzblanke Tische. Passt zu mir!"],
-["Woher kommt der Glühwein und erlesene Flaschenwein im Winterdorf?",["Weingut G.A. Heinrich","Weingut Fischer aus Italien","Aus dem Supermarkt","Aus Österreich"],0,"Vom prämierten Weingut G.A. Heinrich. Die Biere kommen frisch gebraut von Dinkelacker."],
-["An welchem Wochentag laufen die Kiliansalm-Spezial-Abende?",["Donnerstag","Montag","Sonntag","Dienstag"],0,"Immer donnerstags, mit elektronischen Beats und Glühwein-Daydrinking."],
-["Welche Kleidung bleibt bitte zu Hause?",["Fantrikots und Sportkleidung","Wollmützen","Winterjacken","Schals ohne Vereinsfarben"],0,"Fanbekleidung und Trainingskleidung sind nicht gestattet, Caps machen in den Hütten Pause."],
-["Wo darf man rauchen oder vapen?",["Nur in den Außenbereichen","In der Kiliansalm","Im Kuhstall","Überall"],0,"Rauch und Dampf bleiben draußen, ausschließlich in den vorgesehenen Außenbereichen."],
-["Wohin kommen Fundsachen nach dem nächsten Öffnungstag?",["Zum Fundbüro der Stadt Heilbronn","In den Müll","Zum Elch nach Hause","Zur Polizei Stuttgart"],0,"Abholung direkt im Winterdorf nur am nächsten Öffnungstag ab 17 Uhr."],
-["Wie weit ist es von der Haltestelle Theresienwiese zum Winterdorf?",["Etwa 780 Meter","Etwa 3 Kilometer","Etwa 50 Meter","Etwa 2 Kilometer"],0,"Rund 13 Minuten zu Fuß. Vom Hauptbahnhof sind es etwa 20 Minuten."],
-["Muss man reservieren, um im Winterdorf mitzufeiern?",["Nein, wer früher da ist, feiert länger","Ja, immer","Nur donnerstags","Nur ab 18 Uhr"],0,"Eine Reservierung braucht man nicht. Je früher du da bist, desto kürzer die Wartezeit."],
-["Was gilt bei Wind, Regen oder Schnee?",["Grundsätzlich ist geöffnet","Das Winterdorf bleibt zu","Eintritt wird billiger","Nur der Kuhstall ist offen"],0,"Wir sind schließlich ein Winterdorf! Bei Glätte bitte mit Köpfchen unterwegs sein."],
-["Wo findet man auf dem Dorfplatz bei rauem Wetter Wärme?",["An Feuerstellen und im beheizten Kuhstall","Nur in der Garderobe","Im Zelt am Eingang","Gar nicht"],0,"Viele Feuerstellen und ein warmer Kuhstall mit Sitzplätzen."]
-];
-const RANKS=[[0,"Elchküken"],[5,"Hüttenfreund"],[8,"Dorfprofi"],[10,"Winterdorf-Elch"]];
+T.de.ui.lk1="Offizielle Website, alle verbindlichen Infos";T.de.ui.lk2="Auch so ein Lern-Quiz mit Maskottchen";T.en.ui.lk1="Official website, all binding information";T.en.ui.lk2="Another learning quiz with a mascot";T.swg.ui.lk1="Offizielle Website, älle verbindliche Infos";T.swg.ui.lk2="Au so a Lern-Quiz mit Maskottchen";T.de.ui.shT="Mit anderen Winterdorf-Fans teilen";T.de.ui.shS="Lade Freunde ein, Elchi fragt sie auch ab!";T.de.ui.shWa="WhatsApp";T.de.ui.shTg="Telegram";T.de.ui.shMail="E-Mail";T.de.ui.shSms="SMS";T.de.ui.shCopy="Link kopieren";T.de.ui.shMore="Mehr Möglichkeiten…";T.de.ui.shImg="Urkunde als Bild";T.de.ui.shSubj="Winterdorf-Quiz mit Elchi";T.de.ui.shClose="Schließen";T.de.ui.scoreShare="Ich habe im Winterdorf-Quiz bei „{l}“ {p} von {t} Punkten geholt. Schaffst du mehr?";
+T.en.ui.shT="Share with other Winterdorf fans";T.en.ui.shS="Invite friends, Elchi will quiz them too!";T.en.ui.shWa="WhatsApp";T.en.ui.shTg="Telegram";T.en.ui.shMail="Email";T.en.ui.shSms="SMS";T.en.ui.shCopy="Copy link";T.en.ui.shMore="More options…";T.en.ui.shImg="Certificate as image";T.en.ui.shSubj="Winterdorf Quiz with Elchi";T.en.ui.shClose="Close";T.en.ui.scoreShare="I scored {p} out of {t} on “{l}” in the Winterdorf quiz. Can you beat that?";
+T.swg.ui.shT="Mit andere Winterdorf-Fans teila";T.swg.ui.shS="Lad Freund ei, dr Elchi froget se au aus!";T.swg.ui.shWa="WhatsApp";T.swg.ui.shTg="Telegram";T.swg.ui.shMail="E-Mail";T.swg.ui.shSms="SMS";T.swg.ui.shCopy="Link kopiera";T.swg.ui.shMore="Mehr Möglichkeita…";T.swg.ui.shImg="Urkunde als Bild";T.swg.ui.shSubj="Winterdorf-Quiz mit em Elchi";T.swg.ui.shClose="Zumacha";T.swg.ui.scoreShare="I hab em Winterdorf-Quiz bei „{l}“ {p} vo {t} Punkt gholt. Schaffsch du mehr?";
+T.de.ui.shCopied="Link kopiert";T.de.ui.shFail="Kopieren nicht möglich. Bitte markiere den Link und kopiere ihn von Hand.";T.de.ui.shNoImg="Das Bild kannst du über „Urkunde speichern“ sichern und selbst verschicken.";
+T.en.ui.shCopied="Link copied";T.en.ui.shFail="Copying not possible. Please select the link and copy it by hand.";T.en.ui.shNoImg="You can save the image with “Save certificate” and send it yourself.";
+T.swg.ui.shCopied="Link kopiert";T.swg.ui.shFail="Kopiera got ned. Markier dr Link bitte und kopier en vo Hand.";T.swg.ui.shNoImg="S' Bild ka'sch mit „Urkunde spoichra“ sichra und selber verschicka.";
+T.de.ui.min="Min.";T.en.ui.min="min";T.swg.ui.min="Min.";T.de.ui.cQ="Beantwortete Fragen";T.en.ui.cQ="Answered questions";T.swg.ui.cQ="Beantwortete Froga";
+T.de.fig={hallo:["Servus! Elchi ist da!","Huhu, ich bin's, dein Elchi!","Na, schon warm geworden?"],name:["{n}, du bist der Hammer!","Servus {n}! Ich freu mich, dass du da bist.","{n}, du machst das richtig gut!","Elchi hat {n} lieb. Weiter so!"],
+witz:["Was trinkt ein Elch am liebsten? Elch-Glühwein!","Warum ist der Elch so gemütlich? Er hat immer ein Geweih voll Lichterketten.","Was sagt ein Elch zum Glühwein? Du wärmst mein Herz!","Treffen sich zwei Elche am Feuer. Sagt der eine: Hast du auch so heiße Ohren?","Was ist ein Elch ohne Hütte? Ein Elch-Verlust."],
+lob:["Richtig! Das hast du fein gemacht!","Stark! Elchi ist stolz auf dich!","Treffer! Weiter so!","Wow, du kennst dich aus!"],trost:["Nicht schlimm, das merkst du dir jetzt!","Knapp daneben. Elchi drückt die Hufe!","Auch Elche stolpern mal. Weiter geht's!"],tanz:["♪ Hüttengaudi! ♫","♫ Elchi tanzt für dich! ♪"],boost:["Du schaffst das!","Ein Schritt nach dem anderen. Ich bin bei dir!"]};
+T.en.fig={hallo:["Hi! Elchi is here!","Hey, it's me, your Elchi!","Warmed up yet?"],name:["{n}, you're awesome!","Hi {n}! So glad you're here.","{n}, you're doing really well!","Elchi likes {n}. Keep going!"],
+witz:["What does a moose like to drink? Moose-led wine!","Why is the moose so cosy? Antlers full of fairy lights.","What does a moose say to mulled wine? You warm my heart!","Two moose meet at the fire. One says: do your ears feel this hot too?","What is a moose without a hut? A moose-ing link."],
+lob:["Correct! Nicely done!","Strong! Elchi is proud of you!","Bullseye! Keep going!","Wow, you know your stuff!"],trost:["No worries, you'll remember it now!","Close! Elchi keeps hooves crossed!","Even moose stumble. Onwards!"],tanz:["♪ Hut party! ♫","♫ Elchi dances for you! ♪"],boost:["You can do it!","One step at a time. I'm with you!"]};
+T.swg.fig={hallo:["Grüß Gott! Dr Elchi isch do!","Huhu, i bin's, dei Elchi!","Na, scho warm worda?"],name:["{n}, du bisch dr Hammer!","Servus {n}! I frei mi, dass du do bisch.","{n}, du machsch des richtig guat!","Dr Elchi hot {n} gern. Weiter so!"],
+witz:["Was trinkt a Elch am liabschta? Elch-Glühwei!","Warum isch dr Elch so gmüatlich? Er hot emmer s' Gweih voll Lichterkette.","Was sagt dr Elch zum Glühwei? Du wärmsch mei Herz!","Zwoi Elch hocket am Feuer. Sagt dr oi: Hosch du au so heiße Ohra?","Was isch a Elch ohne Hütt? A arms Viech."],
+lob:["Richtig! Des hosch fei gmacht!","Stark! Dr Elchi isch stolz uff di!","Treffer! Weiter so!","Mei, du kennsch di aus!"],trost:["Ned schlimm, des merksch dir jetzt!","Knapp dernäba. Dr Elchi drückt d' Hufa!","Au Elch stolpered mol. Weiter geht's!"],tanz:["♪ Hüttagaudi! ♫","♫ Dr Elchi tanzt für di! ♪"],boost:["Du schaffsch des!","Oin Schritt noch em andra. I bin bei dir!"]};
+</script>
+<script>
+const VERSION="1.4.3",STAND="24.10.2026",URL_LIVE="https://nosz.github.io/winterdorf/";
+const ELK=`<svg viewBox="0 0 200 220"> <g fill="#8a5a2b" stroke="#4a2a12" stroke-width="4" stroke-linejoin="round"> <path d="M62 62 L40 22 L52 24 L48 6 L62 18 L66 36 L74 20 L80 30 L78 56Z" fill="#d9a441"/> <path d="M138 62 L160 22 L148 24 L152 6 L138 18 L134 36 L126 20 L120 30 L122 56Z" fill="#d9a441"/> <ellipse cx="55" cy="84" rx="20" ry="12" transform="rotate(-25 55 84)"/> <ellipse cx="145" cy="84" rx="20" ry="12" transform="rotate(25 145 84)"/> <ellipse cx="100" cy="190" rx="40" ry="26"/> <ellipse cx="100" cy="100" rx="52" ry="50"/> <ellipse cx="100" cy="130" rx="34" ry="28" fill="#c89358"/> </g> <path d="M52 72 Q100 14 148 72Z" fill="#e0453a" stroke="#7a1a12" stroke-width="4" stroke-linejoin="round"/> <path d="M126 36 Q150 20 160 44" fill="none" stroke="#e0453a" stroke-width="12" stroke-linecap="round"/> <circle cx="162" cy="46" r="9" fill="#fff6e4" stroke="#bbb" stroke-width="2"/> <rect x="48" y="66" width="104" height="14" rx="7" fill="#fff6e4" stroke="#bbb" stroke-width="2"/> <g><circle cx="80" cy="100" r="13" fill="#fff"/><circle cx="120" cy="100" r="13" fill="#fff"/> <circle cx="83" cy="102" r="6.5" fill="#2b1608"/><circle cx="117" cy="102" r="6.5" fill="#2b1608"/> <circle cx="85" cy="99" r="2.2" fill="#fff"/><circle cx="119" cy="99" r="2.2" fill="#fff"/></g> <ellipse cx="100" cy="132" rx="14" ry="10" fill="#4a2a12"/> <circle cx="94" cy="130" r="2.4" fill="#c89358"/><circle cx="106" cy="130" r="2.4" fill="#c89358"/> <path d="M84 148 Q100 162 116 148" fill="none" stroke="#4a2a12" stroke-width="4" stroke-linecap="round"/> <ellipse cx="66" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/><ellipse cx="134" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/> <path d="M70 160 Q100 176 130 160 L132 174 Q100 190 68 174Z" fill="#e0453a" stroke="#7a1a12" stroke-width="3" stroke-linejoin="round"/> </svg>`;
+const COL=["#b8321f","#8a4a12","#1b7a3d","#c25e00","#d6402b","#a9741a","#b8860b"];
+const IC=["🏔️","🚌","🪑","🛡️","🧥","🍷","👑"];
 const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const ls={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
-let name=ls.get("wd_name")||"",best=+ls.get("wd_best")||0,round=[],idx=0,pts=0;
+let lang=ls.get("wd_lang");if(!T[lang])lang=/^de/i.test(navigator.language||"de")?"de":"en";
+let DET={};try{DET=JSON.parse(ls.get("wd_det")||"{}")}catch(e){}let name=ls.get("wd_name")||"",prog={},flakes=+ls.get("wd_flakes")||0,view="home",cur=0,round=[],idx=0,pts=0,answers=[],nameOpen=!name,tipTxt="",deferred=null;
+try{prog=JSON.parse(ls.get("wd_prog")||"{}")}catch(e){}
+const U=()=>T[lang].ui,LS=()=>T[lang].les;
+const NL=7,need=n=>Math.ceil(n*.7);
+const qcount=i=>i===6?10:LS()[i].q.length;
+const passed=i=>(prog[i]||0)>=need(qcount(i));
+const starsOf=i=>{const n=qcount(i),p=prog[i]||0;return p>=n?3:p>=Math.ceil(n*.85)?2:p>=need(n)?1:0};
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
-function show(v){["vStart","vQuiz","vEnd"].forEach(x=>$(x).classList.toggle("hide",x!==v));$("homeBtn").classList.toggle("hide",v==="vStart");$("bar").classList.toggle("hide",v==="vStart")}
-function setBar(n){$("barFill").style.width=n*10+"%";$("bar").setAttribute("aria-valuenow",n)}
-function tip(){const q=Q[Math.random()*Q.length|0];$("tip").textContent="Elch-Wissen: "+q[3]}
-function nameState(){const v=$("nameIn").value.trim(),b=$("saveBtn");
-  if(!v){b.disabled=true;b.className="save";$("saveTxt").textContent="Speichern"}
-  else if(v===name){b.disabled=true;b.className="save done";$("saveTxt").textContent="Gespeichert ✓"}
-  else{b.disabled=false;b.className="save on";$("saveTxt").textContent="Speichern"}}
-$("nameIn").value=name;$("nameIn").addEventListener("input",()=>{$("nameMsg").textContent="";nameState()});
-$("saveBtn").onclick=()=>{name=$("nameIn").value.trim();ls.set("wd_name",name);$("nameMsg").textContent="Gespeichert: "+name;$("tip").textContent="Schön, dich kennenzulernen, "+name+"!";nameState()};
-nameState();
-if(name)$("tip").textContent="Servus "+name+"! Schön, dass du wieder da bist."
-$("tipBtn").onclick=tip;
-function start(){round=shuffle(Q).slice(0,10);idx=0;pts=0;show("vQuiz");ask()}
-function ask(){const q=round[idx];setBar(idx);$("qCount").textContent="Frage "+(idx+1)+" von 10";$("qText").textContent=q[0];$("nextBtn").classList.add("hide");
-  $("qBubble").textContent=["Los geht's"+(name?", "+name:"")+"!","Überleg gut, ich drück dir die Hufe.","Das weißt du bestimmt!","Gleich hast du's."][idx%4];
-  const box=$("qOpts");box.innerHTML="";
-  shuffle(q[1].map((t,i)=>[t,i===q[2]])).forEach(([t,ok])=>{const b=document.createElement("button");b.type="button";b.className="opt";b.textContent=t;b.dataset.ok=ok?"1":"";b.onclick=()=>pick(b,ok);box.appendChild(b)})}
-function pick(b,ok){document.querySelectorAll(".opt").forEach(o=>{o.disabled=true;if(o.dataset.ok)o.classList.add("right")});
-  if(ok)pts++;else b.classList.add("wrong");
-  $("qBubble").textContent=(ok?"Richtig! ":"Knapp daneben! ")+round[idx][3];
-  const n=$("nextBtn");n.textContent=idx<9?"Weiter":"Ergebnis";n.classList.remove("hide")}
-$("nextBtn").onclick=()=>{idx++;idx<10?ask():end()};
-function end(){setBar(10);show("vEnd");let r=RANKS[0][1];RANKS.forEach(x=>{if(pts>=x[0])r=x[1]});
-  if(pts>best){best=pts;ls.set("wd_best",best)}
-  $("rank").textContent=r;$("score").textContent=pts+" / 10";
-  $("endMsg").textContent=(pts===10?"Perfekt":pts>=8?"Stark":pts>=5?"Gut gemacht":"Elchi übt gern mit dir")+(name?", "+name:"")+"! Dein Rekord: "+best+" / 10.";$("shareMsg").textContent=""}
-$("startBtn").onclick=start;$("againBtn").onclick=start;$("homeBtn").onclick=()=>{show("vStart");nameState()};
-$("shareBtn").onclick=async()=>{const t="Ich habe im Winterdorf-Quiz "+pts+" von 10 Punkten geholt ("+$("rank").textContent+")! Schaffst du mehr?";
-  try{if(navigator.share){await navigator.share({title:"Winterdorf-Quiz",text:t,url:URL_LIVE})}else{await navigator.clipboard.writeText(t+" "+URL_LIVE);$("shareMsg").textContent="Text in die Zwischenablage kopiert."}}catch(e){}};
-$("verTxt").textContent="Version "+VERSION+" · Stand "+STAND;
+const allQ=()=>LS().slice(0,6).flatMap(l=>l.q);
+const f=(s,o)=>s.replace(/\{(\w+)\}/g,(m,k)=>o[k]);
+const rankOf=(p,t)=>{const s=Math.round(p/t*10),r=U().ranks;return s>=10?r[3]:s>=8?r[2]:s>=5?r[1]:r[0]};
+const totalStars=()=>{let s=0;for(let i=0;i<NL;i++)s+=starsOf(i);return s};
+const passedN=()=>{let n=0;for(let i=0;i<NL;i++)if(passed(i))n++;return n};
+const rankNow=()=>{const n=passedN(),r=U().ranks;return n>=7?r[3]:n>=5?r[2]:n>=2?r[1]:r[0]};
+function save(){ls.set("wd_prog",JSON.stringify(prog));ls.set("wd_flakes",flakes)}
+function speak(t){tipTxt=t;const m=$("mb");if(m)m.textContent=t;$("live").textContent=t}
+function randTip(){const q=allQ()[Math.random()*allQ().length|0];speak(U().elchi+" "+q[5])}
+function nav(v,i){Stage.abort();view=v;if(i!=null)cur=i;render();window.scrollTo(0,0);$("main").focus({preventScroll:true})}
+function chrome(){const u=U();document.documentElement.lang=lang==="swg"?"de":lang;$("bt").textContent="Winterdorf-Quiz";$("bs").textContent="by Corinna & Nobbi";$("coins").textContent="❄ "+flakes;$("skip").textContent=u.skip;
+  $("dot").innerHTML=ELK;$("boost").innerHTML=ELK.replace("<svg ",'<svg class="elkb" ');$("boost").setAttribute("aria-label",u.motiv);$("share").setAttribute("aria-label",u.share);
+  const L=T[lang];$("langdd").innerHTML='<button type="button" class="langbtn" id="lbtn" aria-haspopup="true" aria-expanded="false"><img src="flags/'+L.flag+'.svg" alt=""><span>'+L.label+'</span></button>';
+  $("lbtn").onclick=e=>{e.stopPropagation();openLang()}}
+function openLang(){let m=$("lmenu");if(m){m.remove();$("lbtn").setAttribute("aria-expanded","false");return}
+  m=document.createElement("div");m.className="langmenu";m.id="lmenu";
+  Object.keys(T).forEach(k=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-pressed",k===lang);b.innerHTML='<img src="flags/'+T[k].flag+'.svg" alt=""><span>'+T[k].label+'</span>';b.onclick=()=>{Stage.abort();lang=k;ls.set("wd_lang",k);tipTxt="";render()};m.appendChild(b)});
+  $("langdd").appendChild(m);$("lbtn").setAttribute("aria-expanded","true")}
+document.addEventListener("click",e=>{const m=$("lmenu");if(m&&!m.contains(e.target)){m.remove();$("lbtn")&&$("lbtn").setAttribute("aria-expanded","false")}});
+function stars(n){return '<span class="stars" aria-label="'+n+'/3">'+[0,1,2].map(i=>'<span class="'+(i<n?"":"off")+'">⭐</span>').join("")+'</span>'}
+function footer(){const u=U(),ex='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+  $("foot").innerHTML='<div class="fsec"><div class="srch"><span class="si">📚</span><b>'+u.src+'</b></div><div class="flinks">'+
+  '<a class="flink" href="https://www.winterdorf-hn.de/" target="_blank" rel="noopener noreferrer"><span class="fli">🏔️</span><span><b>winterdorf-hn.de</b><small>'+u.lk1+'</small></span><span class="fex">'+ex+'</span></a>'+
+  '<a class="flink" href="https://nosz.github.io/herzintelligenz/" target="_blank" rel="noopener noreferrer"><span class="fli">🎓</span><span><b>HERZINTELLIGENZ</b><small>'+u.lk2+'</small></span><span class="fex">'+ex+'</span></a></div></div>'+
+  '<div class="fcard"><span class="fic">ℹ️</span><div><p>'+u.disc+'</p></div></div>'+
+  '<p class="fplain">Version '+VERSION+' · <a class="credit" href="https://nosz.github.io/norbert-szpak/" target="_blank" rel="noopener noreferrer">Website Design by Norbert</a></p>'}function render(){chrome();footer();const m=$("main");({home:rHome,lesson:rLesson,quiz:rQuiz,res:rRes,cert:rCert,certs:rCerts})[view](m)}
+/* HOME */
+function rHome(m){const u=U(),les=LS(),n=passedN(),p=Math.round(n/NL*100);
+  const nx=[0,1,2,3,4,5].find(i=>!passed(i));if(!tipTxt)tipTxt=name?f(u.welcomeBack,{n:esc(name)}):u.hi;
+  let h='<section class="hero"><div><h1>'+(name?f(u.hello,{n:esc(name)}):u.helloNo)+'</h1><p>'+u.sub+'</p>'+
+  '<div class="stats"><span class="chip big"><span>🏅 '+rankNow()+'</span><small>'+u.rank+'</small></span><span class="chip big"><span>❄ '+flakes+'</span><small>'+u.flakes+'</small></span><span class="chip big"><span>★ '+totalStars()+'/'+NL*3+'</span><small>'+u.stars+'</small></span></div>'+
+  '<div class="herobtns"><button type="button" class="btn" id="chgName">✏️ '+(name?esc(name)+" · "+u.change:u.setName)+'</button><button type="button" class="btn" id="myCerts">🏅 '+u.myCerts+'</button></div>'+
+  '<div class="namecard'+(nameOpen?"":" hide")+'" id="nc"><input id="nin" maxlength="24" autocomplete="off" aria-label="'+u.nameLbl+'" placeholder="'+u.nameLbl+'" value="'+esc(name)+'"><button type="button" class="save" id="nsave" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h11l4 4v14H5z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/></svg><span id="nst">'+u.save+'</span></button><p class="nmsg" id="nmsg" aria-live="polite"></p></div>'+
+  '<div class="mascot">'+ELK.replace("<svg ",'<svg id="mel" role="img" aria-label="Elchi" ')+'<div class="mbub" id="mb" aria-live="polite">'+tipTxt+'</div></div></div>'+
+  '<div class="ring" style="--p:'+p+'"><span>'+n+'/'+NL+'</span></div></section>'+
+  '<button type="button" class="install hide" id="inst"><span class="ii">📲</span><span><b>'+u.instT+'</b><small>'+u.instS+'</small></span><span class="ar">→</span></button><p class="nmsg" id="imsg"></p>'+
+  '<div class="bigbtns"><button type="button" class="bbtn pri" id="goNext"><span class="bi">🏔️</span><span><b>'+u.next+'</b><small>'+(nx!=null?les[nx].t:u.allDone)+'</small></span></button><button type="button" class="bbtn" id="goBoss"><span class="bi">🏆</span><span><b>'+u.boss+'</b><small>'+u.bossS+'</small></span></button></div>'+
+  '<h2 class="sec">'+u.lessons+'</h2><div class="grid">'+les.map((l,i)=>{const ok=passed(i),mins=Math.max(2,Math.round(2+qcount(i)*.4)),sh='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg>';
+  return '<div class="lwrap"><button type="button" class="lcard" style="--c:'+COL[i]+';animation-delay:'+i*.06+'s" data-i="'+i+'"><span class="ico">'+IC[i]+'</span><span class="nr">'+(i<6?(i+1)+' / 6':'★')+(ok?' <span class="okc">✓</span>':'')+'</span><h3>'+l.t+'</h3><p>'+l.d+'</p><span class="foot"><span>⏱ '+mins+' '+u.min+'</span><span>'+stars(starsOf(i))+'</span></span></button>'+(ok?'<div class="crow"><button type="button" class="btn ghost cv" data-cv="'+i+'">🏅 '+u.certView+'</button><button type="button" class="btn sharecert sm" data-sh="'+i+'">'+sh+'<span>'+u.share+'</span></button></div>':'')+'</div>'}).join("")+'</div>';
+  m.innerHTML=h;
+  m.querySelectorAll(".lcard").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;i===6?startQuiz(6):nav("lesson",i)});
+  $("goNext").onclick=()=>nx!=null?nav("lesson",nx):startQuiz(6);$("goBoss").onclick=()=>startQuiz(6);
+  $("myCerts").onclick=()=>nav("certs");m.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>nav("cert",+b.dataset.cv));m.querySelectorAll("[data-sh]").forEach(b=>b.onclick=()=>{const i=+b.dataset.sh;shareSheet({text:f(u.certShare,{t:les[i].t}),img:true,ci:i})});
+  $("chgName").onclick=()=>{nameOpen=!nameOpen;$("nc").classList.toggle("hide",!nameOpen);if(nameOpen)$("nin").focus({preventScroll:true})};
+  const ni=$("nin"),nb=$("nsave");const st=()=>{const v=ni.value.trim();if(!v){nb.disabled=true;nb.className="save";$("nst").textContent=u.save}else if(v===name){nb.disabled=true;nb.className="save done";$("nst").textContent=u.saved}else{nb.disabled=false;nb.className="save on";$("nst").textContent=u.save}};
+  ni.oninput=()=>{$("nmsg").textContent="";st()};st();
+  nb.onclick=()=>{name=ni.value.trim();ls.set("wd_name",name);nameOpen=false;tipTxt=f(u.nice,{n:name});render()};
+  $("mel").onclick=randTip;
+  const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+  if(!standalone){$("inst").classList.remove("hide");$("inst").onclick=async()=>{if(deferred){deferred.prompt();deferred=null}else $("imsg").textContent=u.instHow}}}
+$("brand").onclick=()=>nav("home");
+$("boost").onclick=()=>{if(view!=="home")nav("home");randTip();Stage.boost()};
+$("theme").onclick=()=>{const r=document.documentElement,d=r.dataset.theme==="dark"||(r.dataset.theme!=="light"&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=d?"light":"dark";ls.set("wd_theme",r.dataset.theme)};
+{const t=ls.get("wd_theme");if(t)document.documentElement.dataset.theme=t}
+$("share").onclick=()=>shareSheet({text:U().shareTxt});
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferred=e});
+/* LEKTION */
+function crumb(back,ctx){return '<div class="crumb"><button type="button" class="back" id="back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>'+U().back+'</button><span class="ctx">'+ctx+'</span></div>'}
+function rLesson(m){const u=U(),l=LS()[cur];
+  m.innerHTML=crumb(1,esc(l.t))+'<div class="lhead"><span class="big">'+IC[cur]+'</span><div><h1>'+l.t+'</h1><p>'+l.d+'</p></div></div>'+
+  l.learn.map((t,i)=>'<div class="card"><p><span class="n">'+(i+1)+'</span>'+t+'</p></div>').join("")+
+  '<div class="bubble"><small>'+u.elchiSays+'</small>'+l.tip+'</div><div class="sticky"><button type="button" class="btn" id="go">'+u.startQuiz+'</button></div>';
+  $("back").onclick=()=>nav("home");$("go").onclick=()=>startQuiz(cur)}
+/* QUIZ */
+function startQuiz(i){cur=i;round=i===6?shuffle(allQ()).slice(0,10):shuffle(LS()[i].q);idx=0;pts=0;answers=[];nav("quiz")}
+function rQuiz(m){const u=U(),q=round[idx],t=round.length,opts=shuffle([[q[1],1],[q[2],0],[q[3],0],[q[4],0]]),K="ABCD";
+  m.innerHTML=crumb(1,esc(LS()[cur].t)+" · "+f(u.qOf,{a:idx+1,b:t}))+'<div class="dots">'+round.map((_,i)=>'<i class="'+(i<idx?(answers[i]?"on":"no"):i===idx?"cur":"")+'"></i>').join("")+'</div><h1 class="qq">'+q[0]+'</h1><div class="opts" id="opts">'+opts.map((o,i)=>'<button type="button" class="opt" data-ok="'+o[1]+'"><span class="k">'+K[i]+'</span><span>'+o[0]+'</span></button>').join("")+'</div><div id="fbx"></div>';
+  $("back").onclick=()=>nav("home");
+  m.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const ok=b.dataset.ok==="1";m.querySelectorAll(".opt").forEach(o=>{o.disabled=true;if(o.dataset.ok==="1")o.classList.add("right");else if(o!==b)o.classList.add("dim")});
+    Stage.react(ok);if(ok){pts++;flakes++;$("coins").textContent="❄ "+flakes}else b.classList.add("wrong");answers[idx]=ok;
+    $("fbx").innerHTML='<div class="fb '+(ok?"ok":"bad")+'"><b>'+(ok?u.right:u.wrong)+'</b>'+q[5]+'</div><div class="next"><button type="button" class="btn" id="nx">'+(idx<t-1?u.nextQ:u.result)+'</button></div>';
+    $("live").textContent=(ok?u.right:u.wrong)+" "+q[5];$("nx").onclick=()=>{idx++;idx<t?render():finish()}})}
+function finish(){const t=round.length,src=cur===6?allQ():LS()[cur].q;if(pts>=(prog[cur]||0)||!DET[cur]){DET[cur]=round.map((q,k)=>[src.indexOf(q),answers[k]?1:0]);ls.set("wd_det",JSON.stringify(DET))}if(pts>(prog[cur]||0))prog[cur]=pts;save();nav("res")}
+function rRes(m){const u=U(),t=round.length,ok=pts>=need(t),s=pts>=t?3:pts>=Math.ceil(t*.85)?2:ok?1:0;
+  m.innerHTML='<section class="card res"><div class="bigstars">'+[0,1,2].map(i=>'<span class="'+(i<s?"":"off")+'">★</span>').join("")+'</div><h1>'+pts+' / '+t+' · '+rankOf(pts,t)+'</h1><p>'+(ok?f(pts>=t?u.perfect:u.pass,{n:esc(name||"")}):f(u.fail,{k:need(t)}))+'</p><div class="row">'+(ok?'<button type="button" class="btn" id="cb">🏅 '+u.certView+'</button>':'')+'<button type="button" class="btn ghost" id="sh">📣 '+u.share+'</button><button type="button" class="btn ghost" id="ag">'+u.again+'</button>'+(cur<6?'<button type="button" class="btn ghost" id="rd">'+u.reread+'</button>':'')+'<button type="button" class="btn ghost" id="hm">'+u.back+'</button></div></section>';
+  if(ok)$("cb").onclick=()=>nav("cert",cur);$("sh").onclick=()=>shareSheet({text:f(u.scoreShare,{p:pts,t:t,l:LS()[cur].t})});$("ag").onclick=()=>startQuiz(cur);if(cur<6)$("rd").onclick=()=>nav("lesson",cur);$("hm").onclick=()=>nav("home")}
+/* URKUNDEN */
+function rCerts(m){const u=U(),les=LS(),got=les.map((l,i)=>i).filter(passed);
+  m.innerHTML=crumb(1,u.myCerts)+'<div class="lhead"><span class="big">🏅</span><div><h1>'+u.myCerts+'</h1><p>'+f(u.certsN,{a:got.length,b:NL})+'</p></div></div>'+(got.length?got.map(i=>'<div class="certbar"><span>🏅 '+les[i].t+' · '+(prog[i])+'/'+qcount(i)+' '+stars(starsOf(i))+'</span><button type="button" class="btn" data-i="'+i+'">'+u.certView+'</button></div>').join(""):'<div class="card"><p>'+u.noCerts+'</p></div>');
+  $("back").onclick=()=>nav("home");m.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>nav("cert",+b.dataset.i))}
+function rCert(m){const u=U();m.innerHTML=crumb(1,u.certView)+'<canvas id="cv" role="img" aria-label="'+u.certAria+'"></canvas><div class="row"><button type="button" class="btn" id="dl">'+u.certSave+'</button><button type="button" class="btn ghost" id="cs">'+u.share+'</button></div><p class="nmsg mid" id="cm" aria-live="polite"></p>';
+  $("back").onclick=()=>nav("home");drawCert();$("dl").onclick=()=>{const a=document.createElement("a");a.download="winterdorf-"+(cur+1)+".png";a.href=$("cv").toDataURL("image/png");a.click()};
+  $("cs").onclick=()=>shareSheet({text:f(u.certShare,{t:LS()[cur].t}),img:true,ci:cur})}
+function drawCert(ci,cvs){ci=ci==null?cur:ci;const u=U(),l=LS()[ci],c=cvs||$("cv"),g=c.getContext("2d"),W=1123,F='"Trebuchet MS","Segoe UI",sans-serif';
+  const n=qcount(ci),b=prog[ci]||0,st=Math.max(1,starsOf(ci)),nm=name||"",src=ci===6?allQ():l.q,det=(DET[ci]||[]).filter(x=>src[x[0]]);
+  const bh=det.length?40+det.length*24:0,ex=Math.max(0,bh-100),H=794+ex;c.width=W;c.height=H;
+  const rr=(x,y,w,h,r)=>{g.beginPath();g.roundRect?g.roundRect(x,y,w,h,r):g.rect(x,y,w,h)};
+  g.fillStyle="#fff";rr(0,0,W,H,28);g.fill();
+  g.lineWidth=10;g.strokeStyle="#b8321f";rr(14,14,W-28,H-28,22);g.stroke();
+  g.lineWidth=2.5;g.strokeStyle="#ffc800";rr(25,25,W-50,H-50,17);g.stroke();
+  g.lineWidth=2;g.strokeStyle="#e1e2e5";g.setLineDash([10,8]);rr(34,34,W-68,H-68,14);g.stroke();g.setLineDash([]);
+  ["#b8321f","#2b1608","#ffc800","#1b7a3d","#a9741a"].forEach((col,i)=>{g.fillStyle=col;g.fillRect(60+i*200.6,36,200.6,16)});
+  const flake=(x,y,col,s)=>{g.save();g.translate(x,y);g.strokeStyle=col;g.lineWidth=4;g.lineCap="round";for(let k=0;k<3;k++){g.rotate(Math.PI/3);g.beginPath();g.moveTo(-s,0);g.lineTo(s,0);g.moveTo(-s*.6,-s*.25);g.lineTo(-s*.35,0);g.lineTo(-s*.6,s*.25);g.moveTo(s*.6,-s*.25);g.lineTo(s*.35,0);g.lineTo(s*.6,s*.25);g.stroke()}g.restore()};
+  [[120,160,"#2b1608"],[1005,180,"#e0a800"],[140,650+ex,"#1b7a3d"],[990,660+ex,"#a9741a"],[100,340,"#e0a800"],[1025,370,"#b8321f"],[170,240,"#b8321f"],[955,260,"#1b7a3d"]].forEach(a=>flake(a[0],a[1],a[2],20));
+  const T=(t,y,sz,col,wt,x,al)=>{g.font=(wt||"")+" "+sz+"px "+F;g.fillStyle=col;g.textAlign=al||"center";g.fillText(t,x==null?W/2:x,y)};
+  const fit=(t,max,sz,wt)=>{g.font=wt+" "+sz+"px "+F;while(g.measureText(t).width>max&&sz>14){sz-=2;g.font=wt+" "+sz+"px "+F}return sz};
+  const head=u.cUrk;g.letterSpacing="4px";T(head,150,fit(head,860,72,"800"),"#b8321f","800");
+  T("WINTERDORF-QUIZ · BY CORINNA & NOBBI",182,16,"#2b1608","700");g.letterSpacing="0px";
+  T(u.cT1,213,22,"#4d4f54");
+  const nsz=fit(nm||u.fan,860,64,"800");T(nm||u.fan,282,nsz,nm?"#1f2026":"#b8b9bd","800");
+  g.strokeStyle="#b8321f";g.lineWidth=4;g.lineCap="round";g.beginPath();g.moveTo(250,302);g.lineTo(873,302);g.stroke();
+  T(u.cT2,348,22,"#4d4f54");
+  T(l.t,392,fit(l.t,860,34,"700"),"#2b1608","700");
+  T(f(u.cRes,{a:b,b:n,r:rankOf(b,n)}),432,24,"#1f2026","700");
+  [0,1,2].forEach(k=>{g.font="54px "+F;g.textAlign="center";g.lineWidth=2;g.strokeStyle=k<st?"#b58900":"#b8b9bd";g.fillStyle=k<st?"#ffc800":"#d9d9de";g.strokeText("★",561.5+(k-1)*70,490);g.fillText("★",561.5+(k-1)*70,490)});
+  if(det.length){T(u.cQ,528,17,"#2b1608","800");
+    det.forEach((x,k)=>{const q=src[x[0]],y=556+k*24;T(x[1]?"✓":"✗",y,17,x[1]?"#1b7a3d":"#b3261e","800",110,"left");
+      let t=q[0]+"  →  "+q[1];g.font="600 15px "+F;while(g.measureText(t).width>880&&t.length>10)t=t.slice(0,-2);if(t!==q[0]+"  →  "+q[1])t=t.trim()+"…";T(t,y,15,x[1]?"#1f2026":"#b3261e","600",135,"left")})}
+  const line=f(u.cLine[st-1],{n:nm||u.fan}),o=ex;T(line,646+o,fit(line,960,22,"italic"),"#4d4f54","italic");
+  const d=new Date().toLocaleDateString(lang==="en"?"en-GB":"de-DE",{day:"2-digit",month:"long",year:"numeric"});
+  T(u.cDate+": "+d,700+o,15,"#565860","",110,"left");T(u.rank+": "+rankNow(),722+o,15,"#565860","",110,"left");
+  g.fillStyle="#fff";g.beginPath();g.arc(561.5,686+o,30,0,7);g.fill();g.lineWidth=4.5;g.strokeStyle="#b8321f";g.stroke();
+  g.save();g.translate(1000,700+o);g.rotate(-.05);T("Elchi",0,34,"#1d2b6b","italic",0,"right");g.restore();
+  g.strokeStyle="#1f2026";g.lineWidth=1.5;g.beginPath();g.moveTo(760,704+o);g.lineTo(1013,704+o);g.stroke();
+  T("nosz.github.io/winterdorf",734+o,17,"#2b1608","800");
+  g.strokeStyle="#f1dfc4";g.lineWidth=1;g.beginPath();g.moveTo(110,742+o);g.lineTo(1013,742+o);g.stroke();
+  T(u.cFoot+" · v"+VERSION,760+o,13,"#565860");
+  return new Promise(res=>{const img=new Image();img.onload=()=>{g.drawImage(img,561.5-23,686+o-26,46,50);res()};img.onerror=res;img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(ELK.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="220" '))})}
+function snack(t,ms){const old=document.querySelector(".snack");if(old)old.remove();const s=document.createElement("div");s.className="snack";s.setAttribute("role","status");const sp=document.createElement("span");sp.textContent=t;s.appendChild(sp);document.body.appendChild(s);setTimeout(()=>s.remove(),ms||2500)}
+function shareCard(txt,subj){const u=U(),enc=encodeURIComponent,full=(txt?txt+" ":"")+URL_LIVE,c=document.createElement("section");c.className="sharecard";c.setAttribute("aria-labelledby","sht");
+  c.innerHTML='<div class="sh"><span class="si" aria-hidden="true">🔗</span><div><b id="sht">'+u.shT+'</b><small>'+u.shS+'</small></div></div><div class="sharerow"><a class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/?text='+enc(full)+'">💬 '+u.shWa+'</a><a class="btn ghost" href="mailto:?subject='+enc(subj)+'&body='+enc((txt?txt+"\r\n\r\n":"")+URL_LIVE)+'">✉️ '+u.shMail+'</a><button type="button" class="btn ghost" id="shcp">📋 '+u.shCopy+'</button></div>';
+  c.querySelector("#shcp").onclick=async()=>{let ok=false;try{await navigator.clipboard.writeText(URL_LIVE);ok=true}catch(e){try{const ta=document.createElement("textarea");ta.readOnly=true;ta.style.cssText="position:fixed;left:-9999px";ta.value=URL_LIVE;document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");ta.remove()}catch(e2){}}snack(ok?u.shCopied:u.shFail+" "+URL_LIVE,ok?2500:6000)};return c}
+function shareDlg(card,note){document.querySelectorAll(".shdlg").forEach(d=>d.remove());const d=document.createElement("dialog");d.className="shdlg";d.setAttribute("aria-labelledby","sht");
+  const x=document.createElement("button");x.type="button";x.className="shx";x.setAttribute("aria-label",U().shClose);x.textContent="✕";x.onclick=()=>d.close();d.append(x,card);
+  if(note){const p=document.createElement("p");p.style.cssText="margin:10px 0 0;color:var(--mute);font-size:.88rem";p.textContent=note;d.appendChild(p)}
+  d.addEventListener("close",()=>d.remove());d.addEventListener("click",e=>{if(e.target===d)d.close()});document.body.appendChild(d);if(d.showModal)d.showModal();else d.setAttribute("open","")}
+async function shareSheet(o){const u=U();let cv=$("cv");if(o.img&&o.ci!=null){cv=document.createElement("canvas");await drawCert(o.ci,cv)}
+  if(!o.img){if(navigator.share){navigator.share({title:u.shSubj,text:o.text,url:URL_LIVE}).catch(()=>{});return}shareDlg(shareCard(o.text,u.shSubj));return}
+  const full=o.text+"\n\n"+URL_LIVE;
+  if(navigator.share){try{const bl=await new Promise(r=>cv.toBlob(r,"image/png")),fl=new File([bl],"winterdorf-urkunde.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[fl]})){await navigator.share({files:[fl],title:u.shSubj,text:full});return}}catch(e){if(e&&e.name==="AbortError")return}
+    try{await navigator.share({title:u.shSubj,text:o.text,url:URL_LIVE});snack(u.shNoImg,6000);return}catch(e){if(e&&e.name==="AbortError")return}}
+  shareDlg(shareCard(o.text,u.shSubj),u.shNoImg)}const Stage=(()=>{
+const st=document.createElement("div");st.id="stage";st.setAttribute("aria-hidden","true");document.body.appendChild(st);
+let cur=null,tok=0,bag=[],lastA="",timer=null;
+const reduce=()=>matchMedia("(prefers-reduced-motion:reduce)").matches;
+const pick=a=>a[Math.random()*a.length|0],F=()=>T[lang].fig,wait=ms=>new Promise(r=>setTimeout(r,ms));
+const dur=t=>Math.max(4200,t.length*65);
+function abort(){tok++;if(cur){try{cur.getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(e){}cur.remove();cur=null}}
+function mk(txt){abort();const d=document.createElement("div");d.className="fig";d.innerHTML='<div class="fb2"></div><span class="fs">'+ELK+'</span>';d.querySelector(".fb2").textContent=txt;st.appendChild(d);cur=d;return d}
+async function an(el,kf,o){if(reduce())kf=[{opacity:0},{opacity:1}],o={duration:300,fill:"forwards"};try{const a=el.animate(kf,Object.assign({fill:"forwards"},o));await a.finished}catch(e){}}
+const bub=(d,on)=>d.querySelector(".fb2").classList.toggle("on",on);
+function textFor(k){const f=F();if(k==="name")return name?pick(f.name).replace(/\{n\}/g,name):pick(f.hallo);if(k==="witz")return pick(f.witz);if(k==="fakt"){const q=allQ();return U().elchi+" "+pick(q)[5]}if(k==="tanz")return pick(f.tanz);return pick(f.hallo)}
+async function corner(k,txt,ms){const my=tok+1,d=mk(txt);d.style.right="10px";d.style.bottom="10px";const fs=d.querySelector(".fs");
+  await an(d,[{transform:"translateY(170px)"},{transform:"translateY(-14px)"},{transform:"translateY(0)"}],{duration:650,easing:"ease-out"});if(tok!==my)return;bub(d,true);
+  if(k==="tanz"||k==="puff"){fs.animate([{transform:"rotate(-12deg)"},{transform:"rotate(12deg) translateY(-14px)"},{transform:"rotate(-12deg)"}],{duration:520,iterations:Math.ceil(ms/520)})}
+  if(k==="puff")for(let i=0;i<8;i++){const s=document.createElement("span");s.textContent=pick(["❄","✦","❅"]);s.style.cssText="position:absolute;right:"+(30+Math.random()*60)+"px;bottom:"+(40+Math.random()*40)+"px;font-size:20px;color:#f2b53c";d.appendChild(s);s.animate([{transform:"translate(0,0)",opacity:1},{transform:"translate("+(Math.random()*120-60)+"px,-"+(60+Math.random()*80)+"px)",opacity:0}],{duration:1600,delay:i*120,fill:"forwards"})}
+  await wait(ms);if(tok!==my)return;bub(d,false);await an(d,[{transform:"translateY(0)"},{transform:"translateY(180px)"}],{duration:500,easing:"ease-in"});if(tok===my)abort()}
+async function quer(txt){const my=tok+1,d=mk(txt),W=innerWidth,rtl=Math.random()<.5;d.style.left="0";d.style.bottom="8px";if(rtl)d.style.flexDirection="row-reverse";const fs=d.querySelector(".fs");
+  bub(d,true);fs.animate([{transform:"translateY(0)"},{transform:"translateY(-12px) rotate(-4deg)"},{transform:"translateY(0)"}],{duration:560,iterations:20});
+  await an(d,rtl?[{transform:"translateX("+W+"px)"},{transform:"translateX(-420px)"}]:[{transform:"translateX(-120px)"},{transform:"translateX("+(W+20)+"px)"}],{duration:Math.max(7000,W*9),easing:"linear"});if(tok===my)abort()}
+async function gucken(txt){const my=tok+1,d=mk(txt);d.style.right="0";d.style.bottom="32%";
+  await an(d,[{transform:"translateX(130%)"},{transform:"translateX(0)"}],{duration:700,easing:"ease-out"});if(tok!==my)return;bub(d,true);await wait(dur(txt)*.8);if(tok!==my)return;bub(d,false);await an(d,[{transform:"translateX(0)"},{transform:"translateX(130%)"}],{duration:600});if(tok===my)abort()}
+async function salto(txt){const my=tok+1,d=mk(txt),W=innerWidth,fs=d.querySelector(".fs");d.style.left="8px";d.style.bottom="10px";bub(d,true);
+  fs.animate([{transform:"translateY(0) rotate(0)"},{transform:"translateY(-150px) rotate(180deg)"},{transform:"translateY(0) rotate(360deg)"}],{duration:900,iterations:3,delay:500});
+  await an(d,[{transform:"translateX(0)"},{transform:"translateX("+Math.min(W*.5,320)+"px)"}],{duration:3600,easing:"ease-in-out"});if(tok===my)abort()}
+const ACTS=["name","quer","gucken","witz","fakt","tanz","salto","puff","sagen"];
+function run(a,txt){txt=txt||textFor(a);if(a==="quer")return quer(txt);if(a==="gucken")return gucken(txt);if(a==="salto")return salto(txt);return corner(a,txt,dur(txt))}
+function next(){if(!bag.length){bag=shuffle(ACTS);if(bag[0]===lastA)bag.push(bag.shift())}lastA=bag.shift();return lastA}
+function sched(ms){clearTimeout(timer);timer=setTimeout(()=>{if(document.hidden||view==="quiz"||cur){sched(4000);return}run(next()).then(()=>sched(9000+Math.random()*7000))},ms)}
+return{abort,start(){sched(2200)},
+ react(ok){if(Math.random()<.55){const f=F();run("sagen",pick(ok?f.lob:f.trost).replace(/\{n\}/g,name))}},
+ boost(){abort();const a=pick(["sagen","tanz","salto","puff","name"]);run(a,a==="tanz"?textFor("tanz"):(name?name+", ":"")+pick(F().boost)).then(()=>sched(9000))}};
+})();
+render();Stage.start();
 if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
 </body>
