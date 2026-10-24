@@ -1,10 +1,15 @@
 # Winterdorf-Quiz mit Elchi
-Version 1.5.1 (24.10.2026). Inoffizielles Fan-Quiz, statisch (index.html, sw.js, manifest, Icons). Host: https://nosz.github.io/winterdorf/
+Version 1.6.3 (24.10.2026). Inoffizielles Fan-Quiz, statisch (index.html, sw.js, manifest, Icons). Host: https://nosz.github.io/winterdorf/
 
 Quellen: Texte aus `info/` (winterdorf-hn.de, Saison 2026/27), Farben aus `info/farben.png`. `info/` nicht hochladen.
 Hochladen: index.html, sw.js, manifest.webmanifest, 5 PNG-Icons.
 
 ## Änderungsprotokoll
+- 1.6.3 (24.10.2026): Teilen-Knopf auf Urkunden- und Ergebnisseite wie auf der Hauptseite (gefuellt, Teilen-Symbol).
+- 1.6.2 (24.10.2026): Rechtlicher Hinweis (inoffizielles Fan-Projekt, Marken/Namen bei Inhabern, keine Logos/Bilder, Quellenstand, Spass-Urkunden) in DE/EN/Schwaebisch, Dialekt-Hinweis.
+- 1.6.1 (24.10.2026): Urkunde: mehr Platz unten, Datum/Rang/Unterschrift ohne Ueberlappung.
+- 1.6.0 (24.10.2026): Urkunde neu: weihnachtlich verschnoerkelt (Lichterkette, Schleifenband, Eckornamente, Schneeflocken, Huetten, Tannen, Elchi im Schnee).
+- 1.5.2 (24.10.2026): Elchi-Knopf gesperrt solange Elchi auf der Buehne ist (kurzes Wackeln, kein Neustart des Auftritts).
 - 1.5.1 (24.10.2026): Elchi fragt beim ersten Besuch nach dem Namen (Sprechblase und Buehnenauftritt).
 - 1.5.0 (24.10.2026): Hero rechts oben mit Winterlandschaft (Tannen, Herbstblaetter, Holzhuette, kleiner Elch).
 - 1.4.3 (24.10.2026): Lektionskarten wie HERZINTELLIGENZ (1 / 6 ✓, Zeit, Sterne) mit Urkunde ansehen + Teilen unter der Karte.

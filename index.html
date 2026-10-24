@@ -467,6 +467,8 @@ footer{font-size:.78rem;margin-top:22px}footer .srch{margin-bottom:6px}footer .s
 
 .lwrap{display:flex;flex-direction:column;gap:8px}.lwrap .lcard{flex:1;width:100%}.lcard .nr{display:flex;gap:8px;align-items:center}.lcard .nr .okc{display:inline}.lcard .okc{color:#1b7a3d;font-weight:800}.crow{display:flex;gap:8px;align-items:stretch}.crow .btn{min-height:48px}.crow .cv{flex:1;border-color:#1b7a3d!important;color:var(--ink)}.crow .sharecert{white-space:nowrap}
 .hero::before{display:none}.hero>.scene{position:absolute;right:0;top:0;width:min(54%,310px);height:auto;pointer-events:none;z-index:0;border-top-right-radius:26px;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 50%),linear-gradient(to bottom,#000 72%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0,#000 50%),linear-gradient(to bottom,#000 72%,transparent 100%);mask-composite:intersect}.hero .ring{align-self:end}@media(max-width:560px){.hero>.scene{width:52%;opacity:.85}}:root[data-theme="dark"] .hero>.scene{opacity:.8}
+.boost.busy{opacity:.6;cursor:default;animation:none}.boost.nein{animation:boostnein .38s}
+@media(max-width:560px){.topin{gap:6px}.langbtn{padding:6px 10px;gap:6px;min-height:44px}.langbtn img{width:24px;height:16px}.top .brand{min-width:128px}.top .brand #bt{white-space:nowrap}}
 canvas#cv{width:100%;height:auto;border-radius:16px;box-shadow:var(--shadow)}
 </style>
 </head>
@@ -634,7 +636,11 @@ T.swg.ui.shT="Mit andere Winterdorf-Fans teila";T.swg.ui.shS="Lad Freund ei, dr 
 T.de.ui.shCopied="Link kopiert";T.de.ui.shFail="Kopieren nicht möglich. Bitte markiere den Link und kopiere ihn von Hand.";T.de.ui.shNoImg="Das Bild kannst du über „Urkunde speichern“ sichern und selbst verschicken.";
 T.en.ui.shCopied="Link copied";T.en.ui.shFail="Copying not possible. Please select the link and copy it by hand.";T.en.ui.shNoImg="You can save the image with “Save certificate” and send it yourself.";
 T.swg.ui.shCopied="Link kopiert";T.swg.ui.shFail="Kopiera got ned. Markier dr Link bitte und kopier en vo Hand.";T.swg.ui.shNoImg="S' Bild ka'sch mit „Urkunde spoichra“ sichra und selber verschicka.";
-T.de.ui.min="Min.";T.en.ui.min="min";T.swg.ui.min="Min.";T.de.ui.ask="Servus, ich bin Elchi! Wie heißt du? Dann kann ich dich richtig ansprechen.";T.en.ui.ask="Hi, I'm Elchi! What's your name? Then I can talk to you properly.";T.swg.ui.ask="Grüß Gott, i bin dr Elchi! Wie hoißch du? No ka i di richtig asprecha.";T.de.ui.cQ="Beantwortete Fragen";T.en.ui.cQ="Answered questions";T.swg.ui.cQ="Beantwortete Froga";
+T.de.ui.min="Min.";T.en.ui.min="min";T.swg.ui.min="Min.";T.de.ui.ask="Servus, ich bin Elchi! Wie heißt du? Dann kann ich dich richtig ansprechen.";T.en.ui.ask="Hi, I'm Elchi! What's your name? Then I can talk to you properly.";T.swg.ui.ask="Grüß Gott, i bin dr Elchi! Wie hoißch du? No ka i di richtig asprecha.";T.de.ui.disc="Inoffizielles Fan-Projekt, ohne Verbindung zum Winterdorf Heilbronn und seinen Betreibern. „Winterdorf“, Neckaralm, Kiliansalm und alle genannten Namen und Marken (z. B. KIWI, SONORA, aurum, Dinkelacker, SWHN, buddy) gehören ihren jeweiligen Inhabern. Es werden keine Logos, Fotos oder Originalbilder des Winterdorfs verwendet. Die Infos stammen von der öffentlich zugänglichen Website winterdorf-hn.de (Saison 2026/27, Stand 24.10.2026) und können sich ändern; verbindlich ist allein die offizielle Website. Die Urkunden sind Spaß-Urkunden ohne offiziellen Wert. Elchi und seine Witze sind frei erfunden und liebevoll gemeint.";
+T.en.ui.disc="Unofficial fan project, not affiliated with Winterdorf Heilbronn or its operators. “Winterdorf”, Neckaralm, Kiliansalm and all names and brands mentioned (e.g. KIWI, SONORA, aurum, Dinkelacker, SWHN, buddy) belong to their respective owners. No logos, photos or original images of the Winterdorf are used. The information comes from the publicly available website winterdorf-hn.de (season 2026/27, as of 24 Oct 2026) and may change; only the official website is binding. The certificates are just-for-fun certificates with no official value. Elchi and his jokes are made up and meant with love.";
+T.swg.ui.disc="Inoffizielles Fan-Projekt, ohne Verbindung zum Winterdorf Heilbronn und seine Betreiber. „Winterdorf“, Neckaralm, Kiliansalm und älle gnannte Name und Marka (z. B. KIWI, SONORA, aurum, Dinkelacker, SWHN, buddy) ghöret ihre jeweilige Inhaber. Es werdet koine Logos, Fotos oder Originalbilder vom Winterdorf verwendet. D' Infos kommet vo dr öffentlich zugängliche Website winterdorf-hn.de (Saison 2026/27, Stand 24.10.2026) und könnet sich ändera; verbindlich isch alloi d' offizielle Website. D' Urkunda send Spaß-Urkunda ohne offiziellen Wert. Dr Elchi und seine Witz send frei erfunda und liebevoll gmoint.";
+T.swg.ui.disc2="Hinweis: D' schwäbische Texte send liebevoll-lautmalerisch gmoint und koi Rechtschreibnorm; Dialekt-Profis derfet gern korrigiera.";
+T.de.ui.cQ="Beantwortete Fragen";T.en.ui.cQ="Answered questions";T.swg.ui.cQ="Beantwortete Froga";
 T.de.fig={hallo:["Servus! Elchi ist da!","Huhu, ich bin's, dein Elchi!","Na, schon warm geworden?"],name:["{n}, du bist der Hammer!","Servus {n}! Ich freu mich, dass du da bist.","{n}, du machst das richtig gut!","Elchi hat {n} lieb. Weiter so!"],
 witz:["Was trinkt ein Elch am liebsten? Elch-Glühwein!","Warum ist der Elch so gemütlich? Er hat immer ein Geweih voll Lichterketten.","Was sagt ein Elch zum Glühwein? Du wärmst mein Herz!","Treffen sich zwei Elche am Feuer. Sagt der eine: Hast du auch so heiße Ohren?","Was ist ein Elch ohne Hütte? Ein Elch-Verlust."],
 lob:["Richtig! Das hast du fein gemacht!","Stark! Elchi ist stolz auf dich!","Treffer! Weiter so!","Wow, du kennst dich aus!"],trost:["Nicht schlimm, das merkst du dir jetzt!","Knapp daneben. Elchi drückt die Hufe!","Auch Elche stolpern mal. Weiter geht's!"],tanz:["♪ Hüttengaudi! ♫","♫ Elchi tanzt für dich! ♪"],boost:["Du schaffst das!","Ein Schritt nach dem anderen. Ich bin bei dir!"]};
@@ -646,7 +652,7 @@ witz:["Was trinkt a Elch am liabschta? Elch-Glühwei!","Warum isch dr Elch so gm
 lob:["Richtig! Des hosch fei gmacht!","Stark! Dr Elchi isch stolz uff di!","Treffer! Weiter so!","Mei, du kennsch di aus!"],trost:["Ned schlimm, des merksch dir jetzt!","Knapp dernäba. Dr Elchi drückt d' Hufa!","Au Elch stolpered mol. Weiter geht's!"],tanz:["♪ Hüttagaudi! ♫","♫ Dr Elchi tanzt für di! ♪"],boost:["Du schaffsch des!","Oin Schritt noch em andra. I bin bei dir!"]};
 </script>
 <script>
-const VERSION="1.5.1",STAND="24.10.2026",URL_LIVE="https://nosz.github.io/winterdorf/";
+const VERSION="1.6.3",STAND="24.10.2026",URL_LIVE="https://nosz.github.io/winterdorf/";
 const ELK=`<svg viewBox="0 0 200 220"> <g fill="#8a5a2b" stroke="#4a2a12" stroke-width="4" stroke-linejoin="round"> <path d="M62 62 L40 22 L52 24 L48 6 L62 18 L66 36 L74 20 L80 30 L78 56Z" fill="#d9a441"/> <path d="M138 62 L160 22 L148 24 L152 6 L138 18 L134 36 L126 20 L120 30 L122 56Z" fill="#d9a441"/> <ellipse cx="55" cy="84" rx="20" ry="12" transform="rotate(-25 55 84)"/> <ellipse cx="145" cy="84" rx="20" ry="12" transform="rotate(25 145 84)"/> <ellipse cx="100" cy="190" rx="40" ry="26"/> <ellipse cx="100" cy="100" rx="52" ry="50"/> <ellipse cx="100" cy="130" rx="34" ry="28" fill="#c89358"/> </g> <path d="M52 72 Q100 14 148 72Z" fill="#e0453a" stroke="#7a1a12" stroke-width="4" stroke-linejoin="round"/> <path d="M126 36 Q150 20 160 44" fill="none" stroke="#e0453a" stroke-width="12" stroke-linecap="round"/> <circle cx="162" cy="46" r="9" fill="#fff6e4" stroke="#bbb" stroke-width="2"/> <rect x="48" y="66" width="104" height="14" rx="7" fill="#fff6e4" stroke="#bbb" stroke-width="2"/> <g><circle cx="80" cy="100" r="13" fill="#fff"/><circle cx="120" cy="100" r="13" fill="#fff"/> <circle cx="83" cy="102" r="6.5" fill="#2b1608"/><circle cx="117" cy="102" r="6.5" fill="#2b1608"/> <circle cx="85" cy="99" r="2.2" fill="#fff"/><circle cx="119" cy="99" r="2.2" fill="#fff"/></g> <ellipse cx="100" cy="132" rx="14" ry="10" fill="#4a2a12"/> <circle cx="94" cy="130" r="2.4" fill="#c89358"/><circle cx="106" cy="130" r="2.4" fill="#c89358"/> <path d="M84 148 Q100 162 116 148" fill="none" stroke="#4a2a12" stroke-width="4" stroke-linecap="round"/> <ellipse cx="66" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/><ellipse cx="134" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/> <path d="M70 160 Q100 176 130 160 L132 174 Q100 190 68 174Z" fill="#e0453a" stroke="#7a1a12" stroke-width="3" stroke-linejoin="round"/> </svg>`;
 const SCENE=(()=>{const fir=(x,b,s,c)=>{const w=26*s,t=18*s;let o='<rect x="'+(x-2*s)+'" y="'+b+'" width="'+4*s+'" height="'+5*s+'" fill="#4a2a12"/>';for(let i=0;i<3;i++){const y=b-i*t*.7,ww=w*(1-i*.22);o+='<polygon points="'+x+','+(y-t*1.15)+' '+(x-ww/2)+','+y+' '+(x+ww/2)+','+y+'" fill="'+c+'"/><polygon points="'+x+','+(y-t*1.15)+' '+(x-ww*.2)+','+(y-t*.8)+' '+(x+ww*.2)+','+(y-t*.8)+'" fill="#fff"/>'}return o};
  const leaf=(x,y,r,c,s)=>'<g transform="translate('+x+' '+y+') rotate('+r+') scale('+s+')"><path d="M0 0C6-9 15-9 20 0C15 9 6 9 0 0Z" fill="'+c+'"/><path d="M0 0L18 0" stroke="rgba(0,0,0,.25)" stroke-width="1"/></g>';
@@ -661,7 +667,7 @@ const SCENE=(()=>{const fir=(x,b,s,c)=>{const w=26*s,t=18*s;let o='<rect x="'+(x
  g+=elk;
  g+=leaf(26,26,25,"#d9822b",1)+leaf(72,52,-30,"#b8321f",.9)+leaf(112,20,60,"#e0a800",.8)+leaf(222,26,-20,"#c9621b",1.1)+leaf(176,64,40,"#b8321f",.8)+leaf(58,92,10,"#e0a800",.7)+leaf(240,96,-50,"#d9822b",.8)+leaf(8,70,-15,"#c9621b",.7);
  return g+'</svg>'})();
-const COL=["#b8321f","#8a4a12","#1b7a3d","#c25e00","#d6402b","#a9741a","#b8860b"];
+const SHI='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg>';["#b8321f","#8a4a12","#1b7a3d","#c25e00","#d6402b","#a9741a","#b8860b"];
 const IC=["🏔️","🚌","🪑","🛡️","🧥","🍷","👑"];
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -699,7 +705,7 @@ function footer(){const u=U(),ex='<svg viewBox="0 0 24 24" aria-hidden="true"><p
   $("foot").innerHTML='<div class="fsec"><div class="srch"><span class="si">📚</span><b>'+u.src+'</b></div><div class="flinks">'+
   '<a class="flink" href="https://www.winterdorf-hn.de/" target="_blank" rel="noopener noreferrer"><span class="fli">🏔️</span><span><b>winterdorf-hn.de</b><small>'+u.lk1+'</small></span><span class="fex">'+ex+'</span></a>'+
   '<a class="flink" href="https://nosz.github.io/herzintelligenz/" target="_blank" rel="noopener noreferrer"><span class="fli">🎓</span><span><b>HERZINTELLIGENZ</b><small>'+u.lk2+'</small></span><span class="fex">'+ex+'</span></a></div></div>'+
-  '<div class="fcard"><span class="fic">ℹ️</span><div><p>'+u.disc+'</p></div></div>'+
+  '<div class="fcard"><span class="fic">ℹ️</span><div><p>'+u.disc+'</p>'+(u.disc2?'<p>'+u.disc2+'</p>':'')+'</div></div>'+
   '<p class="fplain">Version '+VERSION+' · <a class="credit" href="https://nosz.github.io/norbert-szpak/" target="_blank" rel="noopener noreferrer">Website Design by Norbert</a></p>'}function render(){chrome();footer();const m=$("main");({home:rHome,lesson:rLesson,quiz:rQuiz,res:rRes,cert:rCert,certs:rCerts})[view](m)}
 /* HOME */
 function rHome(m){const u=U(),les=LS(),n=passedN(),p=Math.round(n/NL*100);
@@ -722,11 +728,11 @@ function rHome(m){const u=U(),les=LS(),n=passedN(),p=Math.round(n/NL*100);
   const ni=$("nin"),nb=$("nsave");const st=()=>{const v=ni.value.trim();if(!v){nb.disabled=true;nb.className="save";$("nst").textContent=u.save}else if(v===name){nb.disabled=true;nb.className="save done";$("nst").textContent=u.saved}else{nb.disabled=false;nb.className="save on";$("nst").textContent=u.save}};
   ni.oninput=()=>{$("nmsg").textContent="";st()};st();
   nb.onclick=()=>{name=ni.value.trim();ls.set("wd_name",name);nameOpen=false;tipTxt=f(u.nice,{n:name});render()};
-  $("mel").onclick=randTip;
+  $("mel").onclick=()=>{if(!Stage.busy())randTip()};
   const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
   if(!standalone){$("inst").classList.remove("hide");$("inst").onclick=async()=>{if(deferred){deferred.prompt();deferred=null}else $("imsg").textContent=u.instHow}}}
 $("brand").onclick=()=>nav("home");
-$("boost").onclick=()=>{if(view!=="home")nav("home");randTip();Stage.boost()};
+$("boost").onclick=()=>{const b=$("boost");if(Stage.busy()){b.classList.remove("nein");void b.offsetWidth;b.classList.add("nein");setTimeout(()=>b.classList.remove("nein"),420);return}if(view!=="home")nav("home");randTip();Stage.boost()};
 $("theme").onclick=()=>{const r=document.documentElement,d=r.dataset.theme==="dark"||(r.dataset.theme!=="light"&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=d?"light":"dark";ls.set("wd_theme",r.dataset.theme)};
 {const t=ls.get("wd_theme");if(t)document.documentElement.dataset.theme=t}
 $("share").onclick=()=>shareSheet({text:U().shareTxt});
@@ -749,51 +755,68 @@ function rQuiz(m){const u=U(),q=round[idx],t=round.length,opts=shuffle([[q[1],1]
     $("live").textContent=(ok?u.right:u.wrong)+" "+q[5];$("nx").onclick=()=>{idx++;idx<t?render():finish()}})}
 function finish(){const t=round.length,src=cur===6?allQ():LS()[cur].q;if(pts>=(prog[cur]||0)||!DET[cur]){DET[cur]=round.map((q,k)=>[src.indexOf(q),answers[k]?1:0]);ls.set("wd_det",JSON.stringify(DET))}if(pts>(prog[cur]||0))prog[cur]=pts;save();nav("res")}
 function rRes(m){const u=U(),t=round.length,ok=pts>=need(t),s=pts>=t?3:pts>=Math.ceil(t*.85)?2:ok?1:0;
-  m.innerHTML='<section class="card res"><div class="bigstars">'+[0,1,2].map(i=>'<span class="'+(i<s?"":"off")+'">★</span>').join("")+'</div><h1>'+pts+' / '+t+' · '+rankOf(pts,t)+'</h1><p>'+(ok?f(pts>=t?u.perfect:u.pass,{n:esc(name||"")}):f(u.fail,{k:need(t)}))+'</p><div class="row">'+(ok?'<button type="button" class="btn" id="cb">🏅 '+u.certView+'</button>':'')+'<button type="button" class="btn ghost" id="sh">📣 '+u.share+'</button><button type="button" class="btn ghost" id="ag">'+u.again+'</button>'+(cur<6?'<button type="button" class="btn ghost" id="rd">'+u.reread+'</button>':'')+'<button type="button" class="btn ghost" id="hm">'+u.back+'</button></div></section>';
+  m.innerHTML='<section class="card res"><div class="bigstars">'+[0,1,2].map(i=>'<span class="'+(i<s?"":"off")+'">★</span>').join("")+'</div><h1>'+pts+' / '+t+' · '+rankOf(pts,t)+'</h1><p>'+(ok?f(pts>=t?u.perfect:u.pass,{n:esc(name||"")}):f(u.fail,{k:need(t)}))+'</p><div class="row">'+(ok?'<button type="button" class="btn" id="cb">🏅 '+u.certView+'</button>':'')+'<button type="button" class="btn sharecert sm" id="sh">'+SHI+'<span>'+u.share+'</span></button><button type="button" class="btn ghost" id="ag">'+u.again+'</button>'+(cur<6?'<button type="button" class="btn ghost" id="rd">'+u.reread+'</button>':'')+'<button type="button" class="btn ghost" id="hm">'+u.back+'</button></div></section>';
   if(ok)$("cb").onclick=()=>nav("cert",cur);$("sh").onclick=()=>shareSheet({text:f(u.scoreShare,{p:pts,t:t,l:LS()[cur].t})});$("ag").onclick=()=>startQuiz(cur);if(cur<6)$("rd").onclick=()=>nav("lesson",cur);$("hm").onclick=()=>nav("home")}
 /* URKUNDEN */
 function rCerts(m){const u=U(),les=LS(),got=les.map((l,i)=>i).filter(passed);
   m.innerHTML=crumb(1,u.myCerts)+'<div class="lhead"><span class="big">🏅</span><div><h1>'+u.myCerts+'</h1><p>'+f(u.certsN,{a:got.length,b:NL})+'</p></div></div>'+(got.length?got.map(i=>'<div class="certbar"><span>🏅 '+les[i].t+' · '+(prog[i])+'/'+qcount(i)+' '+stars(starsOf(i))+'</span><button type="button" class="btn" data-i="'+i+'">'+u.certView+'</button></div>').join(""):'<div class="card"><p>'+u.noCerts+'</p></div>');
   $("back").onclick=()=>nav("home");m.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>nav("cert",+b.dataset.i))}
-function rCert(m){const u=U();m.innerHTML=crumb(1,u.certView)+'<canvas id="cv" role="img" aria-label="'+u.certAria+'"></canvas><div class="row"><button type="button" class="btn" id="dl">'+u.certSave+'</button><button type="button" class="btn ghost" id="cs">'+u.share+'</button></div><p class="nmsg mid" id="cm" aria-live="polite"></p>';
+function rCert(m){const u=U();m.innerHTML=crumb(1,u.certView)+'<canvas id="cv" role="img" aria-label="'+u.certAria+'"></canvas><div class="row"><button type="button" class="btn" id="dl">'+u.certSave+'</button><button type="button" class="btn sharecert sm" id="cs">'+SHI+'<span>'+u.share+'</span></button></div><p class="nmsg mid" id="cm" aria-live="polite"></p>';
   $("back").onclick=()=>nav("home");drawCert();$("dl").onclick=()=>{const a=document.createElement("a");a.download="winterdorf-"+(cur+1)+".png";a.href=$("cv").toDataURL("image/png");a.click()};
   $("cs").onclick=()=>shareSheet({text:f(u.certShare,{t:LS()[cur].t}),img:true,ci:cur})}
-function drawCert(ci,cvs){ci=ci==null?cur:ci;const u=U(),l=LS()[ci],c=cvs||$("cv"),g=c.getContext("2d"),W=1123,F='"Trebuchet MS","Segoe UI",sans-serif';
+function drawCert(ci,cvs){ci=ci==null?cur:ci;const u=U(),l=LS()[ci],c=cvs||$("cv"),g=c.getContext("2d"),W=1123,F='Georgia,"Times New Roman",serif';
   const n=qcount(ci),b=prog[ci]||0,st=Math.max(1,starsOf(ci)),nm=name||"",src=ci===6?allQ():l.q,det=(DET[ci]||[]).filter(x=>src[x[0]]);
-  const bh=det.length?40+det.length*24:0,ex=Math.max(0,bh-100),H=794+ex;c.width=W;c.height=H;
+  const ce=det.length?590+34+det.length*24:575,H=ce+360;c.width=W;c.height=H;
+  const RED="#b8321f",DRED="#8f2415",GOLD="#d4a017",LG="#f2b53c",BR="#2b1608",CR="#fff6dc";
   const rr=(x,y,w,h,r)=>{g.beginPath();g.roundRect?g.roundRect(x,y,w,h,r):g.rect(x,y,w,h)};
-  g.fillStyle="#fff";rr(0,0,W,H,28);g.fill();
-  g.lineWidth=10;g.strokeStyle="#b8321f";rr(14,14,W-28,H-28,22);g.stroke();
-  g.lineWidth=2.5;g.strokeStyle="#ffc800";rr(25,25,W-50,H-50,17);g.stroke();
-  g.lineWidth=2;g.strokeStyle="#e1e2e5";g.setLineDash([10,8]);rr(34,34,W-68,H-68,14);g.stroke();g.setLineDash([]);
-  ["#b8321f","#2b1608","#ffc800","#1b7a3d","#a9741a"].forEach((col,i)=>{g.fillStyle=col;g.fillRect(60+i*200.6,36,200.6,16)});
-  const flake=(x,y,col,s)=>{g.save();g.translate(x,y);g.strokeStyle=col;g.lineWidth=4;g.lineCap="round";for(let k=0;k<3;k++){g.rotate(Math.PI/3);g.beginPath();g.moveTo(-s,0);g.lineTo(s,0);g.moveTo(-s*.6,-s*.25);g.lineTo(-s*.35,0);g.lineTo(-s*.6,s*.25);g.moveTo(s*.6,-s*.25);g.lineTo(s*.35,0);g.lineTo(s*.6,s*.25);g.stroke()}g.restore()};
-  [[120,160,"#2b1608"],[1005,180,"#e0a800"],[140,650+ex,"#1b7a3d"],[990,660+ex,"#a9741a"],[100,340,"#e0a800"],[1025,370,"#b8321f"],[170,240,"#b8321f"],[955,260,"#1b7a3d"]].forEach(a=>flake(a[0],a[1],a[2],20));
-  const T=(t,y,sz,col,wt,x,al)=>{g.font=(wt||"")+" "+sz+"px "+F;g.fillStyle=col;g.textAlign=al||"center";g.fillText(t,x==null?W/2:x,y)};
+  const T=(t,y,sz,col,wt,x,al,sp)=>{g.font=(wt||"")+" "+sz+"px "+F;g.fillStyle=col;g.textAlign=al||"center";g.letterSpacing=sp||"0px";g.fillText(t,x==null?W/2:x,y);g.letterSpacing="0px"};
   const fit=(t,max,sz,wt)=>{g.font=wt+" "+sz+"px "+F;while(g.measureText(t).width>max&&sz>14){sz-=2;g.font=wt+" "+sz+"px "+F}return sz};
-  const head=u.cUrk;g.letterSpacing="4px";T(head,150,fit(head,860,72,"800"),"#b8321f","800");
-  T("WINTERDORF-QUIZ · BY CORINNA & NOBBI",182,16,"#2b1608","700");g.letterSpacing="0px";
-  T(u.cT1,213,22,"#4d4f54");
-  const nsz=fit(nm||u.fan,860,64,"800");T(nm||u.fan,282,nsz,nm?"#1f2026":"#b8b9bd","800");
-  g.strokeStyle="#b8321f";g.lineWidth=4;g.lineCap="round";g.beginPath();g.moveTo(250,302);g.lineTo(873,302);g.stroke();
-  T(u.cT2,348,22,"#4d4f54");
-  T(l.t,392,fit(l.t,860,34,"700"),"#2b1608","700");
-  T(f(u.cRes,{a:b,b:n,r:rankOf(b,n)}),432,24,"#1f2026","700");
-  [0,1,2].forEach(k=>{g.font="54px "+F;g.textAlign="center";g.lineWidth=2;g.strokeStyle=k<st?"#b58900":"#b8b9bd";g.fillStyle=k<st?"#ffc800":"#d9d9de";g.strokeText("★",561.5+(k-1)*70,490);g.fillText("★",561.5+(k-1)*70,490)});
-  if(det.length){T(u.cQ,528,17,"#2b1608","800");
-    det.forEach((x,k)=>{const q=src[x[0]],y=556+k*24;T(x[1]?"✓":"✗",y,17,x[1]?"#1b7a3d":"#b3261e","800",110,"left");
-      let t=q[0]+"  →  "+q[1];g.font="600 15px "+F;while(g.measureText(t).width>880&&t.length>10)t=t.slice(0,-2);if(t!==q[0]+"  →  "+q[1])t=t.trim()+"…";T(t,y,15,x[1]?"#1f2026":"#b3261e","600",135,"left")})}
-  const line=f(u.cLine[st-1],{n:nm||u.fan}),o=ex;T(line,646+o,fit(line,960,22,"italic"),"#4d4f54","italic");
+  const flake=(x,y,col,s,lw)=>{g.save();g.translate(x,y);g.strokeStyle=col;g.lineWidth=lw||3;g.lineCap="round";for(let k=0;k<3;k++){g.rotate(Math.PI/3);g.beginPath();g.moveTo(-s,0);g.lineTo(s,0);g.moveTo(-s*.62,-s*.26);g.lineTo(-s*.36,0);g.lineTo(-s*.62,s*.26);g.moveTo(s*.62,-s*.26);g.lineTo(s*.36,0);g.lineTo(s*.62,s*.26);g.stroke()}g.restore()};
+  const fir=(x,yb,s,col)=>{g.fillStyle="#4a2a12";g.fillRect(x-3*s,yb-6*s,6*s,8*s);for(let i=0;i<4;i++){const w=(40-i*7)*s,y0=yb-6*s-i*15*s,y1=y0-22*s;g.fillStyle=col;g.beginPath();g.moveTo(x,y1);g.lineTo(x+w/2,y0);g.lineTo(x-w/2,y0);g.closePath();g.fill();g.fillStyle="#fff";g.beginPath();g.moveTo(x,y1);g.lineTo(x+w*.17,y1+8*s);g.quadraticCurveTo(x,y1+12*s,x-w*.17,y1+8*s);g.closePath();g.fill();g.beginPath();g.moveTo(x-w/2,y0);g.quadraticCurveTo(x-w*.25,y0-5*s,x,y0-1*s);g.quadraticCurveTo(x+w*.25,y0-5*s,x+w/2,y0);g.lineTo(x+w/2,y0-3*s);g.quadraticCurveTo(x,y0-9*s,x-w/2,y0-3*s);g.closePath();g.fill()}};
+  const hut=(x,yb,w,hh,body)=>{const top=yb-hh,rt=top-w*.4;g.fillStyle=body;g.fillRect(x,top,w,hh);g.strokeStyle="rgba(60,30,10,.55)";g.lineWidth=1.5;for(let i=1;i<hh/9;i++){g.beginPath();g.moveTo(x,top+i*9);g.lineTo(x+w,top+i*9);g.stroke()}
+    const wx=x+w*.12,wy=top+hh*.22,ww=w*.26,wh=hh*.34,gl=g.createRadialGradient(wx+ww/2,wy+wh/2,2,wx+ww/2,wy+wh/2,w*.55);gl.addColorStop(0,"rgba(255,215,122,.65)");gl.addColorStop(1,"rgba(255,215,122,0)");g.fillStyle=gl;g.fillRect(x-w*.4,top-10,w*1.8,hh+30);
+    g.fillStyle="#ffd77a";g.fillRect(wx,wy,ww,wh);g.strokeStyle="#6b3f14";g.lineWidth=2.5;g.strokeRect(wx,wy,ww,wh);g.beginPath();g.moveTo(wx+ww/2,wy);g.lineTo(wx+ww/2,wy+wh);g.moveTo(wx,wy+wh/2);g.lineTo(wx+ww,wy+wh/2);g.stroke();
+    g.fillStyle="#4a2a12";rr(x+w*.58,top+hh*.34,w*.26,hh*.66,3);g.fill();g.fillStyle="#ffd77a";g.beginPath();g.arc(x+w*.58+w*.2,top+hh*.7,2.4,0,7);g.fill();
+    g.fillStyle="#7a4412";g.fillRect(x+w*.72,rt+8,w*.1,hh*.45);g.fillStyle="#fff";g.fillRect(x+w*.7,rt+5,w*.14,5);[[x+w*.77,rt-6,7],[x+w*.82,rt-20,9],[x+w*.88,rt-38,11]].forEach(q=>{g.fillStyle="rgba(255,255,255,.7)";g.beginPath();g.arc(q[0],q[1],q[2],0,7);g.fill()});
+    g.fillStyle="#5a3414";g.beginPath();g.moveTo(x-w*.1,top+3);g.lineTo(x+w/2,rt);g.lineTo(x+w*1.1,top+3);g.closePath();g.fill();
+    g.fillStyle="#fff";g.beginPath();g.moveTo(x-w*.1,top+3);g.lineTo(x+w/2,rt);g.lineTo(x+w*1.1,top+3);g.lineTo(x+w*1.04,top+3);g.lineTo(x+w/2,rt+13);g.lineTo(x-w*.04,top+3);g.closePath();g.fill();for(let i=0;i<6;i++){g.beginPath();g.arc(x-w*.06+i*w*.23,top+4,6,0,7);g.fill()}
+    ["#e0453a","#ffd77a","#4aa36a"].forEach((cc,i)=>{for(let k=0;k<4;k++){g.fillStyle=cc;g.beginPath();g.arc(x+w*.05+(i+k*3)*w*.075,top+9,2.4,0,7);g.fill()}});
+    g.fillStyle="#fff";g.beginPath();g.ellipse(x+w/2,yb+2,w*.72,12,0,0,7);g.fill()};
+  const bg=g.createLinearGradient(0,0,0,H);bg.addColorStop(0,"#fffaf0");bg.addColorStop(1,"#fdeccb");g.fillStyle=bg;rr(0,0,W,H,30);g.fill();
+  g.lineWidth=12;g.strokeStyle=DRED;rr(14,14,W-28,H-28,24);g.stroke();g.lineWidth=3;g.strokeStyle=GOLD;rr(30,30,W-60,H-60,18);g.stroke();g.lineWidth=1.5;g.strokeStyle="#c9a45a";g.setLineDash([3,7]);rr(40,40,W-80,H-80,14);g.stroke();g.setLineDash([]);
+  [[46,46,1,1],[W-46,46,-1,1],[46,H-46,1,-1],[W-46,H-46,-1,-1]].forEach(k=>{g.save();g.translate(k[0],k[1]);g.scale(k[2],k[3]);g.strokeStyle=GOLD;g.lineWidth=3;g.lineCap="round";g.beginPath();g.moveTo(0,84);g.bezierCurveTo(0,34,34,0,84,0);g.moveTo(0,58);g.bezierCurveTo(0,30,30,0,58,0);g.moveTo(14,14);g.bezierCurveTo(30,14,40,24,38,36);g.bezierCurveTo(36,46,24,46,22,36);g.stroke();g.fillStyle=RED;[[26,26],[36,20],[20,36]].forEach(q=>{g.beginPath();g.arc(q[0],q[1],4.5,0,7);g.fill()});g.fillStyle="#2f7a46";g.beginPath();g.ellipse(48,18,10,4,.6,0,7);g.ellipse(18,48,10,4,.9,0,7);g.fill();g.restore()});
+  g.strokeStyle="#4a2a12";g.lineWidth=2;const cols=["#e0453a","#ffd77a","#4aa36a","#5aa0e0"];
+  for(let s=0;s<4;s++){const x0=84+s*((W-168)/4),x1=x0+(W-168)/4;g.beginPath();g.moveTo(x0,66);g.quadraticCurveTo((x0+x1)/2,66+36,x1,66);g.stroke();for(let i=1;i<7;i++){const t=i/7,x=(1-t)*(1-t)*x0+2*(1-t)*t*((x0+x1)/2)+t*t*x1,y=(1-t)*(1-t)*66+2*(1-t)*t*102+t*t*66,cc=cols[(s*7+i)%4],gl=g.createRadialGradient(x,y+7,1,x,y+7,13);gl.addColorStop(0,cc);gl.addColorStop(1,"rgba(255,255,255,0)");g.globalAlpha=.55;g.fillStyle=gl;g.fillRect(x-14,y-6,28,28);g.globalAlpha=1;g.fillStyle=cc;g.beginPath();g.ellipse(x,y+7,4,6,0,0,7);g.fill()}}
+  [[110,170,12],[1010,175,12],[96,320,9],[1024,330,10],[150,250,7],[975,255,7],[88,470,8],[1032,480,8],[135,395,6],[990,400,6]].forEach((q,i)=>flake(q[0],q[1],i%3?"#8fb4d6":LG,q[2],2.6));
+  const bx=W/2;g.fillStyle=DRED;g.beginPath();g.moveTo(bx-312,128);g.lineTo(bx-246,128);g.lineTo(bx-246,188);g.lineTo(bx-312,188);g.lineTo(bx-286,158);g.closePath();g.fill();g.beginPath();g.moveTo(bx+312,128);g.lineTo(bx+246,128);g.lineTo(bx+246,188);g.lineTo(bx+312,188);g.lineTo(bx+286,158);g.closePath();g.fill();
+  const rg=g.createLinearGradient(0,116,0,196);rg.addColorStop(0,"#d4452f");rg.addColorStop(1,RED);g.fillStyle=rg;g.fillRect(bx-262,116,524,72);g.strokeStyle=LG;g.lineWidth=2;g.strokeRect(bx-256,122,512,60);
+  g.shadowColor="rgba(0,0,0,.35)";g.shadowBlur=4;g.shadowOffsetY=2;T(u.cUrk,171,fit(u.cUrk,470,54,"bold"),CR,"bold",bx,"center","6px");g.shadowColor="transparent";g.shadowBlur=0;g.shadowOffsetY=0;
+  T("WINTERDORF-QUIZ · BY CORINNA & NOBBI",224,14,DRED,"bold",bx,"center","4px");
+  g.strokeStyle=GOLD;g.lineWidth=2;g.beginPath();g.moveTo(250,244);g.lineTo(bx-26,244);g.moveTo(bx+26,244);g.lineTo(W-250,244);g.stroke();flake(bx,244,GOLD,13,2.4);
+  T(u.cT1,284,22,"#6b4f36","italic");
+  const nsz=fit(nm||u.fan,820,62,"italic bold");T(nm||u.fan,352,nsz,nm?DRED:"#b8b9bd","italic bold");
+  g.strokeStyle=GOLD;g.lineWidth=3;g.lineCap="round";g.beginPath();g.moveTo(230,372);g.bezierCurveTo(330,360,430,386,bx-20,372);g.moveTo(W-230,372);g.bezierCurveTo(W-330,360,W-430,386,bx+20,372);g.stroke();g.fillStyle=RED;g.beginPath();g.moveTo(bx,362);g.lineTo(bx+9,372);g.lineTo(bx,382);g.lineTo(bx-9,372);g.closePath();g.fill();
+  T(u.cT2,418,22,"#6b4f36","italic");
+  T(l.t,466,fit(l.t,820,38,"bold"),BR,"bold");
+  T(f(u.cRes,{a:b,b:n,r:rankOf(b,n)}),506,22,"#3b2d00","600");
+  [0,1,2].forEach(k=>{g.font="54px "+F;g.textAlign="center";g.lineWidth=2.5;g.strokeStyle=k<st?"#a87400":"#b8b9bd";g.fillStyle=k<st?"#ffc800":"#e6e1d5";g.strokeText("★",bx+(k-1)*70,562);g.fillText("★",bx+(k-1)*70,562)});
+  if(det.length){T(u.cQ,596,17,DRED,"bold");
+    det.forEach((x,k)=>{const q=src[x[0]],y=624+k*24;T(x[1]?"✓":"✗",y,17,x[1]?"#1b7a3d":"#b3261e","bold",110,"left");
+      let t=q[0]+"  →  "+q[1];g.font="600 15px "+F;while(g.measureText(t).width>880&&t.length>10)t=t.slice(0,-2);if(t!==q[0]+"  →  "+q[1])t=t.trim()+"…";T(t,y,15,x[1]?"#2b1608":"#b3261e","600",135,"left")})}
+  const line=f(u.cLine[st-1],{n:nm||u.fan});T(line,ce+34,fit(line,900,20,"italic"),"#6b4f36","italic");
+  g.save();rr(42,42,W-84,H-84,14);g.clip();const gy=H-150;
+  const hl=g.createLinearGradient(0,gy-60,0,H);hl.addColorStop(0,"#ffffff");hl.addColorStop(1,"#dfeaf6");
+  for(let x=70;x<W-50;x+=46)fir(x+(x%3)*3,gy-26,.5+((x/46|0)%3)*.08,(x/46|0)%2?"#2f5d3a":"#3f6b45");
+  g.fillStyle=hl;g.beginPath();g.moveTo(0,gy-8);g.quadraticCurveTo(W*.2,gy-46,W*.42,gy-14);g.quadraticCurveTo(W*.6,gy+10,W*.8,gy-34);g.quadraticCurveTo(W*.92,gy-48,W,gy-18);g.lineTo(W,H);g.lineTo(0,H);g.closePath();g.fill();
+  fir(70,gy+4,1.2,"#2f5d3a");fir(W-70,gy+4,1.25,"#2f5d3a");fir(300,gy+10,.8,"#3f6b45");fir(W-300,gy+10,.85,"#3f6b45");fir(420,gy+14,.55,"#2f5d3a");fir(W-420,gy+14,.55,"#2f5d3a");
+  hut(110,gy,130,76,"#8a5a2b");hut(W-250,gy,130,76,"#9a6532");
+  for(let i=0;i<70;i++){const x=(i*173)%(W-120)+60,y=ce+60+((i*97)%(H-ce-110));g.fillStyle="rgba(255,255,255,.9)";g.beginPath();g.arc(x,y,1.6+(i%3)*.7,0,7);g.fill();g.strokeStyle="rgba(150,180,210,.5)";g.lineWidth=.8;g.stroke()}
+  g.restore();
   const d=new Date().toLocaleDateString(lang==="en"?"en-GB":"de-DE",{day:"2-digit",month:"long",year:"numeric"});
-  T(u.cDate+": "+d,700+o,15,"#565860","",110,"left");T(u.rank+": "+rankNow(),722+o,15,"#565860","",110,"left");
-  g.fillStyle="#fff";g.beginPath();g.arc(561.5,686+o,30,0,7);g.fill();g.lineWidth=4.5;g.strokeStyle="#b8321f";g.stroke();
-  g.save();g.translate(1000,700+o);g.rotate(-.05);T("Elchi",0,34,"#1d2b6b","italic",0,"right");g.restore();
-  g.strokeStyle="#1f2026";g.lineWidth=1.5;g.beginPath();g.moveTo(760,704+o);g.lineTo(1013,704+o);g.stroke();
-  T("nosz.github.io/winterdorf",734+o,17,"#2b1608","800");
-  g.strokeStyle="#f1dfc4";g.lineWidth=1;g.beginPath();g.moveTo(110,742+o);g.lineTo(1013,742+o);g.stroke();
-  T(u.cFoot+" · v"+VERSION,760+o,13,"#565860");
-  return new Promise(res=>{const img=new Image();img.onload=()=>{g.drawImage(img,561.5-23,686+o-26,46,50);res()};img.onerror=res;img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(ELK.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="220" '))})}
-function snack(t,ms){const old=document.querySelector(".snack");if(old)old.remove();const s=document.createElement("div");s.className="snack";s.setAttribute("role","status");const sp=document.createElement("span");sp.textContent=t;s.appendChild(sp);document.body.appendChild(s);setTimeout(()=>s.remove(),ms||2500)}
+  T(u.cDate+": "+d,H-92,15,"#3b2d00","600",100,"left");T(u.rank+": "+rankNow(),H-72,15,"#3b2d00","600",100,"left");
+  g.save();g.translate(W-110,H-86);g.rotate(-.05);T("Elchi",0,34,"#1d2b6b","italic",0,"right");g.restore();g.strokeStyle="#2b1608";g.lineWidth=1.3;g.beginPath();g.moveTo(W-350,H-80);g.lineTo(W-100,H-80);g.stroke();
+  T("nosz.github.io/winterdorf",H-88,15,DRED,"bold");T(u.cFoot+" · v"+VERSION,H-56,12,"#6b4f36","600");
+  return new Promise(res=>{const img=new Image();img.onload=()=>{g.drawImage(img,bx-62,gy-116,124,136);res()};img.onerror=res;img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(ELK.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="220" '))})}function snack(t,ms){const old=document.querySelector(".snack");if(old)old.remove();const s=document.createElement("div");s.className="snack";s.setAttribute("role","status");const sp=document.createElement("span");sp.textContent=t;s.appendChild(sp);document.body.appendChild(s);setTimeout(()=>s.remove(),ms||2500)}
 function shareCard(txt,subj){const u=U(),enc=encodeURIComponent,full=(txt?txt+" ":"")+URL_LIVE,c=document.createElement("section");c.className="sharecard";c.setAttribute("aria-labelledby","sht");
   c.innerHTML='<div class="sh"><span class="si" aria-hidden="true">🔗</span><div><b id="sht">'+u.shT+'</b><small>'+u.shS+'</small></div></div><div class="sharerow"><a class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/?text='+enc(full)+'">💬 '+u.shWa+'</a><a class="btn ghost" href="mailto:?subject='+enc(subj)+'&body='+enc((txt?txt+"\r\n\r\n":"")+URL_LIVE)+'">✉️ '+u.shMail+'</a><button type="button" class="btn ghost" id="shcp">📋 '+u.shCopy+'</button></div>';
   c.querySelector("#shcp").onclick=async()=>{let ok=false;try{await navigator.clipboard.writeText(URL_LIVE);ok=true}catch(e){try{const ta=document.createElement("textarea");ta.readOnly=true;ta.style.cssText="position:fixed;left:-9999px";ta.value=URL_LIVE;document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");ta.remove()}catch(e2){}}snack(ok?u.shCopied:u.shFail+" "+URL_LIVE,ok?2500:6000)};return c}
@@ -812,8 +835,8 @@ let cur=null,tok=0,bag=[],lastA="",timer=null;
 const reduce=()=>matchMedia("(prefers-reduced-motion:reduce)").matches;
 const pick=a=>a[Math.random()*a.length|0],F=()=>T[lang].fig,wait=ms=>new Promise(r=>setTimeout(r,ms));
 const dur=t=>Math.max(4200,t.length*65);
-function abort(){tok++;if(cur){try{cur.getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(e){}cur.remove();cur=null}}
-function mk(txt){abort();const d=document.createElement("div");d.className="fig";d.innerHTML='<div class="fb2"></div><span class="fs">'+ELK+'</span>';d.querySelector(".fb2").textContent=txt;st.appendChild(d);cur=d;return d}
+const bo=on=>{const b=$("boost");if(b){b.classList.toggle("busy",on);b.setAttribute("aria-disabled",on?"true":"false")}};function abort(){tok++;bo(false);if(cur){try{cur.getAnimations({subtree:true}).forEach(a=>a.cancel())}catch(e){}cur.remove();cur=null}}
+function mk(txt){abort();const d=document.createElement("div");d.className="fig";d.innerHTML='<div class="fb2"></div><span class="fs">'+ELK+'</span>';d.querySelector(".fb2").textContent=txt;st.appendChild(d);cur=d;bo(true);return d}
 async function an(el,kf,o){if(reduce())kf=[{opacity:0},{opacity:1}],o={duration:300,fill:"forwards"};try{const a=el.animate(kf,Object.assign({fill:"forwards"},o));await a.finished}catch(e){}}
 const bub=(d,on)=>d.querySelector(".fb2").classList.toggle("on",on);
 function textFor(k){const f=F();if(k==="name")return name?pick(f.name).replace(/\{n\}/g,name):U().ask;if(k==="witz")return pick(f.witz);if(k==="fakt"){const q=allQ();return U().elchi+" "+pick(q)[5]}if(k==="tanz")return pick(f.tanz);return pick(f.hallo)}
@@ -835,8 +858,8 @@ function run(a,txt){txt=txt||textFor(a);if(a==="quer")return quer(txt);if(a==="g
 function next(){if(!bag.length){bag=shuffle(ACTS);if(bag[0]===lastA)bag.push(bag.shift())}lastA=bag.shift();return lastA}
 function sched(ms){clearTimeout(timer);timer=setTimeout(()=>{if(document.hidden||view==="quiz"||cur){sched(4000);return}run(next()).then(()=>sched(9000+Math.random()*7000))},ms)}
 return{abort,start(){sched(2200)},
- react(ok){if(Math.random()<.55){const f=F();run("sagen",pick(ok?f.lob:f.trost).replace(/\{n\}/g,name))}},
- boost(){abort();const a=pick(["sagen","tanz","salto","puff","name"]);run(a,a==="tanz"?textFor("tanz"):(name?name+", ":"")+pick(F().boost)).then(()=>sched(9000))}};
+ busy(){return !!cur},react(ok){if(!cur&&Math.random()<.55){const f=F();run("sagen",pick(ok?f.lob:f.trost).replace(/\{n\}/g,name))}},
+ boost(){const a=pick(["sagen","tanz","salto","puff","name"]);run(a,a==="tanz"?textFor("tanz"):(name?name+", ":"")+pick(F().boost)).then(()=>sched(9000))}};
 })();
 render();Stage.start();
 if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});
