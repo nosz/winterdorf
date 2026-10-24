@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="application-name" content="Winterdorf-Quiz">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Winterdorf-Quiz">
+<title>Winterdorf-Quiz mit Elchi</title>
+<meta name="description" content="Das inoffizielle Fan-Quiz zum traditionellen Winterdorf Heilbronn: Elchi, der kleine Elch, erzählt Wissenswertes und fragt dich ab.">
+<meta name="theme-color" content="#2b1608">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="canonical" href="https://nosz.github.io/winterdorf/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Winterdorf-Quiz mit Elchi">
+<meta property="og:description" content="Wie gut kennst du das Winterdorf Heilbronn? Elchi fragt dich ab.">
+<meta property="og:url" content="https://nosz.github.io/winterdorf/">
+<style>
+:root{--wood:#2b1608;--wood2:#4a2a12;--gold:#f2b53c;--gold2:#ffd77a;--red:#e0453a;--cream:#fff6e4;--ink:#2b1608;--ok:#2e8b57}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,"Segoe UI",Roboto,sans-serif;color:var(--cream);background:radial-gradient(ellipse at 20% 0,#7a4412 0,transparent 55%),radial-gradient(ellipse at 90% 30%,#8a5a10 0,transparent 45%),var(--wood);min-height:100vh;padding:0 16px calc(24px + env(safe-area-inset-bottom))}
+main{max-width:640px;margin:0 auto}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+header.top b{font-family:Georgia,"Times New Roman",serif;font-size:1.5rem;letter-spacing:.5px}
+header.top b i{font-style:normal;color:var(--gold)}
+.home-btn{background:none;border:2px solid var(--gold);color:var(--gold2);border-radius:12px;padding:8px 14px;font-weight:700;min-height:44px;cursor:pointer}
+.bar{height:8px;background:#0006;border-radius:6px;overflow:hidden;margin:4px 0 14px}
+.bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .3s}
+.card{background:#fff6e41a;border:1px solid #f2b53c55;border-radius:18px;padding:18px;margin:0 0 14px;backdrop-filter:blur(2px)}
+h1{font-family:Georgia,serif;font-size:2rem;line-height:1.15;margin:8px 0 6px;text-align:center}
+h2{font-family:Georgia,serif;font-size:1.3rem;margin:0 0 8px}
+.sub{text-align:center;color:var(--gold2);margin:0 0 10px}
+.elk-wrap{display:flex;gap:10px;align-items:flex-end;margin:6px 0 12px}
+.elk{width:130px;flex:none;animation:wipp 3.2s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes wipp{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.elk{animation:none}}
+.bubble{position:relative;background:var(--cream);color:var(--ink);border-radius:16px;padding:12px 14px;font-size:1.02rem;line-height:1.4;flex:1}
+.bubble:before{content:"";position:absolute;left:-10px;bottom:22px;border:8px solid transparent;border-right-color:var(--cream);border-left:0}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:14px;min-height:52px;font-size:1.1rem;font-weight:800;cursor:pointer;background:linear-gradient(180deg,var(--gold2),var(--gold));color:var(--ink);box-shadow:0 4px 0 #a9741a;margin:8px 0}
+.btn.sec{background:#fff6e422;color:var(--cream);box-shadow:none;border:2px solid var(--gold)}
+.btn:focus-visible,.home-btn:focus-visible,.opt:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.name-row{display:flex;gap:8px}
+.name-row input{flex:1;min-width:0;border-radius:12px;border:2px solid var(--gold);padding:12px;font-size:1.05rem;background:var(--cream);color:var(--ink)}
+.save{border:0;border-radius:12px;padding:0 14px;font-weight:800;min-height:48px;cursor:pointer;display:flex;align-items:center;gap:6px;background:#8884;color:#fff9}
+.save.on{background:var(--gold);color:var(--ink);animation:ring 1.4s infinite}
+.save.done{background:var(--ok);color:#fff;animation:none}
+@keyframes ring{0%,100%{box-shadow:0 0 0 0 #ffd77acc}50%{box-shadow:0 0 0 6px #ffd77a00}}
+.msg{min-height:1.3em;color:var(--gold2);font-size:.95rem;margin:6px 0 0}
+.q{font-size:1.25rem;font-weight:700;margin:6px 0 12px;line-height:1.3}
+.opt{display:block;width:100%;text-align:left;background:#fff6e41f;color:var(--cream);border:2px solid #f2b53c88;border-radius:14px;padding:13px 14px;min-height:52px;margin:8px 0;font-size:1.05rem;cursor:pointer}
+.opt.right{background:var(--ok);border-color:#9fe3b9;color:#fff}
+.opt.wrong{background:#8a2a22;border-color:var(--red);color:#fff}
+.opt[disabled]{cursor:default}
+.count{color:var(--gold2);font-weight:700;font-size:.95rem}
+.score{font-size:3rem;font-weight:900;text-align:center;color:var(--gold2);margin:0}
+.rank{text-align:center;font-family:Georgia,serif;font-size:1.4rem;margin:0 0 8px}
+.hide{display:none}
+.fcredit{text-align:center;margin:22px 0 6px}
+.fver{margin:0 0 10px;font-size:.9rem;color:#fff9}
+a.credit{display:inline-flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:#fff;font-weight:800;font-size:1.05rem;min-height:54px;padding:8px 20px;border-radius:30px;border:2px solid #fff;background:linear-gradient(135deg,#4a2a12,#a9741a);box-shadow:0 0 0 3px var(--gold);white-space:nowrap}
+a.credit .cr-l{display:flex;align-items:center;gap:8px}
+.cr-ic svg,.cr-ex svg{width:18px;height:18px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.cr-u{font-size:.78rem;font-weight:600;text-decoration:underline;color:var(--gold2)}
+@media (max-width:380px){a.credit{font-size:.95rem;padding:8px 14px}}
+.links{display:grid;gap:10px;margin-top:10px}
+.links a{display:block;background:#fff6e41a;border:1px solid #f2b53c88;border-radius:14px;padding:12px;color:var(--cream);text-decoration:none;font-weight:700}
+.links a small{display:block;font-weight:400;color:var(--gold2);margin-top:2px}
+footer{font-size:.82rem;color:#fffa;text-align:center;line-height:1.45;margin-top:14px}
+footer a{color:var(--gold2)}
+@media print{.fcredit,header.top{display:none}}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><b>Winter<i>dorf</i>-Quiz</b><button class="home-btn hide" id="homeBtn" type="button">Start</button></header>
+<div class="bar" id="bar" role="progressbar" aria-label="Fortschritt" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><div id="barFill"></div></div>
+
+<!-- START -->
+<section id="vStart">
+  <h1>Servus im Winterdorf!</h1>
+  <p class="sub">Das Fan-Quiz zum traditionellen Winterdorf Heilbronn</p>
+  <div class="elk-wrap">
+    <svg class="elk" id="elkSvg" viewBox="0 0 200 220" role="img" aria-label="Elchi, der kleine Elch mit roter Zipfelmütze">
+      <g fill="#8a5a2b" stroke="#4a2a12" stroke-width="4" stroke-linejoin="round">
+        <path d="M62 62 L40 22 L52 24 L48 6 L62 18 L66 36 L74 20 L80 30 L78 56Z" fill="#d9a441"/>
+        <path d="M138 62 L160 22 L148 24 L152 6 L138 18 L134 36 L126 20 L120 30 L122 56Z" fill="#d9a441"/>
+        <ellipse cx="55" cy="84" rx="20" ry="12" transform="rotate(-25 55 84)"/>
+        <ellipse cx="145" cy="84" rx="20" ry="12" transform="rotate(25 145 84)"/>
+        <ellipse cx="100" cy="190" rx="40" ry="26"/>
+        <ellipse cx="100" cy="100" rx="52" ry="50"/>
+        <ellipse cx="100" cy="130" rx="34" ry="28" fill="#c89358"/>
+      </g>
+      <path d="M52 72 Q100 14 148 72Z" fill="#e0453a" stroke="#7a1a12" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M126 36 Q150 20 160 44" fill="none" stroke="#e0453a" stroke-width="12" stroke-linecap="round"/>
+      <circle cx="162" cy="46" r="9" fill="#fff6e4" stroke="#bbb" stroke-width="2"/>
+      <rect x="48" y="66" width="104" height="14" rx="7" fill="#fff6e4" stroke="#bbb" stroke-width="2"/>
+      <g><circle cx="80" cy="100" r="13" fill="#fff"/><circle cx="120" cy="100" r="13" fill="#fff"/>
+      <circle cx="83" cy="102" r="6.5" fill="#2b1608"/><circle cx="117" cy="102" r="6.5" fill="#2b1608"/>
+      <circle cx="85" cy="99" r="2.2" fill="#fff"/><circle cx="119" cy="99" r="2.2" fill="#fff"/></g>
+      <ellipse cx="100" cy="132" rx="14" ry="10" fill="#4a2a12"/>
+      <circle cx="94" cy="130" r="2.4" fill="#c89358"/><circle cx="106" cy="130" r="2.4" fill="#c89358"/>
+      <path d="M84 148 Q100 162 116 148" fill="none" stroke="#4a2a12" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="66" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/><ellipse cx="134" cy="124" rx="8" ry="5" fill="#e0453a" opacity=".45"/>
+      <path d="M70 160 Q100 176 130 160 L132 174 Q100 190 68 174Z" fill="#e0453a" stroke="#7a1a12" stroke-width="3" stroke-linejoin="round"/>
+    </svg>
+    <div class="bubble" id="tip" aria-live="polite">Hallo, ich bin Elchi! Ich weiß alles über unser Winterdorf.</div>
+  </div>
+  <div class="card">
+    <h2>Wie heißt du?</h2>
+    <div class="name-row">
+      <input id="nameIn" type="text" maxlength="24" autocomplete="off" aria-label="Dein Name" placeholder="Dein Name">
+      <button class="save" id="saveBtn" type="button" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h11l4 4v14H5z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/></svg><span id="saveTxt">Speichern</span></button>
+    </div>
+    <p class="msg" id="nameMsg" aria-live="polite"></p>
+  </div>
+  <button class="btn" id="startBtn" type="button">Quiz starten (10 Fragen)</button>
+  <button class="btn sec" id="tipBtn" type="button">Noch ein Elch-Tipp</button>
+
+  <div class="card"><h2>Rund ums Winterdorf</h2>
+    <div class="links">
+      <a href="https://www.winterdorf-hn.de/" target="_blank" rel="noopener noreferrer">Winterdorf Heilbronn, offizielle Website<small>Alle verbindlichen Infos, Reservierung und Termine</small></a>
+      <a href="https://nosz.github.io/herzintelligenz/" target="_blank" rel="noopener noreferrer">HERZINTELLIGENZ<small>Auch so ein Lern-Quiz mit Maskottchen</small></a>
+    </div>
+  </div>
+  <div class="fcredit">
+    <p class="fver" id="verTxt">Version 1.0.0 · Stand 24.10.2026</p>
+    <a class="credit" href="https://nosz.github.io/norbert-szpak/" target="_blank" rel="noopener noreferrer">
+      <span class="cr-l"><span class="cr-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></span>✦ Website Design by Norbert <span class="cr-ex"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span> ↗</span>
+      <span class="cr-u">nosz.github.io/norbert-szpak</span>
+    </a>
+  </div>
+  <footer>Inoffizielles Fan-Quiz, nicht vom Winterdorf Heilbronn betrieben. Infos nach Stand Saison 2026/27, verbindlich ist die <a href="https://www.winterdorf-hn.de/" target="_blank" rel="noopener noreferrer">offizielle Website</a>.</footer>
+</section>
+
+<!-- QUIZ -->
+<section id="vQuiz" class="hide">
+  <div class="elk-wrap"><div class="bubble" id="qBubble" aria-live="polite">Los geht's!</div></div>
+  <div class="card">
+    <div class="count" id="qCount"></div>
+    <div class="q" id="qText"></div>
+    <div id="qOpts"></div>
+    <button class="btn hide" id="nextBtn" type="button">Weiter</button>
+  </div>
+</section>
+
+<!-- ERGEBNIS -->
+<section id="vEnd" class="hide">
+  <div class="card">
+    <p class="rank" id="rank"></p>
+    <p class="score" id="score"></p>
+    <p class="sub" id="endMsg"></p>
+  </div>
+  <button class="btn" id="againBtn" type="button">Nochmal spielen</button>
+  <button class="btn sec" id="shareBtn" type="button">Teilen</button>
+  <p class="msg" id="shareMsg" aria-live="polite"></p>
+</section>
+</main>
+
+<script>
+const VERSION="1.0.0",STAND="24.10.2026",URL_LIVE="https://nosz.github.io/winterdorf/";
+const Q=[
+["Seit wann gibt es das Winterdorf Heilbronn?",["2012","2002","2018","1999"],0,"Seit 2012: das erste vollgastronomische Winterdorf Deutschlands. Hier entstand Heilbronner Geschichte!"],
+["Wie heißen die beiden legendären Feierhütten?",["Neckaralm und Kiliansalm","Talstation und Jausenalm","Kuhstall und Dorfplatz","Neckarhütte und Kilianshaus"],0,"Neckaralm und Kiliansalm sind das Herzstück des Winterdorfs."],
+["An welchen Tagen hat das Winterdorf normalerweise geöffnet?",["Mittwoch bis Samstag","Montag bis Freitag","Nur am Wochenende","Jeden Tag"],0,"Mi bis Sa, jeweils von 17:00 bis 24:00 Uhr."],
+["Wann ist der letzte Einlass?",["23:30 Uhr","22:00 Uhr","23:00 Uhr","Um Mitternacht"],0,"Gefeiert wird bis 24 Uhr, letzter Einlass ist um 23:30 Uhr."],
+["Wie lautet die Adresse des Winterdorfs?",["Badstraße 100, Heilbronn","Marktplatz 1, Heilbronn","Theresienstraße 5, Heilbronn","Neckarmeile 12, Heilbronn"],0,"Die Badstraße liegt direkt am Neckarufer, mitten in der Innenstadt."],
+["Wie zahlt man im Winterdorf?",["Bar","Nur mit Karte","Per Handy-App","Auf Rechnung"],0,"Bei uns wird bar bezahlt. Ab 150 € gibt es an der Kasse Bargeld per EC-Karte."],
+["Was kostet die Garderobe?",["2 €","1 €","5 €","Sie ist gratis"],0,"2 €, solange noch Platz ist. Die Marke ist dein Rückfahrtticket für die Jacke!"],
+["Dürfen Hunde ins Winterdorf?",["Nein, sie müssen draußen bleiben","Ja, an der Leine","Nur kleine Hunde","Nur in der Kiliansalm"],0,"Es ist einfach zu viel los, zu eng und zu laut für entspannte Hundestimmung."],
+["Wie hoch ist der Getränkemindestumsatz bei einer 8er- oder 10er-Tischreservierung?",["15 € pro Person","5 € pro Person","30 € pro Person","Es gibt keinen"],0,"15 € pro Person. Anzahlung: 40 € für den 8er-Tisch, 50 € für den 10er-Tisch."],
+["Wie viele Personen feiern maximal im kompletten Winterdorf, wenn es exklusiv gebucht wird?",["450","150","1.000","250"],0,"Im kompletten Winterdorf feiern maximal 450 Personen."],
+["Wer entscheidet über den Einlass?",["Die Pistenwache","Die Reservierung","Der Zufall","Der Elch"],0,"Ausschließlich die Pistenwache. Eine Reservierung ist keine Eintrittskarte."],
+["Ab welchem Alter ist an Hüttengaudi-Abenden der Eintritt möglich?",["18 Jahre","16 Jahre","21 Jahre","14 Jahre"],0,"Hüttengaudi-Abende sind 18+."],
+["Was kostet der buddy-Service der SWHN für den Heimweg maximal?",["5,00 €","10,00 €","2,00 €","Er ist kostenlos"],0,"Maximal 5 €, mit HNV-Abo nur 2,50 €, egal wie lang die Strecke."],
+["Für wen gilt das FiftyFifty-Taxi im Landkreis Heilbronn?",["Jugendliche von 16 bis 25 Jahren","Alle ab 18 Jahren","Nur Senioren","Kinder unter 12"],0,"Du zahlst nur 50 % des Fahrpreises, den Rest übernimmt der Landkreis."],
+["Nach wem kann man im Winterdorf jederzeit fragen, wenn man sich unwohl fühlt?",["Luisa","Elisa","Martha","Hanna"],0,"„Luisa ist hier“: Das Team weiß sofort, was zu tun ist."],
+["Wie heißt das Winterdorf-Team?",["#Elchteam","#Hüttenteam","#Glühweinteam","#Dorfpolizei"],0,"Das #Elchteam sorgt für volle Gläser und blitzblanke Tische. Passt zu mir!"],
+["Woher kommt der Glühwein und erlesene Flaschenwein im Winterdorf?",["Weingut G.A. Heinrich","Weingut Fischer aus Italien","Aus dem Supermarkt","Aus Österreich"],0,"Vom prämierten Weingut G.A. Heinrich. Die Biere kommen frisch gebraut von Dinkelacker."],
+["An welchem Wochentag laufen die Kiliansalm-Spezial-Abende?",["Donnerstag","Montag","Sonntag","Dienstag"],0,"Immer donnerstags, mit elektronischen Beats und Glühwein-Daydrinking."],
+["Welche Kleidung bleibt bitte zu Hause?",["Fantrikots und Sportkleidung","Wollmützen","Winterjacken","Schals ohne Vereinsfarben"],0,"Fanbekleidung und Trainingskleidung sind nicht gestattet, Caps machen in den Hütten Pause."],
+["Wo darf man rauchen oder vapen?",["Nur in den Außenbereichen","In der Kiliansalm","Im Kuhstall","Überall"],0,"Rauch und Dampf bleiben draußen, ausschließlich in den vorgesehenen Außenbereichen."],
+["Wohin kommen Fundsachen nach dem nächsten Öffnungstag?",["Zum Fundbüro der Stadt Heilbronn","In den Müll","Zum Elch nach Hause","Zur Polizei Stuttgart"],0,"Abholung direkt im Winterdorf nur am nächsten Öffnungstag ab 17 Uhr."],
+["Wie weit ist es von der Haltestelle Theresienwiese zum Winterdorf?",["Etwa 780 Meter","Etwa 3 Kilometer","Etwa 50 Meter","Etwa 2 Kilometer"],0,"Rund 13 Minuten zu Fuß. Vom Hauptbahnhof sind es etwa 20 Minuten."],
+["Muss man reservieren, um im Winterdorf mitzufeiern?",["Nein, wer früher da ist, feiert länger","Ja, immer","Nur donnerstags","Nur ab 18 Uhr"],0,"Eine Reservierung braucht man nicht. Je früher du da bist, desto kürzer die Wartezeit."],
+["Was gilt bei Wind, Regen oder Schnee?",["Grundsätzlich ist geöffnet","Das Winterdorf bleibt zu","Eintritt wird billiger","Nur der Kuhstall ist offen"],0,"Wir sind schließlich ein Winterdorf! Bei Glätte bitte mit Köpfchen unterwegs sein."],
+["Wo findet man auf dem Dorfplatz bei rauem Wetter Wärme?",["An Feuerstellen und im beheizten Kuhstall","Nur in der Garderobe","Im Zelt am Eingang","Gar nicht"],0,"Viele Feuerstellen und ein warmer Kuhstall mit Sitzplätzen."]
+];
+const RANKS=[[0,"Elchküken"],[5,"Hüttenfreund"],[8,"Dorfprofi"],[10,"Winterdorf-Elch"]];
+const $=id=>document.getElementById(id);
+const ls={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let name=ls.get("wd_name")||"",best=+ls.get("wd_best")||0,round=[],idx=0,pts=0;
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+function show(v){["vStart","vQuiz","vEnd"].forEach(x=>$(x).classList.toggle("hide",x!==v));$("homeBtn").classList.toggle("hide",v==="vStart");$("bar").classList.toggle("hide",v==="vStart")}
+function setBar(n){$("barFill").style.width=n*10+"%";$("bar").setAttribute("aria-valuenow",n)}
+function tip(){const q=Q[Math.random()*Q.length|0];$("tip").textContent="Elch-Wissen: "+q[3]}
+function nameState(){const v=$("nameIn").value.trim(),b=$("saveBtn");
+  if(!v){b.disabled=true;b.className="save";$("saveTxt").textContent="Speichern"}
+  else if(v===name){b.disabled=true;b.className="save done";$("saveTxt").textContent="Gespeichert ✓"}
+  else{b.disabled=false;b.className="save on";$("saveTxt").textContent="Speichern"}}
+$("nameIn").value=name;$("nameIn").addEventListener("input",()=>{$("nameMsg").textContent="";nameState()});
+$("saveBtn").onclick=()=>{name=$("nameIn").value.trim();ls.set("wd_name",name);$("nameMsg").textContent="Gespeichert: "+name;$("tip").textContent="Schön, dich kennenzulernen, "+name+"!";nameState()};
+nameState();
+if(name)$("tip").textContent="Servus "+name+"! Schön, dass du wieder da bist."
+$("tipBtn").onclick=tip;
+function start(){round=shuffle(Q).slice(0,10);idx=0;pts=0;show("vQuiz");ask()}
+function ask(){const q=round[idx];setBar(idx);$("qCount").textContent="Frage "+(idx+1)+" von 10";$("qText").textContent=q[0];$("nextBtn").classList.add("hide");
+  $("qBubble").textContent=["Los geht's"+(name?", "+name:"")+"!","Überleg gut, ich drück dir die Hufe.","Das weißt du bestimmt!","Gleich hast du's."][idx%4];
+  const box=$("qOpts");box.innerHTML="";
+  shuffle(q[1].map((t,i)=>[t,i===q[2]])).forEach(([t,ok])=>{const b=document.createElement("button");b.type="button";b.className="opt";b.textContent=t;b.dataset.ok=ok?"1":"";b.onclick=()=>pick(b,ok);box.appendChild(b)})}
+function pick(b,ok){document.querySelectorAll(".opt").forEach(o=>{o.disabled=true;if(o.dataset.ok)o.classList.add("right")});
+  if(ok)pts++;else b.classList.add("wrong");
+  $("qBubble").textContent=(ok?"Richtig! ":"Knapp daneben! ")+round[idx][3];
+  const n=$("nextBtn");n.textContent=idx<9?"Weiter":"Ergebnis";n.classList.remove("hide")}
+$("nextBtn").onclick=()=>{idx++;idx<10?ask():end()};
+function end(){setBar(10);show("vEnd");let r=RANKS[0][1];RANKS.forEach(x=>{if(pts>=x[0])r=x[1]});
+  if(pts>best){best=pts;ls.set("wd_best",best)}
+  $("rank").textContent=r;$("score").textContent=pts+" / 10";
+  $("endMsg").textContent=(pts===10?"Perfekt":pts>=8?"Stark":pts>=5?"Gut gemacht":"Elchi übt gern mit dir")+(name?", "+name:"")+"! Dein Rekord: "+best+" / 10.";$("shareMsg").textContent=""}
+$("startBtn").onclick=start;$("againBtn").onclick=start;$("homeBtn").onclick=()=>{show("vStart");nameState()};
+$("shareBtn").onclick=async()=>{const t="Ich habe im Winterdorf-Quiz "+pts+" von 10 Punkten geholt ("+$("rank").textContent+")! Schaffst du mehr?";
+  try{if(navigator.share){await navigator.share({title:"Winterdorf-Quiz",text:t,url:URL_LIVE})}else{await navigator.clipboard.writeText(t+" "+URL_LIVE);$("shareMsg").textContent="Text in die Zwischenablage kopiert."}}catch(e){}};
+$("verTxt").textContent="Version "+VERSION+" · Stand "+STAND;
+if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>
